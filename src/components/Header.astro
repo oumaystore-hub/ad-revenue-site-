@@ -3,27 +3,12 @@
     <a href="/" class="logo">موقعي</a>
     <nav class="main-nav" id="nav">
       <ul>
-        <li><a href="/">الرئيسية</a></li>
-        <li><a href="/articles">المقالات</a></li>
-        <li><a href="/about">من نحن</a></li>
-        <li><a href="/contact">اتصل بنا</a></li>
+        <li><a href={Astro.url.pathname === '/' ? '/' : '/'}>الرئيسية</a></li>
+        <li><a href="/articles/">المقالات</a></li>
+        <li><a href="/about/">من نحن</a></li>
+        <li><a href="/contact/">اتصل بنا</a></li>
       </ul>
     </nav>
     <button class="mobile-toggle" aria-label="القائمة" onclick="document.getElementById('nav').classList.toggle('active')">☰</button>
   </div>
 </header>
-<style>
-  .site-header { padding: 0.8rem 0; background: #fff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 100; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-  .logo { font-size: 1.4rem; font-weight: 700; color: #111827; }
-  .main-nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
-  .main-nav a { color: #374151; font-weight: 500; }
-  .main-nav a:hover { color: #2563eb; }
-  .mobile-toggle { display: none; background: none; border: none; font-size: 1.3rem; cursor: pointer; }
-  @media (max-width: 768px) {
-    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: #fff; padding: 1rem; border-bottom: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-    .main-nav.active { display: block; }
-    .main-nav ul { flex-direction: column; gap: 0.8rem; }
-    .mobile-toggle { display: block; }
-  }
-</style>
