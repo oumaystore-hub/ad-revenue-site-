@@ -1,0 +1,32 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AdStickyMobile from '../components/AdStickyMobile.astro';
+---
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={Astro.props.description || "موقع محتوى عربي سريع ومحسّن للإعلانات"} />
+    <link rel="canonical" href={Astro.url} />
+    <title>{Astro.props.title || "موقعي"}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main class="container" style="margin-top: 2rem; min-height: 60vh;">
+      <slot />
+    </main>
+    <AdStickyMobile />
+    <Footer />
+    <script is:inline src="/ads/ad-loader.js" defer></script>
+  </body>
+</html>
