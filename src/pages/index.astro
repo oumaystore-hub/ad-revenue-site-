@@ -4,20 +4,32 @@ import AdHeader from '../components/AdHeader.astro';
 import AdInContent from '../components/AdInContent.astro';
 ---
 <BaseLayout title="الرئيسية - موقعي" description="أحدث المقالات والأخبار التقنية والثقافية">
-  <AdHeader />
-  <h1>مرحباً بك في موقعي</h1>
-  <p>محتوى عربي أصيل، سريع التحميل، ومحسّن لقراءتك.</p>
-  <section class="articles-grid" style="display: grid; gap: 1.5rem; margin: 2rem 0;">
-    <article class="card" style="padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
-      <h2><a href="/articles/post-1">كيف تبدأ موقع ربحي من الصفر؟</a></h2>
-      <p>دليل شامل لاختيار النطاق، الاستضافة المجانية، وقبول AdSense في أقل من شهر.</p>
-      <a href="/articles/post-1" style="display:inline-block; margin-top:0.5rem; font-weight:500;">اقرأ المزيد ←</a>
-    </article>
-    <article class="card" style="padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
-      <h2><a href="/articles/post-2">أسرار تحسين Core Web Vitals</a></h2>
-      <p>تقنيات عملية لرفع السرعة، تقليل الاهتزاز، وتحسين ترتيب جوجل.</p>
-      <a href="/articles/post-2" style="display:inline-block; margin-top:0.5rem; font-weight:500;">اقرأ المزيد ←</a>
-    </article>
+  
+  <!-- قسم ترحيبي ملون -->
+  <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem 2rem; border-radius: 16px; margin-bottom: 3rem; text-align: center; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    <h1 style="color: white; margin-bottom: 1rem;">مرحباً بك في موقعي</h1>
+    <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+      محتوى عربي أصيل، سريع التحميل، ومحسّن لقراءتك
+    </p>
   </section>
+
+  <AdHeader />
+  
+  <h2 style="color: white; margin: 2rem 0 1.5rem; font-size: 2rem;">📚 أحدث المقالات</h2>
+  
+  <div style="display: grid; gap: 2rem; margin: 2rem 0;">
+    <article class="card" style="background: white; border-right: 5px solid #4f46e5;">
+      <h2><a href="/articles/post-1" style="color: #4f46e5;">كيف تبدأ موقع ربحي من الصفر؟</a></h2>
+      <p style="color: #64748b;">دليل شامل لاختيار النطاق، الاستضافة المجانية، وقبول AdSense في أقل من شهر.</p>
+      <a href="/articles/post-1" style="display:inline-block; margin-top:1rem; padding: 0.5rem 1.5rem; background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); color: white; border-radius: 8px; text-decoration: none;">اقرأ المزيد ←</a>
+    </article>
+    
+    <article class="card" style="background: white; border-right: 5px solid #06b6d4;">
+      <h2><a href="/articles/post-2" style="color: #0891b2;">أسرار تحسين Core Web Vitals</a></h2>
+      <p style="color: #64748b;">تقنيات عملية لرفع السرعة، تقليل الاهتزاز، وتحسين ترتيب جوجل.</p>
+      <a href="/articles/post-2" style="display:inline-block; margin-top:1rem; padding: 0.5rem 1.5rem; background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; border-radius: 8px; text-decoration: none;">اقرأ المزيد ←</a>
+    </article>
+  </div>
+  
   <AdInContent />
 </BaseLayout>
