@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdHeader from '../components/AdHeader.astro';
+---
+<BaseLayout title="المقالات - موقعي" description="أرشيف المقالات التقنية والثقافية">
+  <AdHeader />
+  <h1>أرشيف المقالات</h1>
+  <p>تصفح أحدث المقالات المنشورة على الموقع.</p>
+  <ul style="margin: 2rem 0; padding: 0; list-style: none;">
+    <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+      <h3><a href="/articles/post-1">كيف تبدأ موقع ربحي من الصفر؟</a></h3>
+      <p style="color: var(--muted); font-size: 0.9rem;">نشر في: 20 مايو 2024</p>
+    </li>
+    <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+      <h3><a href="/articles/post-2">أسرار تحسين Core Web Vitals</a></h3>
+      <p style="color: var(--muted); font-size: 0.9rem;">نشر في: 18 مايو 2024</p>
+    </li>
+  </ul>
+</BaseLayout>
