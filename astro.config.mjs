@@ -5,5 +5,5 @@ export default defineConfig({
   // انتبه هنا: تم إزالة الشرطة الأخيرة لتطابق اسم المستودع الجديد
   base: '/ad-revenue-site', 
   trailingSlash: 'always',
-  outDir: './dist',
+  outDir: './dist', 
 });
