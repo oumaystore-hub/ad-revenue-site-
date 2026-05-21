@@ -1,34 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AdHeader from '../components/AdHeader.astro';
-import AdInContent from '../components/AdInContent.astro';
 ---
-<BaseLayout title="الرئيسية - موقعي" description="أحدث المقالات والأخبار">
-  <div style="text-align: center; padding: 3rem 1rem; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border-radius: 16px; margin-bottom: 2rem;">
-    <h1 style="margin-bottom: 0.5rem;">مرحباً بك في موقعي</h1>
-    <p style="opacity: 0.9; font-size: 1.1rem;">محتوى عربي أصيل، سريع التحميل، ومحسّن للقراءة</p>
+<BaseLayout title="الرئيسية" description="مرحباً بك في موقعي">
+  <div style="text-align: center; padding: 4rem 2rem; background: #f8fafc; border-radius: 16px; margin: 2rem 0;">
+    <h1 style="color: #4f46e5; font-size: 2.5rem; margin-bottom: 1rem;">مرحباً بك في موقعي</h1>
+    <p style="color: #64748b; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+      هذا الموقع مبني بـ Astro ويعمل على GitHub Pages بنجاح!
+    </p>
+    <a href="/articles/" style="display:inline-block; margin-top: 2rem; padding: 0.75rem 2rem; background: #4f46e5; color: white; border-radius: 8px; text-decoration: none; font-weight: 600;">
+      تصفح المقالات →
+    </a>
   </div>
 
-  <AdHeader />
-
-  <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
-    <article class="card">
-      <h2><a href="/articles/post-1/" style="color: #4f46e5;">كيف تبدأ موقع ربحي من الصفر؟</a></h2>
-      <p>دليل شامل لاختيار النطاق، الاستضافة المجانية، وقبول AdSense في أقل من شهر.</p>
-      <a href="/articles/post-1/" style="display:inline-block; margin-top:0.5rem; color:#4f46e5; font-weight:600;">اقرأ المزيد ←</a>
-    </article>
-    
-    <article class="card">
-      <h2><a href="/articles/post-2/" style="color: #4f46e5;">أسرار تحسين Core Web Vitals</a></h2>
-      <p>تقنيات عملية لرفع السرعة، تقليل الاهتزاز، وتحسين ترتيب جوجل.</p>
-      <a href="/articles/post-2/" style="display:inline-block; margin-top:0.5rem; color:#4f46e5; font-weight:600;">اقرأ المزيد ←</a>
-    </article>
-  </div>
-
-  <AdInContent />
+  <section style="margin: 3rem 0;">
+    <h2 style="color: #1e293b; margin-bottom: 1.5rem;">📄 صفحات الموقع</h2>
+    <ul style="list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      <li><a href="/articles/" style="padding: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; display: block; text-decoration: none; color: #4f46e5;">المقالات</a></li>
+      <li><a href="/about/" style="padding: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; display: block; text-decoration: none; color: #4f46e5;">من نحن</a></li>
+      <li><a href="/contact/" style="padding: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; display: block; text-decoration: none; color: #4f46e5;">اتصل بنا</a></li>
+      <li><a href="/privacy-policy/" style="padding: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; display: block; text-decoration: none; color: #4f46e5;">سياسة الخصوصية</a></li>
+      <li><a href="/terms/" style="padding: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; display: block; text-decoration: none; color: #4f46e5;">شروط الاستخدام</a></li>
+    </ul>
+  </section>
 </BaseLayout>
-
-<style>
-  .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-  .card:hover { transform: translateY(-3px); transition: transform 0.2s; }
-</style>
