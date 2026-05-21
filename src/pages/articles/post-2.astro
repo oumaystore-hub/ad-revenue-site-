@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdHeader from '../../components/AdHeader.astro';
+import AdInContent from '../../components/AdInContent.astro';
+---
+<BaseLayout title="أسرار تحسين Core Web Vitals" description="تحسين سرعة وأداء الموقع لمحركات البحث">
+  <AdHeader />
+  <article style="max-width: 800px; margin: 0 auto;">
+    <h1>أسرار تحسين Core Web Vitals</h1>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">تاريخ النشر: 18 مايو 2024 | التصنيف: تقني</p>
+    <p>أداء الموقع ليس رفاهية، بل عامل ترتيب مباشر في جوجل. إليك أهم المؤشرات...</p>
+    <h2>LCP: سرعة تحميل العنصر الأكبر</h2>
+    <p>استخدم صور WebP، وتأجيل السكربتات غير الضرورية.</p>
+    <AdInContent />
+    <h2>CLS: منع اهتزاز الصفحة</h2>
+    <p>حدد أبعاداً ثابتة للصور وحاويات الإعلانات مسبقاً.</p>
+  </article>
+</BaseLayout>
