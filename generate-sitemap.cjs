@@ -3,7 +3,7 @@ const path = require('path');
 
 const distDir = path.join(__dirname, 'dist');
 const sitemapPath = path.join(distDir, 'sitemap.xml');
-const siteUrl = 'https://your-domain.ma'; // ⬅️ غيّر هذا لنطاقك الفعلي
+const siteUrl = 'https://oumaystore-hub.github.io/ad-revenue-site'; // ✅ تم التعديل
 
 function getHtmlFiles(dir) {
   let results = [];
