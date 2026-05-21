@@ -29,9 +29,9 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: 📦 Install Dependencies
-        run: npm ci
-
+      - name: 📦 Install Dependenci
+        run: npm install
+         
       - name: 🛠️ Build Project (Includes Sitemap Generation)
         run: npm run build
 
