@@ -1,19 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AdHeader from '../components/AdHeader.astro';
 ---
-<BaseLayout title="المقالات - موقعي" description="أرشيف المقالات التقنية والثقافية">
-  <AdHeader />
-  <h1>أرشيف المقالات</h1>
-  <p>تصفح أحدث المقالات المنشورة على الموقع.</p>
-  <ul style="margin: 2rem 0; padding: 0; list-style: none;">
-    <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
-      <h3><a href="/articles/post-1">كيف تبدأ موقع ربحي من الصفر؟</a></h3>
-      <p style="color: var(--muted); font-size: 0.9rem;">نشر في: 20 مايو 2024</p>
-    </li>
-    <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
-      <h3><a href="/articles/post-2">أسرار تحسين Core Web Vitals</a></h3>
-      <p style="color: var(--muted); font-size: 0.9rem;">نشر في: 18 مايو 2024</p>
-    </li>
-  </ul>
+
+<BaseLayout title="المقالات - موقعي" description="أرشيف المقالات">
+  <section class="articles-header">
+    <div class="container">
+      <h1>📚 المقالات</h1>
+      <p>تصفح جميع المقالات والنصائح المفيدة</p>
+    </div>
+  </section>
+
+  <section class="articles-list">
+    <div class="container">
+      <article class="article-card">
+        <h2><a href="/articles/post-1/">كيف تبدأ موقع ربحي من الصفر؟</a></h2>
+        <p>دليل شامل لاختيار النطاق، الاستضافة المجانية، وقبول AdSense في أقل من شهر.</p>
+        <a href="/articles/post-1/" class="read-more">اقرأ المزيد ←</a>
+      </article>
+
+      <article class="article-card">
+        <h2><a href="/articles/post-2/">أسرار تحسين Core Web Vitals</a></h2>
+        <p>تقنيات عملية لرفع السرعة، تقليل الاهتزاز، وتحسين ترتيب جوجل.</p>
+        <a href="/articles/post-2/" class="read-more">اقرأ المزيد ←</a>
+      </article>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .articles-header {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .articles-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .articles-header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+  }
+  .articles-list {
+    padding: 3rem 0;
+    background: #f8fafc;
+    min-height: 50vh;
+  }
+  .article-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .article-card h2 {
+    margin-bottom: 1rem;
+  }
+  .article-card h2 a {
+    color: #1e293b;
+    text-decoration: none;
+  }
+  .article-card h2 a:hover {
+    color: #4f46e5;
+  }
+  .article-card p {
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  .read-more {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .read-more:hover {
+    text-decoration: underline;
+  }
+</style>
