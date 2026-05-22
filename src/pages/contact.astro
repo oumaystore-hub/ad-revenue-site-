@@ -1,9 +1,100 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="اتصل بنا" description="تواصل مع فريق الموقع">
-  <h1>اتصل بنا</h1>
-  <p>يسعدنا تواصلكم. يمكنكم مراسلتنا عبر البريد الإلكتروني:</p>
-  <p><a href="mailto:contact@your-domain.ma" style="font-size: 1.1rem; font-weight: 500;">contact@your-domain.ma</a></p>
-  <p style="margin-top: 1.5rem; color: var(--muted);">نرد عادة خلال 24-48 ساعة عمل.</p>
+
+<BaseLayout title="اتصل بنا - موقعي" description="تواصل معنا">
+  <section class="contact-header">
+    <div class="container">
+      <h1>📧 اتصل بنا</h1>
+      <p>نحن هنا لمساعدتك. لا تتردد في التواصل معنا!</p>
+    </div>
+  </section>
+
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-card">
+        <h2>معلومات التواصل</h2>
+        
+        <div class="contact-item">
+          <strong>📧 البريد الإلكتروني:</strong>
+          <p>contact@example.com</p>
+        </div>
+        
+        <div class="contact-item">
+          <strong>💬 وسائل التواصل:</strong>
+          <p>يمكنك متابعتنا على منصات التواصل الاجتماعي</p>
+        </div>
+        
+        <div class="contact-note">
+          <p>نرد على جميع الاستفسارات خلال 24-48 ساعة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .contact-header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .contact-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;  }
+  .contact-header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+  }
+  .contact-content {
+    padding: 3rem 0;
+    background: #f8fafc;
+    min-height: 50vh;
+  }
+  .contact-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .contact-card h2 {
+    color: #1e293b;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+  .contact-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .contact-item:last-child {
+    border-bottom: none;
+  }
+  .contact-item strong {
+    color: #4f46e5;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .contact-item p {
+    color: #64748b;
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .contact-note {
+    background: #fef3c7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+  .contact-note p {
+    color: #92400e;
+    margin: 0;
+    font-weight: 600;  }
+</style>
