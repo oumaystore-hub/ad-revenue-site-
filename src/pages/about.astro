@@ -1,10 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="من نحن" description="تعرف على فريق الموقع ورؤيتنا">
-  <h1>من نحن</h1>
-  <p>موقعي هو منصة عربية مستقلة تهدف إلى تقديم محتوى تقني وثقافي عالي الجودة، محسّن للسرعة وقابل للوصول للجميع.</p>
-  <p>نؤمن بأن المعرفة يجب أن تكون مجانية، سريعة، وخالية من التشتت الإعلاني المزعج.</p>
-  <h2>رؤيتنا</h2>
-  <p>بناء مجتمع قارئ واعٍ، يدعم المحتوى العربي الأصلي.</p>
+
+<BaseLayout title="من نحن - موقعي" description="تعرف علينا">
+  <section class="about-header">
+    <div class="container">
+      <h1>👤 من نحن</h1>
+    </div>
+  </section>
+
+  <section class="about-content">
+    <div class="container">
+      <div class="about-card">
+        <h2>عن الموقع</h2>
+        <p>موقعنا متخصص في تقديم محتوى عربي أصيل ومفيد في مجالات التقنية، الربح من الإنترنت، وتطوير المواقع.</p>
+        <p>نهدف إلى مساعدة القراء العرب على بناء مشاريع ناجحة على الإنترنت.</p>
+        
+        <h3>🎯 رؤيتنا</h3>
+        <p>أن نكون المصدر الأول للمحتوى العربي الجودة في مجال الربح من الإنترنت.</p>
+        
+        <h3>💡 مهمتنا</h3>
+        <p>تبسيط المفاهيم التقنية وتقديمها بطريقة عملية وسهلة الفهم.</p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .about-header {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .about-header h1 {
+    font-size: 2.5rem;
+  }
+  .about-content {
+    padding: 3rem 0;
+    background: #f8fafc;
+    min-height: 50vh;
+  }
+  .about-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .about-card h2 {
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  .about-card h3 {
+    color: #4f46e5;
+    margin: 2rem 0 1rem;
+    font-size: 1.4rem;
+  }
+  .about-card p {
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+</style>
