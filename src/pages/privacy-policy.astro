@@ -1,13 +1,157 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "سياسة الخصوصية";
 ---
-<BaseLayout title="سياسة الخصوصية" description="كيفية جمع واستخدام بياناتك على هذا الموقع">
-  <h1>سياسة الخصوصية</h1>
-  <p>آخر تحديث: مايو 2024</p>
-  <h2>1. جمع البيانات</h2>
-  <p>يستخدم هذا الموقع ملفات تعريف الارتباط (Cookies) وأدوات تحليل مثل Google Analytics لتحسين تجربة المستخدم.</p>
-  <h2>2. الإعلانات</h2>
-  <p>نستخدم Google AdSense لعرض إعلانات مخصصة. قد تستخدم Google ملفات تعريف الارتراض لتتبع التصفح عبر المواقع.</p>
-  <h2>3. حقوقك</h2>
-  <p>يحق لك طلب حذف بياناتك أو تعطيل التتبع عبر إعدادات المتصفح أو رابط "إدارة الموافقات".</p>
+
+<BaseLayout title={pageTitle} description="تعرف على سياسة الخصوصية وحماية البيانات في موقعنا.">
+  
+  <article class="legal-container">
+    
+    <header class="legal-header">
+      <h1>🔒 سياسة الخصوصية</h1>
+      <p>آخر تحديث: {new Date().toLocaleDateString('ar-EG')}</p>
+    </header>
+
+    <div class="legal-content">
+      <p class="intro">
+        نحن في <strong>موقعي</strong> نلتزم بحماية خصوصية زوارنا ومستخدمينا. توضح هذه السياسة كيفية جمعنا للبيانات، واستخدامنا لها، وحمايتها عند زيارتك لموقعنا. باستخدامك للموقع، فإنك توافق على الشروط المذكورة أدناه.
+      </p>
+
+      <h2>1. المعلومات التي نجمعها</h2>
+      <p>
+        قد نقوم بجمع معلومات معينة تلقائياً عند زيارتك للموقع لتحسين تجربة المستخدم، وتشمل:
+      </p>
+      <ul>
+        <li>عنوان بروتوكول الإنترنت (IP Address).</li>
+        <li>نوع المتصفح ونظام التشغيل.</li>
+        <li>الصفحات التي تمت زيارتها ووقت الزيارة.</li>
+      </ul>
+
+      <h2>2. ملفات تعريف الارتباط (Cookies)</h2>
+      <p>
+        نستخدم "ملفات تعريف الارتباط" (Cookies) لتخزين التفضيلات وتحسين تجربة التصفح. كما نسمح لطرف ثالث (Google) باستخدام ملفات تعريف الارتباط لعرض الإعلانات بناءً على زياراتك السابقة لهذا الموقع أو مواقع أخرى.
+      </p>
+
+      <h2>3. إعلانات Google (AdSense)</h2>
+      <p>
+        نحن نستخدم <strong>Google AdSense</strong> لعرض الإعلانات. تقوم Google وشركاؤها بعرض الإعلانات بناءً على زيارتك لموقعنا ومواقع أخرى على الإنترنت.
+      </p>
+      <p>
+        قد تستخدم Google تقنية <strong>DART cookie</strong> لتمكينها من عرض الإعلانات للزوار بناءً على زيارتهم لموقعنا والمواقع الأخرى على الإنترنت. يمكن للزوار إلغاء اشتراكهم في استخدام ملف تعريف ارتباط DART من خلال زيارة <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">سياسة خصوصية الإعلانات والمحتوى من Google</a>.
+      </p>
+
+      <h2>4. الروابط الخارجية</h2>
+      <p>
+        قد يحتوي موقعنا على روابط لمواقع خارجية. نحن غير مسؤولين عن ممارسات الخصوصية أو محتوى تلك المواقع. ننصحك بقراءة سياسة الخصوصية الخاصة بأي موقع خارجي تزوره.
+      </p>
+
+      <h2>5. حماية البيانات</h2>
+      <p>        نحن نتخذ إجراءات أمنية مناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التعديل أو الكشف أو التدمير.
+      </p>
+
+      <h2>6. تحديثات السياسة</h2>
+      <p>
+        قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سنقوم بإخطارك بأي تغييرات عن طريق نشر السياسة الجديدة على هذه الصفحة.
+      </p>
+
+      <h2>7. تواصل معنا</h2>
+      <p>
+        إذا كان لديك أي أسئلة حول سياسة الخصوصية، يرجى التواصل معنا عبر البريد الإلكتروني:
+      </p>
+      <p style="direction: ltr; text-align: center; font-weight: bold; color: #1e3a8a; font-size: 1.1rem;">
+        contact@example.com
+      </p>
+    </div>
+
+  </article>
 </BaseLayout>
+
+<style>
+  /* تنسيقات الصفحات القانونية */
+  .legal-container {
+    max-width: 800px; /* عرض مثالي للقراءة */
+    margin: 3rem auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    line-height: 1.9; /* مسافة مريحة للأسطر */
+  }
+
+  .legal-header {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .legal-header h1 {
+    color: #1e3a8a; /* لون الهيدر الجديد */
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-header p {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+  .legal-content h2 {
+    color: #3b82f6; /* أزرق سماوي */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-right: 4px solid #3b82f6;
+    padding-right: 0.8rem;
+  }
+
+  .legal-content p {
+    margin-bottom: 1.2rem;
+    color: #334155;
+    font-size: 1.1rem;
+  }
+
+  .legal-content ul {
+    margin-bottom: 1.5rem;
+    padding-right: 1.5rem;
+    background: #f8fafc;
+    padding: 1rem 2rem 1rem 1rem;
+    border-radius: 8px;
+  }
+
+  .legal-content li {
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+    list-style-type: disc;
+    color: #475569;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    color: #1e293b;
+    font-weight: 500;
+    background: #eff6ff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-right: 5px solid #1e3a8a;
+    margin-bottom: 2rem;
+  }
+
+  .legal-content a {
+    color: #3b82f6;
+    text-decoration: underline;
+  }
+  .legal-content a:hover {
+    color: #1d4ed8;
+  }
+
+  /* للجوال */  @media (max-width: 768px) {
+    .legal-container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    .legal-header h1 {
+      font-size: 1.6rem;
+    }
+  }
+</style>
