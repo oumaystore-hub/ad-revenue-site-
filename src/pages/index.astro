@@ -2,120 +2,205 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="الرئيسية - موقعي" description="موقع محتوى عربي أصيل">
-  <section class="hero">
+<BaseLayout title="الرئيسية - موقعي" description="موقع محتوى عربي أصيل في التقنية والربح من الإنترنت">
+  
+  <!-- 1️⃣ القسم الترحيبي (Hero Section) -->
+  <section class="hero-section">
     <div class="container">
-      <h1>مرحباً بك في موقعي</h1>
-      <p>هذا الموقع مبني بـ Astro ويعمل على GitHub Pages بنجاح!</p>
-      <a href="/ad-revenue-site/articles" class="btn-primary">تصفح المقالات →</a>
-    </div>
-  </section>
-
-  <section class="pages-section">
-    <div class="container">
-      <h2>📄 صفحات الموقع</h2>
-      <div class="pages-grid">
-        <a href="/ad-revenue-site/articles" class="page-card">
-          <h3>📚 المقالات</h3>
-          <p>تصفح جميع المقالات والنصائح</p>
-        </a>
-        <a href="/ad-revenue-site/about" class="page-card">
-          <h3>👤 من نحن</h3>
-          <p>تعرف علينا وعلى رؤيتنا</p>
-        </a>
-        <a href="/ad-revenue-site/contact" class="page-card">
-          <h3>📧 اتصل بنا</h3>
-          <p>تواصل معنا في أي وقت</p>
-        </a>
-        <a href="/ad-revenue-site/privacy-policy" class="page-card">
-          <h3>🔒 سياسة الخصوصية</h3>
-          <p>كيف نحمي بياناتك</p>
-        </a>
+      <h1>مرحباً بك في موقعي 👋</h1>
+      <p class="hero-text">
+        وجهتك الأولى لمعرفة أحدث تقنيات الذكاء الاصطناعي، نصائح الربح من الإنترنت، ودليلك الشامل لعالم التقنية.
+      </p>
+      <div class="hero-buttons">
+        <a href="/ad-revenue-site/articles" class="btn-primary">تصفح المقالات </a>
+        <a href="/ad-revenue-site/about" class="btn-secondary">من نحن؟ ℹ️</a>
       </div>
     </div>
   </section>
+
+  <!-- 2️⃣ قسم "لماذا تتابعنا؟" (بدلاً من تكرار الروابط) -->
+  <section class="features-section">
+    <div class="container">
+      <h2>🌟 لماذا تتابعنا؟</h2>
+      <div class="features-grid">
+        <!-- ميزة 1 -->
+        <div class="feature-card">
+          <div class="icon">🚀</div>
+          <h3>تحليلات عميقة</h3>
+          <p>نقدم لك شروحات مبسطة لأعقد المفاهيم التقنية والربحية.</p>
+        </div>
+        <!-- ميزة 2 -->
+        <div class="feature-card">
+          <div class="icon">💡</div>
+          <h3>أفكار إبداعية</h3>
+          <p>اكتشف طرقاً جديدة ومبتكرة لاستثمار وقتك وجهدك على الإنترنت.</p>
+        </div>
+        <!-- ميزة 3 -->
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>محتوى موثوق</h3>
+          <p>مصادر دقيقة ومعلومات محدثة لضمان حصولك على الأفضل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3️⃣ قسم "أحدث المقالات" (رابط للمقال الجديد فقط) -->
+  <section class="latest-article-section">
+    <div class="container">      <h2>🔥 مقال الأسبوع</h2>
+      <article class="featured-article">
+        <h3><a href="/ad-revenue-site/articles/post-1">أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026</a></h3>
+        <p>
+          يشهد عالم التكنولوجيا تطورًا متسارعًا... تعرف على الذكاء الاصطناعي، الهواتف القابلة للطي، وكيف تستعد للمستقبل.
+        </p>
+        <a href="/ad-revenue-site/articles/post-1" class="read-more-link">اقرأ المقال كاملاً ←</a>
+      </article>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  .hero {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    color: white;
-    padding: 5rem 2rem;
-    text-align: center;
-  }
+  /* تنسيقات عامة */
   .container {
     max-width: 1100px;
     margin: 0 auto;
+    padding: 0 1.5rem;
   }
-  .hero h1 {    font-size: 3rem;
+
+  /* 1. تنسيق القسم الترحيبي (Hero) */
+  .hero-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* نفس لون الهيدر */
+    color: white;
+    padding: 5rem 1rem;
+    text-align: center;
+  }
+  .hero-section h1 {
+    font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 800;
   }
-  .hero p {
+  .hero-text {
     font-size: 1.3rem;
-    margin-bottom: 2rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
     opacity: 0.95;
   }
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
   .btn-primary {
-    display: inline-block;
     background: white;
-    color: #4f46e5;
-    padding: 1rem 2.5rem;
-    border-radius: 12px;
+    color: #1e3a8a;
+    padding: 1rem 2.5rem;    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   }
-  .pages-section {
+  .btn-secondary {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: background 0.2s;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* 2. تنسيق قسم الميزات */
+  .features-section {
     padding: 4rem 0;
     background: #f8fafc;
   }
-  .pages-section h2 {
+  .features-section h2 {
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     color: #1e293b;
   }
-  .pages-grid {
+  .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
   }
-  .page-card {
+  .feature-card {
     background: white;
     padding: 2rem;
     border-radius: 12px;
-    text-decoration: none;
-    color: #1e293b;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-  }  .page-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    border-color: #4f46e5;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
-  .page-card h3 {
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-    color: #4f46e5;
+  .feature-card .icon {
+    font-size: 3rem;    margin-bottom: 1rem;
   }
-  .page-card p {
+  .feature-card h3 {
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+  }
+  .feature-card p {
     color: #64748b;
-    font-size: 0.95rem;
+    line-height: 1.6;
   }
+
+  /* 3. تنسيق قسم المقال المميز */
+  .latest-article-section {
+    padding: 4rem 0;
+    background: white;
+  }
+  .latest-article-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1e293b;
+  }
+  .featured-article {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .featured-article h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .featured-article h3 a {
+    color: #1e3a8a;
+    text-decoration: none;
+  }
+  .featured-article p {
+    color: #475569;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .read-more-link {
+    color: #3b82f6;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .read-more-link:hover {
+    text-decoration: underline;  }
+
+  /* للجوال */
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-    }
+    .hero-section h1 { font-size: 2rem; }
+    .hero-text { font-size: 1.1rem; }
+    .hero-buttons { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
   }
 </style>
