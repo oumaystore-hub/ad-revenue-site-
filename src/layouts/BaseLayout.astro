@@ -15,17 +15,31 @@ import '../styles/global.css';
     <title>{Astro.props.title || 'TH Tech'}</title>
     <meta name="description" content={Astro.props.description || "TH Tech - Tech Hub | بوابتك التقنية الموثوقة للذكاء الاصطناعي والربح الرقمي."} />
 
-    <!-- 🔤 خطوط احترافية (Cairo للعربي، Inter للشعار) -->
+    <!-- 🔤 خطوط احترافية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
 
     <!-- 🎨 مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- 📊 Google Analytics (ضع معرفك الخاص مكان G-XXXXXXXXXX) -->
+    <!-- احصل على المعرف من: https://analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </head>
   <body>
     <Header />
-    <main><slot /></main>
+    
+    <main>
+      <slot />
+    </main>
+    
     <Footer />
 
     <!-- ⬆️ زر العودة للأعلى -->
@@ -36,8 +50,11 @@ import '../styles/global.css';
     <script>
       const btn = document.getElementById('backToTop');
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) btn.classList.add('visible');
-        else btn.classList.remove('visible');
+        if (window.scrollY > 300) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
       });
       btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -49,15 +66,31 @@ import '../styles/global.css';
         font-family: 'Cairo', sans-serif;
       }
       #backToTop {
-        position: fixed; bottom: 2rem; left: 2rem;
-        background: #3b82f6; color: white; width: 45px; height: 45px;
-        border-radius: 50%; border: none; cursor: pointer;
-        display: none; align-items: center; justify-content: center;
-        font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-        transition: all 0.3s ease; z-index: 999;
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: #3b82f6;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        transition: all 0.3s ease;
+        z-index: 999;
       }
-      #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
-      #backToTop.visible { display: flex; }
+      #backToTop:hover {
+        background: #1e3a8a;
+        transform: translateY(-3px);
+      }
+      #backToTop.visible {
+        display: flex;
+      }
     </style>
   </body>
 </html>
