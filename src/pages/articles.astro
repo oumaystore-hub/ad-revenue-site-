@@ -18,14 +18,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- المقال 1 -->
         <article class="card">
           <div class="card-image">
-            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="تقنية المستقبل" />
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="تقنية المستقبل" loading="lazy" />
           </div>
           <div class="card-content">
             <h2><a href="/ad-revenue-site/articles/post-1">أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026</a></h2>
             <p>الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.. تعرف على المستقبل قبل أن يحدث.</p>
             <div class="card-footer">
-              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
-              <span class="date"> 23 مايو 2026</span>
+              <a href="/ad-revenue-site/articles/post-1" class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+              <span class="date">📅 23 مايو 2026</span>
             </div>
           </div>
         </article>
@@ -33,13 +33,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- المقال 2 -->
         <article class="card">
           <div class="card-image">
-            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="الربح من الإنترنت" />
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="الربح من الإنترنت" loading="lazy" />
           </div>
           <div class="card-content">
             <h2><a href="/ad-revenue-site/articles/post-2">دليل المبتدئين للربح من الإنترنت</a></h2>
             <p>خطوات عملية لبناء مصدر دخل رقمي حقيقي من الصفر دون خبرة مسبقة.</p>
             <div class="card-footer">
-              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
+              <a href="/ad-revenue-site/articles/post-2" class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
               <span class="date">📅 24 مايو 2026</span>
             </div>
           </div>
@@ -47,13 +47,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <!-- المقال 3 -->
         <article class="card">
-          <div class="card-image">            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="تحسين السرعة" />
+          <div class="card-image">            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="تحسين السرعة" loading="lazy" />
           </div>
           <div class="card-content">
             <h2><a href="/ad-revenue-site/articles/post-3">أسرار تحسين Core Web Vitals</a></h2>
             <p>كيف تجعل موقعك أسرع من البرق وترتفع أرباحك من خلال تحسين الأداء.</p>
             <div class="card-footer">
-              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
+              <a href="/ad-revenue-site/articles/post-3" class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
               <span class="date">📅 25 مايو 2026</span>
             </div>
           </div>
@@ -69,11 +69,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     color: white;
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 2.5rem 1rem 2rem; /* ✅ تم التقليص من 4rem إلى 2.5rem */
   }
-  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .articles-hero h1 { 
+    font-size: 2.2rem; /* ✅ تم التقليص قليلاً */
+    margin-bottom: 0.5rem; 
+  }
+  .articles-hero p {
+    font-size: 1rem; /* ✅ تصغير الخط قليلاً */
+    opacity: 0.95;
+  }
   
-  .articles-grid-container { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
+  .articles-grid-container { padding: 2.5rem 0; background: #f8fafc; min-height: 50vh; }
   
   .articles-grid {
     display: grid;
@@ -89,14 +96,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e2e8f0;
     display: flex;
-    flex-direction: column;
-  }
+    flex-direction: column;  }
   .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
   }
 
-  .card-image {    height: 200px;
+  .card-image {
+    height: 200px;
     overflow: hidden;
   }
   .card-image img {
@@ -124,5 +131,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 0.85rem;
     color: #94a3b8;
   }
-  .read-more { color: #3b82f6; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+  .read-more { 
+    color: #3b82f6; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    gap: 5px;
+    text-decoration: none;
+  }
+  .read-more:hover {
+    color: #1d4ed8;
+  }
+
+  /* للجوال */
+  @media (max-width: 768px) {
+    .articles-hero { padding: 2rem 1rem 1.5rem; }    .articles-hero h1 { font-size: 1.8rem; }
+    .articles-grid-container { padding: 2rem 0; }
+  }
 </style>
