@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="الرئيسية - موقعي" description="موقع محتوى عربي أصيل في التقنية والربح من الإنترنت">
   
-  <!-- 1️⃣ القسم الترحيبي (Hero Section) -->
+  <!-- 1️⃣ القسم الترحيبي مع صورة -->
   <section class="hero-section">
     <div class="container">
       <h1>مرحباً بك في موقعي 👋</h1>
@@ -12,30 +12,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         وجهتك الأولى لمعرفة أحدث تقنيات الذكاء الاصطناعي، نصائح الربح من الإنترنت، ودليلك الشامل لعالم التقنية.
       </p>
       <div class="hero-buttons">
-        <a href="/ad-revenue-site/articles" class="btn-primary">تصفح المقالات </a>
+        <a href="/ad-revenue-site/articles" class="btn-primary">تصفح المقالات 📚</a>
         <a href="/ad-revenue-site/about" class="btn-secondary">من نحن؟ ℹ️</a>
+      </div>
+      
+      <!-- 🖼️ الصورة الرئيسية -->
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" alt="تقنية المستقبل" loading="lazy" />
       </div>
     </div>
   </section>
 
-  <!-- 2️⃣ قسم "لماذا تتابعنا؟" (بدلاً من تكرار الروابط) -->
+  <!-- 2️⃣ قسم "لماذا تتابعنا؟" -->
   <section class="features-section">
     <div class="container">
       <h2>🌟 لماذا تتابعنا؟</h2>
       <div class="features-grid">
-        <!-- ميزة 1 -->
         <div class="feature-card">
           <div class="icon">🚀</div>
           <h3>تحليلات عميقة</h3>
           <p>نقدم لك شروحات مبسطة لأعقد المفاهيم التقنية والربحية.</p>
         </div>
-        <!-- ميزة 2 -->
         <div class="feature-card">
           <div class="icon">💡</div>
           <h3>أفكار إبداعية</h3>
           <p>اكتشف طرقاً جديدة ومبتكرة لاستثمار وقتك وجهدك على الإنترنت.</p>
         </div>
-        <!-- ميزة 3 -->
         <div class="feature-card">
           <div class="icon">🔒</div>
           <h3>محتوى موثوق</h3>
@@ -45,9 +47,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- 3️⃣ قسم "أحدث المقالات" (رابط للمقال الجديد فقط) -->
-  <section class="latest-article-section">
-    <div class="container">      <h2>🔥 مقال الأسبوع</h2>
+  <!-- 3️⃣ قسم "أحدث المقالات" -->  <section class="latest-article-section">
+    <div class="container">
+      <h2>🔥 مقال الأسبوع</h2>
       <article class="featured-article">
         <h3><a href="/ad-revenue-site/articles/post-1">أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026</a></h3>
         <p>
@@ -61,45 +63,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* تنسيقات عامة */
   .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
-  /* 1. تنسيق القسم الترحيبي (Hero) */
+  /* 1. تنسيق القسم الترحيبي */
   .hero-section {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* نفس لون الهيدر */
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     color: white;
-    padding: 5rem 1rem;
+    padding: 3rem 1rem 2rem; /* تقليل المسافة */
     text-align: center;
   }
   .hero-section h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
     font-weight: 800;
   }
   .hero-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     max-width: 700px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 2rem;
     line-height: 1.6;
     opacity: 0.95;
   }
   .hero-buttons {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
   .btn-primary {
-    background: white;
-    color: #1e3a8a;
-    padding: 1rem 2.5rem;    border-radius: 50px;
+    background: white;    color: #1e3a8a;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: transform 0.2s;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
@@ -109,75 +111,90 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .btn-secondary {
     background: rgba(255,255,255,0.2);
     color: white;
-    padding: 1rem 2.5rem;
+    padding: 0.9rem 2rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: 1px solid rgba(255,255,255,0.4);
     transition: background 0.2s;
   }
   .btn-secondary:hover {
     background: rgba(255,255,255,0.3);
   }
+  
+  /* الصورة الرئيسية */
+  .hero-image {
+    margin: 2rem auto 0;
+    max-width: 900px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
   /* 2. تنسيق قسم الميزات */
   .features-section {
-    padding: 4rem 0;
+    padding: 3rem 0;
     background: #f8fafc;
   }
   .features-section h2 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: #1e293b;
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;    color: #1e293b;
   }
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
   }
   .feature-card {
     background: white;
-    padding: 2rem;
+    padding: 1.8rem;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
   .feature-card .icon {
-    font-size: 3rem;    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
   .feature-card h3 {
     color: #3b82f6;
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
   }
   .feature-card p {
     color: #64748b;
     line-height: 1.6;
+    font-size: 0.95rem;
   }
 
   /* 3. تنسيق قسم المقال المميز */
   .latest-article-section {
-    padding: 4rem 0;
+    padding: 3rem 0;
     background: white;
   }
   .latest-article-section h2 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
     color: #1e293b;
   }
   .featured-article {
     background: #f0f9ff;
     border: 1px solid #bae6fd;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 12px;
     max-width: 800px;
     margin: 0 auto;
   }
   .featured-article h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;    margin-bottom: 1rem;
   }
   .featured-article h3 a {
     color: #1e3a8a;
@@ -192,15 +209,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: #3b82f6;
     font-weight: 700;
     text-decoration: none;
+    display: inline-block;
   }
   .read-more-link:hover {
-    text-decoration: underline;  }
+    text-decoration: underline;
+  }
 
   /* للجوال */
   @media (max-width: 768px) {
-    .hero-section h1 { font-size: 2rem; }
-    .hero-text { font-size: 1.1rem; }
+    .hero-section { padding: 2rem 1rem 1.5rem; }
+    .hero-section h1 { font-size: 1.8rem; }
+    .hero-text { font-size: 1rem; }
     .hero-buttons { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .hero-image { border-radius: 12px; }
+    .features-section { padding: 2rem 0; }
+    .latest-article-section { padding: 2rem 0; }
   }
 </style>
