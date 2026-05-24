@@ -9,13 +9,16 @@ const publishDate = "2026-05-25";
 <BaseLayout title={pageTitle} description={description}>
 
   <article class="article-container">
+    
+    <!-- 🖼️ الصورة الرئيسية للمقال -->
     <div class="article-hero-image">
-  <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80" alt="تحسين سرعة الموقع والأداء التقني"loading="lazy" />
-</div>
+      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80" alt="تحسين سرعة الموقع والأداء التقني" loading="lazy" />
+    </div>
+
     <header class="article-header">
       <h1>{pageTitle}</h1>
       <div class="article-meta">
-        <span> {publishDate}</span>
+        <span>📅 {publishDate}</span>
         <span>⏱️ وقت القراءة: 6 دقائق</span>
       </div>
     </header>
@@ -37,19 +40,19 @@ const publishDate = "2026-05-25";
       <ul>
         <li>🖼️ <strong>ضغط الصور:</strong> استخدم صيغ WebP أو AVIF بدلاً من PNG/JPG التقليدية.</li>
         <li>⚡ <strong>التخزين المؤقت (Caching):</strong> فعّل Cache-Control في الاستضافة لتقليل تحميل الملفات المتكرر.</li>
-        <li> <strong>شبكات CDN:</strong> وزّع محتواك عبر سيرفرات قريبة جغرافيًا من الزائر.</li>
+        <li>🌐 <strong>شبكات CDN:</strong> وزّع محتواك عبر سيرفرات قريبة جغرافيًا من الزائر.</li>
       </ul>
 
       <h2>2. INP: Interaction to Next Paint (سرعة الاستجابة)</h2>
       <p>
         حلت محل مقياس FID القديم، وتقيس مدى سرعة استجابة الموقع عند النقر أو التمرير. الهدف: أقل من <strong>200 ملي ثانية</strong>.
       </p>
-      <p>
-        💡 <strong>نصيحة تقنية:</strong> قلّل من JavaScript غير الضروري، واستخدم `defer` أو `async` في تحميل السكربتات الخارجية. تجنب المعالجات الثقيلة (Heavy Event Listeners) التي توقف التفاعل المؤقت.
+      <p>        💡 <strong>نصيحة تقنية:</strong> قلّل من JavaScript غير الضروري، واستخدم `defer` أو `async` في تحميل السكربتات الخارجية. تجنب المعالجات الثقيلة (Heavy Event Listeners) التي توقف التفاعل المؤقت.
       </p>
 
       <!-- إعلان وسط المقال -->
-      <div class="ad-slot">        <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
+      <div class="ad-slot">
+        <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
       </div>
 
       <h2>3. CLS: Cumulative Layout Shift (الثبات البصري)</h2>
@@ -65,7 +68,7 @@ const publishDate = "2026-05-25";
         <li>تجنب حقن محتوى ديناميكي فوق النص المرئي للزائر.</li>
       </ol>
 
-      <blockquote>
+      <blockquote style="background:#fffbeb; border-right:5px solid #f59e0b; padding:1.5rem; margin:2rem 0; font-style:italic; color:#92400e; border-radius:0 8px 8px 0;">
         "الموقع السريع يبني الثقة، والثبات البصري يبقي الزائر، والنتيجة: نقرات أعلى وأرباح أكثر."
       </blockquote>
 
@@ -93,11 +96,11 @@ const publishDate = "2026-05-25";
       <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom Banner)</p>
     </div>
 
-    <div class="article-footer-actions">
-      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
-      <span style="margin: 0 10px; color: #94a3b8;">|</span>
+    <div class="article-footer-actions">      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
+      <span style="margin:0 10px; color:#94a3b8;">|</span>
       <a href="/ad-revenue-site/articles/post-2" class="back-btn">📖 المقال السابق</a>
     </div>
+
   </article>
 </BaseLayout>
 
@@ -111,6 +114,20 @@ const publishDate = "2026-05-25";
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     line-height: 1.85;
   }
+
+  /* 🖼️ تنسيق الصورة الرئيسية */
+  .article-hero-image {
+    margin: -2.5rem -2.5rem 2rem -2.5rem;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    height: 400px;
+  }
+  .article-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .article-header {
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 1.5rem;
@@ -128,8 +145,7 @@ const publishDate = "2026-05-25";
     display: flex;
     gap: 1.5rem;
   }
-  .article-content p {
-    margin-bottom: 1.5rem;
+  .article-content p {    margin-bottom: 1.5rem;
     font-size: 1.15rem;
     color: #334155;
   }
@@ -147,7 +163,8 @@ const publishDate = "2026-05-25";
     background: #f8fafc;
     padding: 1rem 2rem 1rem 1rem;
     border-radius: 8px;
-  }  .article-content li {
+  }
+  .article-content li {
     margin-bottom: 0.6rem;
     font-size: 1.1rem;
     list-style-type: disc;
@@ -163,15 +180,6 @@ const publishDate = "2026-05-25";
     border-radius: 4px;
     margin-bottom: 2rem;
   }
-  blockquote {
-    background: #fffbeb;
-    border-right: 5px solid #f59e0b;
-    padding: 1.5rem;
-    margin: 2rem 0;
-    font-style: italic;
-    color: #92400e;
-    border-radius: 0 8px 8px 0;
-  }
   .ad-slot {
     margin: 2rem 0;
     padding: 1rem;
@@ -186,8 +194,7 @@ const publishDate = "2026-05-25";
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: center;    flex-wrap: wrap;
     gap: 0.5rem;
   }
   .back-btn {
@@ -196,16 +203,29 @@ const publishDate = "2026-05-25";
     background: #e2e8f0;
     color: #475569;
     border-radius: 8px;
-    text-decoration: none;    font-weight: 600;
+    text-decoration: none;
+    font-weight: 600;
     transition: all 0.3s;
   }
   .back-btn:hover {
     background: #cbd5e1;
     color: #1e293b;
   }
+
   @media (max-width: 768px) {
-    .article-container { padding: 1.5rem; margin: 1rem; }
-    .article-header h1 { font-size: 1.6rem; }
-    .article-footer-actions { flex-direction: column; }
+    .article-container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    .article-hero-image {
+      margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+      height: 220px;
+    }
+    .article-header h1 {
+      font-size: 1.6rem;
+    }
+    .article-footer-actions {
+      flex-direction: column;
+    }
   }
 </style>
