@@ -2,101 +2,127 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="المقالات - موقعي" description="أرشيف المقالات">
-  <section class="articles-header">
+<BaseLayout title="المقالات - موقعي" description="أرشيف المقالات التقنية والربحية">
+  
+  <section class="articles-hero">
     <div class="container">
-      <h1>📚 المقالات</h1>
-      <p>تصفح جميع المقالات والنصائح المفيدة</p>
+      <h1>📚 مكتبة المقالات</h1>
+      <p>محتوى حصري يساعدك على فهم التقنية والربح من الإنترنت</p>
     </div>
   </section>
 
-  <section class="articles-list">
+  <section class="articles-grid-container">
     <div class="container">
-      <!-- المقال 1: الاتجاهات التقنية 2026 -->
-      <article class="article-card">
-        <h2><a href="/ad-revenue-site/articles/post-1">أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026</a></h2>
-        <p>يشهد عالم التكنولوجيا تطورًا متسارعًا. تعرف على الذكاء الاصطناعي، التجارة الإلكترونية الذكية، والأمن السيبراني.</p>
-        <a href="/ad-revenue-site/articles/post-1" class="read-more">اقرأ المزيد ←</a>
-      </article>
-<article class="article-card">
-     <h2><a href="/ad-revenue-site/articles/post-2">دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت في 2026</a></h2>
-     <p>خطوات عملية ومجربة لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل الأول.</p>
-     <a href="/ad-revenue-site/articles/post-2" class="read-more">اقرأ المزيد ←</a>
-   </article>
-<article class="article-card">
-     <h2><a href="/ad-revenue-site/articles/post-3">أسرار تحسين Core Web Vitals لزيادة أرباح موقعك</a></h2>
-     <p>دليل عملي لتحسين سرعة موقعك وتقليل الاهتزاز البصري لرفع الترتيب والدخل.</p>
-     <a href="/ad-revenue-site/articles/post-3" class="read-more">اقرأ المزيد ←</a>
-   </article>
-      <!-- إذا كان لديك مقالات أخرى، أضفها هنا -->
+      <div class="articles-grid">
+        
+        <!-- المقال 1 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="تقنية المستقبل" />
+          </div>
+          <div class="card-content">
+            <h2><a href="/ad-revenue-site/articles/post-1">أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026</a></h2>
+            <p>الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.. تعرف على المستقبل قبل أن يحدث.</p>
+            <div class="card-footer">
+              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
+              <span class="date"> 23 مايو 2026</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- المقال 2 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="الربح من الإنترنت" />
+          </div>
+          <div class="card-content">
+            <h2><a href="/ad-revenue-site/articles/post-2">دليل المبتدئين للربح من الإنترنت</a></h2>
+            <p>خطوات عملية لبناء مصدر دخل رقمي حقيقي من الصفر دون خبرة مسبقة.</p>
+            <div class="card-footer">
+              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
+              <span class="date">📅 24 مايو 2026</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- المقال 3 -->
+        <article class="card">
+          <div class="card-image">            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="تحسين السرعة" />
+          </div>
+          <div class="card-content">
+            <h2><a href="/ad-revenue-site/articles/post-3">أسرار تحسين Core Web Vitals</a></h2>
+            <p>كيف تجعل موقعك أسرع من البرق وترتفع أرباحك من خلال تحسين الأداء.</p>
+            <div class="card-footer">
+              <span class="read-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></span>
+              <span class="date">📅 25 مايو 2026</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .articles-header {
-    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); /* أزرق سماوي احترافي */
+  .articles-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     color: white;
-    padding: 4rem 2rem 3rem;
     text-align: center;
+    padding: 4rem 1rem;
   }
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
+  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  
+  .articles-grid-container { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
+  
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
-  .articles-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 800;
-  }
-  .articles-header p {
-    font-size: 1.2rem;
-    opacity: 0.95;
-  }
-  .articles-list {
-    padding: 3rem 0;
-    background: #f8fafc;
-    min-height: 50vh;
-  }
-  .article-card {
+
+  .card {
     background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border-right: 5px solid #3b82f6; /* خط أزرق جانبي */
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
   }
-  .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
   }
-  .article-card h2 {
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
+
+  .card-image {    height: 200px;
+    overflow: hidden;
   }
-  .article-card h2 a {
-    color: #1e293b;
-    text-decoration: none;
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
   }
-  .article-card h2 a:hover {
-    color: #3b82f6;
+  .card:hover .card-image img {
+    transform: scale(1.05);
   }
-  .article-card p {
-    color: #64748b;
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-    font-size: 1.05rem;
+
+  .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+  .card-content h2 { font-size: 1.3rem; margin-bottom: 0.8rem; line-height: 1.4; }
+  .card-content h2 a { color: #1e293b; text-decoration: none; transition: color 0.2s; }
+  .card-content h2 a:hover { color: #3b82f6; }
+  .card-content p { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
   }
-  .read-more {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
-    font-size: 1.05rem;
-  }
-  .read-more:hover {
-    color: #1d4ed8;
-    text-decoration: underline;
-  }
+  .read-more { color: #3b82f6; font-weight: 600; display: flex; align-items: center; gap: 5px; }
 </style>
