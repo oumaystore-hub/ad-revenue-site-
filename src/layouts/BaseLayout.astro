@@ -10,74 +10,71 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{Astro.props.title || 'موقعي'}</title>
-    <meta name="description" content={Astro.props.description || 'موقع محتوى عربي'} />
-<!-- مكتبة الأيقونات الاحترافية -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- <!-- 🌐 وسوم المشاركة الذكية (Facebook, Twitter, WhatsApp) -->
-<meta property="og:type" content="article" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={Astro.props.title || "موقعي"} />
-<meta property="og:description" content={Astro.props.description || "محتوى عربي أصيل في التقنية والربح من الإنترنت"} />
-<meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:locale" content="ar_AR" />
-<meta name="twitter:card" content="summary_large_image" />
-</head>
+    
+    <!-- 🏷️ العنوان والوصف (محسّن لـ TH Tech) -->
+    <title>{Astro.props.title || 'TH Tech'}</title>
+    <meta name="description" content={Astro.props.description || "TH Tech - Tech Hub | بوابتك التقنية الموثوقة للذكاء الاصطناعي والربح الرقمي."} />
+
+    <!--  مكتبة الأيقونات (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
   <body>
     <Header />
+    
     <main>
       <slot />
     </main>
+    
     <Footer />
-<!-- 🔝 زر العودة للأعلى -->
-<button id="backToTop" title="العودة للأعلى">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
 
-<style>
-  #backToTop {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem; /* لليسار لأن الموقع RTL */
-    background: #3b82f6;
-    color: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: none; /* مخفي افتراضياً */
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 12px rgba(59,130,246,0.4);
-    transition: all 0.3s ease;
-    z-index: 999;
-  }
-  #backToTop:hover {
-    background: #1e3a8a;
-    transform: translateY(-3px);
-  }
-  #backToTop.visible {
-    display: flex;
-  }
-</style>
+    <!-- ⬆️ زر العودة للأعلى -->
+    <button id="backToTop" title="العودة للأعلى">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
-<script>
-  //  منطق الزر
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
-  });
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
+    <script>
+      //  تشغيل زر العودة للأعلى
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+
+    <style>
+      /* تنسيق زر العودة للأعلى */
+      #backToTop {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem; /* لليسار لأن الموقع RTL */
+        background: #3b82f6;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: none; /* مخفي افتراضياً */
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+      #backToTop:hover {
+        background: #1e3a8a;
+        transform: translateY(-3px);
+      }
+      #backToTop.visible {
+        display: flex;
+      }
+    </style>
   </body>
 </html>
