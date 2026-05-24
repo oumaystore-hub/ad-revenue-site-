@@ -188,5 +188,23 @@ const publishDate = "2026-05-23";
     }
     .article-header h1 { font-size: 1.6rem; }
     .article-footer-actions { flex-direction: column; }
-  }
+/* تنسيق الصورة العريضة أعلى المقال */
+.article-hero-image {
+  margin: -2.5rem -2.5rem 2rem -2.5rem; /* تمدد الصورة للحواف */
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  height: 300px;
+}
+.article-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* تعديل للجوال */
+@media (max-width: 768px) {
+  .article-hero-image {
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    height: 200px;
+  } 
 </style>
