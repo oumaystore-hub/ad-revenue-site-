@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="container">
-    <a href="/ad-revenue-site" class="logo">موقعي</a>
+    <a href="/ad-revenue-site" class="logo">TH Tech</a>
     <nav class="main-nav" id="nav">
       <ul>
         <li><a href="/ad-revenue-site">الرئيسية</a></li>
@@ -15,7 +15,7 @@
 
 <style>
   .site-header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* أزرق احترافي */
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -32,10 +32,11 @@
   }
   .logo {
     color: #ffffff;
-    font-size: 1.6rem;
-    font-weight: 800;
+    font-size: 1.8rem;
+    font-weight: 900;
     text-decoration: none;
-    letter-spacing: -0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .main-nav ul {
     display: flex;
@@ -54,7 +55,6 @@
   }
   .main-nav a:hover {
     background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
     transform: translateY(-2px);
   }
   .mobile-toggle {
@@ -68,24 +68,9 @@
     cursor: pointer;
   }
   @media (max-width: 768px) {
-    .main-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      left: 0;
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-      padding: 1rem;
-    }
-    .main-nav.active {
-      display: block;
-    }
-    .main-nav ul {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .mobile-toggle {
-      display: block;
-    }
+    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 1rem; }
+    .main-nav.active { display: block; }
+    .main-nav ul { flex-direction: column; gap: 0.5rem; }
+    .mobile-toggle { display: block; }
   }
 </style>
