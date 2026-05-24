@@ -14,7 +14,17 @@ import '../styles/global.css';
     <meta name="description" content={Astro.props.description || 'موقع محتوى عربي'} />
 <!-- مكتبة الأيقونات الاحترافية -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  </head>
+ <!-- 🌐 وسوم المشاركة الذكية (Facebook, Twitter, WhatsApp) -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={Astro.props.title || "موقعي"} />
+<meta property="og:description" content={Astro.props.description || "محتوى عربي أصيل في التقنية والربح من الإنترنت"} />
+<meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+</head>
   <body>
     <Header />
     <main>
