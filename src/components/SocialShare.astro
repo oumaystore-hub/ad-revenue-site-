@@ -1,0 +1,90 @@
+---
+const { title, url } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+---
+
+<div class="social-share">
+  <h3>شارك المقال 📢</h3>
+  <div class="share-buttons">
+    <a href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`} 
+       target="_blank" 
+       rel="noopener" 
+       class="share-btn twitter"
+       aria-label="شارك على تويتر">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} 
+       target="_blank" 
+       rel="noopener" 
+       class="share-btn facebook"
+       aria-label="شارك على فيسبوك">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`} 
+       target="_blank" 
+       rel="noopener" 
+       class="share-btn linkedin"
+       aria-label="شارك على لينكدإن">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`} 
+       target="_blank" 
+       rel="noopener" 
+       class="share-btn whatsapp"
+       aria-label="شارك على واتساب">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button onclick="navigator.clipboard.writeText('${url}'); alert('تم نسخ الرابط!')" 
+            class="share-btn copy"
+            aria-label="انسخ الرابط">
+      <i class="fa-solid fa-link"></i>
+    </button>
+  </div>
+</div>
+
+<style>
+  .social-share {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #bae6fd;
+  }
+  .social-share h3 {
+    color: #1e3a8a;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+  .share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .share-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  .twitter { background: #000000; }
+  .facebook { background: #1877f2; }
+  .linkedin { background: #0077b5; }
+  .whatsapp { background: #25d366; }
+  .copy { background: #64748b; }
+</style>
