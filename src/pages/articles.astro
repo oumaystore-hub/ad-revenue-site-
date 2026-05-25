@@ -1,6 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+// 🔖 تعريف التصنيفات وروابطها
+const categories = [
+  { name: 'الكل', slug: '/ad-revenue-site/articles' },
+  { name: 'ذكاء اصطناعي', slug: '/ad-revenue-site/category/ai' },
+  { name: 'ربح رقمي', slug: '/ad-revenue-site/category/money' },
+  { name: 'تقنية', slug: '/ad-revenue-site/category/tech' },
+  { name: 'أداء', slug: '/ad-revenue-site/category/performance' }
+];
+
+// 📰 قائمة المقالات (يمكن جلبها تلقائياً، لكن هذا هو الأسرع حالياً)
 const articles = [
   { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", description: "مقارنة شاملة من حيث البرمجة، الكتابة، والأسعار.", date: "2026-05-26", url: "/ad-revenue-site/articles/post-4", category: "ذكاء اصطناعي" },
   { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", description: "تعلم كيف تجعل موقعك أسرع بـ 3x لتحسين SEO وتجربة المستخدم.", date: "2026-05-25", url: "/ad-revenue-site/articles/post-3", category: "أداء وتقنية" },
@@ -8,29 +18,86 @@ const articles = [
   { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", description: "اكتشف الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.", date: "2026-05-23", url: "/ad-revenue-site/articles/post-1", category: "تقنية" }
 ];
 ---
+
 <BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل.">
-  <section class="articles-hero"><div class="container"><h1>المقالات 📚</h1><p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p></div></section>
-  <section class="articles-grid-section"><div class="container">
-    <div class="articles-grid">
-      {articles.map((article) => (
-        <article class="article-card">
-          <div class="article-card-content">
-            <div class="article-category">{article.category}</div>
-            <h2><a href={article.url}>{article.title}</a></h2>
-            <p>{article.description}</p>
-            <div class="article-meta"><span>📅 {article.date}</span></div>
-            <a href={article.url} class="read-more">اقرأ المزيد ←</a>
-          </div>
-        </article>
+  
+  <!-- 🔖 شريط التصنيفات الجديد (Sticky Bar) -->
+  <section class="categories-nav">
+    <div class="container">
+      {categories.map((cat) => (
+        <a href={cat.slug} class="category-link">{cat.name}</a>
       ))}
     </div>
-  </div></section>
+  </section>
+
+  <section class="articles-hero">
+    <div class="container">
+      <h1>المقالات </h1>
+      <p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p>
+    </div>
+  </section>
+
+  <section class="articles-grid-section">
+    <div class="container">
+      <div class="articles-grid">
+        {articles.map((article) => (
+          <article class="article-card">
+            <div class="article-card-content">
+              <div class="article-category">{article.category}</div>
+              <h2><a href={article.url}>{article.title}</a></h2>
+              <p>{article.description}</p>
+              <div class="article-meta"><span>📅 {article.date}</span></div>
+              <a href={article.url} class="read-more">اقرأ المزيد ←</a>            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  .articles-hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; text-align: center; padding: 3.5rem 1rem 3rem; }
-  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  /* 🔖 تنسيق شريط التصنيفات */
+  .categories-nav {
+    background: white;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 64px; /* ارتفاع الهيدر */
+    z-index: 90;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: none; /* إخفاء شريط التمرير */
+  }
+  .container::-webkit-scrollbar { display: none; }
+  
+  .category-link {
+    white-space: nowrap;
+    padding: 0.5rem 1.2rem;
+    background: #f1f5f9;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  .category-link:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  /* بقية التنسيقات (Hero & Grid) */
+  .articles-hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; text-align: center; padding: 3.5rem 1rem 3rem; }  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
+  .articles-hero p { font-size: 1.2rem; opacity: 0.95; }
   .articles-grid-section { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
   .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
   .article-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
@@ -44,5 +111,11 @@ const articles = [
   .article-meta { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
   .read-more { display: inline-block; color: #3b82f6; text-decoration: none; font-weight: 600; }
   .read-more:hover { color: #1e40af; }
-  @media (max-width: 768px) { .articles-hero { padding: 2.5rem 1rem 2rem; } .articles-hero h1 { font-size: 2rem; } .articles-grid { grid-template-columns: 1fr; } }
+  
+  @media (max-width: 768px) {
+    .categories-nav { top: 56px; } /* تعديل الهيدر للموبايل */
+    .articles-hero { padding: 2.5rem 1rem 2rem; }
+    .articles-hero h1 { font-size: 2rem; }
+    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
 </style>
