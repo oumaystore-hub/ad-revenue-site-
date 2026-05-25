@@ -1,16 +1,30 @@
 <header class="site-header">
   <div class="container">
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
+    
     <nav class="main-nav" id="nav">
       <ul>
         <li><a href="/ad-revenue-site">الرئيسية</a></li>
-        <li><a href="/ad-revenue-site/articles">المقالات</a></li>
+        
+        <!--  القائمة المنسدلة للأقسام -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">الأقسام ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="/ad-revenue-site/category/ai">🤖 ذكاء اصطناعي</a></li>
+            <li><a href="/ad-revenue-site/category/money">💰 ربح رقمي</a></li>
+            <li><a href="/ad-revenue-site/category/tech">💻 تقنية</a></li>
+            <li><a href="/ad-revenue-site/category/performance">⚡ أداء</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="/ad-revenue-site/articles">كل المقالات</a></li>
         <li><a href="/ad-revenue-site/about">من نحن</a></li>
         <li><a href="/ad-revenue-site/contact">اتصل بنا</a></li>
         <li><a href="/ad-revenue-site/privacy-policy" class="nav-link-small">الخصوصية</a></li>
       </ul>
     </nav>
-    <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">☰</button>
+
+    <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active'); document.querySelector('.dropdown')?.classList.toggle('active')"></button>
   </div>
 </header>
 
@@ -19,15 +33,60 @@
   .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; background: linear-gradient(to right, #ffffff, #bfdbfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: opacity 0.3s ease; }
   .logo:hover { opacity: 0.9; }
-  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+  
+  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
   .main-nav a { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 8px; transition: all 0.3s ease; font-size: 0.95rem; }
   .main-nav a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
   .nav-link-small { font-size: 0.85rem !important; padding: 0.5rem 0.8rem !important; }
+  
+  /* 🔽 تنسيق القائمة المنسدلة (Dropdown) */
+  .dropdown { position: relative; }
+  .dropdown-toggle { cursor: pointer; }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    padding: 0.5rem 0;
+    z-index: 100;
+    animation: slideDown 0.2s ease;
+    overflow: hidden;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .dropdown:hover .dropdown-menu { display: block; } /* تظهر عند التمرير */
+  
+  .dropdown-menu li { margin: 0; }
+  .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .dropdown-menu a:hover { background: #f1f5f9; color: #3b82f6; padding-right: 1.8rem; }
+  
   .mobile-toggle { display: none; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; padding: 0.5rem; border-radius: 6px; cursor: pointer; }
+  
   @media (max-width: 768px) {
     .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 1rem; }
     .main-nav.active { display: block; }
     .main-nav ul { flex-direction: column; gap: 0.5rem; }
     .mobile-toggle { display: block; }
+    
+    /* تعديل القائمة المنسدلة للموبايل */
+    .dropdown-menu { position: static; box-shadow: none; background: rgba(255,255,255,0.1); display: none; }
+    .dropdown.active .dropdown-menu { display: block; }
+    .dropdown-menu a { color: white; padding: 0.6rem 1rem; }
+    .dropdown-menu a:hover { background: rgba(255,255,255,0.2); }
   }
 </style>
