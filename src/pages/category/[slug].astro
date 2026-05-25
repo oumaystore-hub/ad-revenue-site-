@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// 🗺️ تعريف المسارات الثابتة التي سيقوم Astro بإنشائها
+// 🗺️ تعريف المسارات الثابتة (Slugs)
 export async function getStaticPaths() {
   return [
     { params: { slug: 'tech' }, props: { name: 'تقنية', desc: 'كل ما هو جديد في عالم التكنولوجيا والابتكار' } },
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { name, desc } = Astro.props;
 const currentSlug = Astro.params.slug;
 
-// 📋 قاعدة بيانات المقالات (مطابقة تماماً للمقالات الأربعة)
+//  قاعدة بيانات المقالات (مطابقة 100% للمقالات المنشورة)
 const allArticles = [
   { 
     title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", 
@@ -47,9 +47,33 @@ const allArticles = [
     slug: "ai", 
     date: "2026-05-26", 
     summary: "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الدقة، والأسعار." 
-  }];
+  },  { 
+    title: "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك", 
+    url: "/ad-revenue-site/articles/post-5", 
+    category: "ذكاء اصطناعي", 
+    slug: "ai", 
+    date: "2026-05-27", 
+    summary: "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام." 
+  },
+  { 
+    title: "أفضل 5 تطبيقات للربح من الهاتف بجدية", 
+    url: "/ad-revenue-site/articles/post-6", 
+    category: "ربح رقمي", 
+    slug: "money", 
+    date: "2026-05-28", 
+    summary: "تطبيقات حقيقية تدفع فعلياً. تعرف على طرق الربح من المشي، المشاركة الآمنة، والاستبيانات." 
+  },
+  { 
+    title: "دليل تحسين محركات البحث (SEO) للمبتدئين", 
+    url: "/ad-revenue-site/articles/post-7", 
+    category: "أداء وتقنية", 
+    slug: "performance", 
+    date: "2026-05-29", 
+    summary: "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث وتصدر جوجل." 
+  }
+];
 
-//  تصفية المقالات حسب القسم الحالي
+// 🔍 تصفية المقالات حسب الـ Slug الحالي
 const filteredArticles = allArticles.filter(article => article.slug === currentSlug);
 ---
 
@@ -64,7 +88,7 @@ const filteredArticles = allArticles.filter(article => article.slug === currentS
     </div>
   </section>
 
-  <!-- 📰 شبكة المقالات -->
+  <!-- 📰 شبكة المقالات المصفاة -->
   <section class="articles-grid-section">
     <div class="container">
       {filteredArticles.length > 0 ? (
@@ -72,10 +96,9 @@ const filteredArticles = allArticles.filter(article => article.slug === currentS
           {filteredArticles.map((article) => (
             <article class="article-card">
               <div class="article-card-content">
-                <div class="article-category">{article.category}</div>
-                <h2><a href={article.url}>{article.title}</a></h2>
+                <div class="article-category">{article.category}</div>                <h2><a href={article.url}>{article.title}</a></h2>
                 <p>{article.summary}</p>
-                <div class="article-meta"><span>📅 {article.date}</span></div>
+                <div class="article-meta"><span> {article.date}</span></div>
                 <a href={article.url} class="read-more">اقرأ المزيد ←</a>
               </div>
             </article>
@@ -96,7 +119,8 @@ const filteredArticles = allArticles.filter(article => article.slug === currentS
     color: white;
     text-align: center;
     padding: 3.5rem 1rem 3rem;
-  }  .category-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
+  }
+  .category-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
   .category-hero p { font-size: 1.2rem; opacity: 0.95; margin-bottom: 1.5rem; }
   .back-link {
     display: inline-block;
@@ -121,8 +145,7 @@ const filteredArticles = allArticles.filter(article => article.slug === currentS
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .article-card:hover {
     transform: translateY(-5px);
@@ -145,7 +168,8 @@ const filteredArticles = allArticles.filter(article => article.slug === currentS
   .article-meta { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
   .read-more {
     display: inline-block;
-    color: #3b82f6;    text-decoration: none;
+    color: #3b82f6;
+    text-decoration: none;
     font-weight: 600;
     transition: all 0.3s;
   }
