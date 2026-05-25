@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// 🔖 تعريف التصنيفات وروابطها
 const categories = [
   { name: 'الكل', slug: '/ad-revenue-site/articles' },
   { name: 'ذكاء اصطناعي', slug: '/ad-revenue-site/category/ai' },
@@ -10,21 +9,60 @@ const categories = [
   { name: 'أداء', slug: '/ad-revenue-site/category/performance' }
 ];
 
-// 📰 قائمة المقالات (يمكن جلبها تلقائياً، لكن هذا هو الأسرع حالياً)
 const articles = [
-  { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", description: "مقارنة شاملة من حيث البرمجة، الكتابة، والأسعار.", date: "2026-05-26", url: "/ad-revenue-site/articles/post-4", category: "ذكاء اصطناعي" },
-  { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", description: "تعلم كيف تجعل موقعك أسرع بـ 3x لتحسين SEO وتجربة المستخدم.", date: "2026-05-25", url: "/ad-revenue-site/articles/post-3", category: "أداء وتقنية" },
-  { title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت", description: "خطوات عملية لبدء مشروعك الرقمي من الصفر حتى الدخل الأول.", date: "2026-05-24", url: "/ad-revenue-site/articles/post-2", category: "ربح رقمي" },
-  { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", description: "اكتشف الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.", date: "2026-05-23", url: "/ad-revenue-site/articles/post-1", category: "تقنية" }
-  { title: "أفضل 10 أدوات ذكاء اصطناعي مجانية...", date: "2026-05-27", url: "/ad-revenue-site/articles/post-5", category: "ذكاء اصطناعي", description: "..." },
-  { title: "أفضل 5 تطبيقات للربح من الهاتف...", date: "2026-05-28", url: "/ad-revenue-site/articles/post-6", category: "ربح رقمي", description: "..." },
-  { title: "دليل تحسين محركات البحث (SEO)...", date: "2026-05-29", url: "/ad-revenue-site/articles/post-7", category: "أداء وتقنية", description: "..." }
+  {
+    title: "دليل تحسين محركات البحث (SEO) للمبتدئين: كيف تجعل موقعك يتصدر جوجل؟",
+    description: "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث. تعلم الكلمات المفتاحية، الروابط، وتجربة المستخدم.",
+    date: "2026-05-29",
+    url: "/ad-revenue-site/articles/post-7",
+    category: "أداء وتقنية"
+  },
+  {
+    title: "أفضل 5 تطبيقات للربح من الهاتف بجدية (بدون إعلانات مزعجة)",
+    description: "تطبيقات حقيقية تدفع فعلياً. تعرف على طرق الربح من المشي، المشاركة الآمنة للإنترنت، والاستبيانات الموثوقة.",
+    date: "2026-05-28",
+    url: "/ad-revenue-site/articles/post-6",
+    category: "ربح رقمي"
+  },
+  {
+    title: "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026",
+    description: "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام. وفّر ساعات من العمل بذكاء.",
+    date: "2026-05-27",
+    url: "/ad-revenue-site/articles/post-5",
+    category: "ذكاء اصطناعي"
+  },
+  {
+    title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟",
+    description: "مقارنة شاملة من حيث البرمجة، الكتابة، والأسعار.",
+    date: "2026-05-26",
+    url: "/ad-revenue-site/articles/post-4",
+    category: "ذكاء اصطناعي"
+  },
+  {
+    title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals",
+    description: "تعلم كيف تجعل موقعك أسرع بـ 3x لتحسين SEO وتجربة المستخدم.",
+    date: "2026-05-25",
+    url: "/ad-revenue-site/articles/post-3",
+    category: "أداء وتقنية"
+  },
+  {
+    title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت",
+    description: "خطوات عملية لبدء مشروعك الرقمي من الصفر حتى الدخل الأول.",    date: "2026-05-24",
+    url: "/ad-revenue-site/articles/post-2",
+    category: "ربح رقمي"
+  },
+  {
+    title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026",
+    description: "اكتشف الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.",
+    date: "2026-05-23",
+    url: "/ad-revenue-site/articles/post-1",
+    category: "تقنية"
+  }
 ];
 ---
 
 <BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل.">
   
-  <!-- 🔖 شريط التصنيفات الجديد (Sticky Bar) -->
   <section class="categories-nav">
     <div class="container">
       {categories.map((cat) => (
@@ -35,7 +73,7 @@ const articles = [
 
   <section class="articles-hero">
     <div class="container">
-      <h1>المقالات </h1>
+      <h1>المقالات 📚</h1>
       <p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p>
     </div>
   </section>
@@ -50,7 +88,8 @@ const articles = [
               <h2><a href={article.url}>{article.title}</a></h2>
               <p>{article.description}</p>
               <div class="article-meta"><span>📅 {article.date}</span></div>
-              <a href={article.url} class="read-more">اقرأ المزيد ←</a>            </div>
+              <a href={article.url} class="read-more">اقرأ المزيد ←</a>
+            </div>
           </article>
         ))}
       </div>
@@ -58,15 +97,13 @@ const articles = [
   </section>
 
 </BaseLayout>
-
 <style>
-  /* 🔖 تنسيق شريط التصنيفات */
   .categories-nav {
     background: white;
     padding: 0.8rem 0;
     border-bottom: 1px solid #e2e8f0;
     position: sticky;
-    top: 64px; /* ارتفاع الهيدر */
+    top: 64px;
     z-index: 90;
   }
   .container {
@@ -76,7 +113,7 @@ const articles = [
     display: flex;
     gap: 0.8rem;
     overflow-x: auto;
-    scrollbar-width: none; /* إخفاء شريط التمرير */
+    scrollbar-width: none;
   }
   .container::-webkit-scrollbar { display: none; }
   
@@ -98,15 +135,36 @@ const articles = [
     transform: translateY(-2px);
   }
   
-  /* بقية التنسيقات (Hero & Grid) */
-  .articles-hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; text-align: center; padding: 3.5rem 1rem 3rem; }  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
+  .articles-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    text-align: center;
+    padding: 3.5rem 1rem 3rem;
+  }
+  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
   .articles-hero p { font-size: 1.2rem; opacity: 0.95; }
+  
   .articles-grid-section { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
-  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
-  .article-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }  
+  .article-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
   .article-card:hover { transform: translateY(-5px); }
   .article-card-content { padding: 2rem; }
-  .article-category { display: inline-block; background: #dbeafe; color: #1e40af; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+  .article-category {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
   .article-card h2 { font-size: 1.4rem; margin-bottom: 1rem; }
   .article-card h2 a { color: #1e293b; text-decoration: none; }
   .article-card h2 a:hover { color: #3b82f6; }
@@ -116,7 +174,7 @@ const articles = [
   .read-more:hover { color: #1e40af; }
   
   @media (max-width: 768px) {
-    .categories-nav { top: 56px; } /* تعديل الهيدر للموبايل */
+    .categories-nav { top: 56px; }
     .articles-hero { padding: 2.5rem 1rem 2rem; }
     .articles-hero h1 { font-size: 2rem; }
     .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
