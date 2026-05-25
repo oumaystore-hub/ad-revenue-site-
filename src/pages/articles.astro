@@ -2,168 +2,47 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const articles = [
-  {
-    title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟",
-    description: "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الكتابة، والأسعار.",
-    date: "2026-05-26",
-    url: "/ad-revenue-site/articles/post-4",
-    category: "ذكاء اصطناعي",
-    readTime: "7 دقائق"
-  },
-  {
-    title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals",
-    description: "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة.",
-    date: "2026-05-25",
-    url: "/ad-revenue-site/articles/post-3",
-    category: "تقنية",
-    readTime: "8 دقائق"
-  },
-  {
-    title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت",
-    description: "خطوات عملية لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل.",
-    date: "2026-05-24",
-    url: "/ad-revenue-site/articles/post-2",
-    category: "ربح من الإنترنت",
-    readTime: "7 دقائق"
-  },
-  {
-    title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026",
-    description: "يشهد عالم التكنولوجيا تطورًا متسارعًا. تعرف على الذكاء الاصطناعي والتجارة الذكية.",
-    date: "2026-05-23",
-    url: "/ad-revenue-site/articles/post-1",
-    category: "تقنية",
-    readTime: "6 دقائق"
-  }
+  { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", description: "مقارنة شاملة من حيث البرمجة، الكتابة، والأسعار.", date: "2026-05-26", url: "/ad-revenue-site/articles/post-4", category: "ذكاء اصطناعي" },
+  { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", description: "تعلم كيف تجعل موقعك أسرع بـ 3x لتحسين SEO وتجربة المستخدم.", date: "2026-05-25", url: "/ad-revenue-site/articles/post-3", category: "أداء وتقنية" },
+  { title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت", description: "خطوات عملية لبدء مشروعك الرقمي من الصفر حتى الدخل الأول.", date: "2026-05-24", url: "/ad-revenue-site/articles/post-2", category: "ربح رقمي" },
+  { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", description: "اكتشف الذكاء الاصطناعي، التجارة الذكية، والأمن السيبراني.", date: "2026-05-23", url: "/ad-revenue-site/articles/post-1", category: "تقنية" }
 ];
 ---
-
-<BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل: ذكاء اصطناعي، ربح من الإنترنت، وتحسين الأداء التقني.">
-
-  <section class="articles-hero">
-    <div class="container">
-      <h1>المقالات 📚</h1>
-      <p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p>
+<BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل.">
+  <section class="articles-hero"><div class="container"><h1>المقالات 📚</h1><p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p></div></section>
+  <section class="articles-grid-section"><div class="container">
+    <div class="articles-grid">
+      {articles.map((article) => (
+        <article class="article-card">
+          <div class="article-card-content">
+            <div class="article-category">{article.category}</div>
+            <h2><a href={article.url}>{article.title}</a></h2>
+            <p>{article.description}</p>
+            <div class="article-meta"><span>📅 {article.date}</span></div>
+            <a href={article.url} class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </article>
+      ))}
     </div>
-  </section>
-
-  <section class="articles-grid-section">
-    <div class="container">      <div class="articles-grid">
-        {articles.map((article) => (
-          <article class="article-card">
-            <div class="article-card-content">
-              <div class="article-category">{article.category}</div>
-              <h2>
-                <a href={article.url}>{article.title}</a>
-              </h2>
-              <p>{article.description}</p>
-              <div class="article-meta">
-                <span>📅 {article.date}</span>
-                <span>⏱️ {article.readTime}</span>
-              </div>
-              <a href={article.url} class="read-more">اقرأ المزيد ←</a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
+  </div></section>
 </BaseLayout>
 
 <style>
-  .articles-hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    color: white;
-    text-align: center;
-    padding: 3.5rem 1rem 3rem;
-  }
-  .articles-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-    font-weight: 800;
-  }
-  .articles-hero p {
-    font-size: 1.2rem;
-    opacity: 0.95;
-  }
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .articles-grid-section {
-    padding: 3rem 0;
-    background: #f8fafc;
-    min-height: 60vh;
-  }
-  .articles-grid {    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-  }
-  .article-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  }
-  .article-card-content {
-    padding: 2rem;
-  }
-  .article-category {
-    display: inline-block;
-    background: #dbeafe;
-    color: #1e40af;
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  .article-card h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-  .article-card h2 a {
-    color: #1e293b;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .article-card h2 a:hover {
-    color: #3b82f6;
-  }
-  .article-card p {
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-  }
-  .article-meta {
-    color: #94a3b8;
-    font-size: 0.85rem;    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .read-more {
-    display: inline-block;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .read-more:hover {
-    color: #1e40af;
-    transform: translateX(-5px);
-  }
-  @media (max-width: 768px) {
-    .articles-hero { padding: 2.5rem 1rem 2rem; }
-    .articles-hero h1 { font-size: 2rem; }
-    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .articles-grid-section { padding: 2rem 0; }
-  }
+  .articles-hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; text-align: center; padding: 3.5rem 1rem 3rem; }
+  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .articles-grid-section { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
+  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+  .article-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+  .article-card:hover { transform: translateY(-5px); }
+  .article-card-content { padding: 2rem; }
+  .article-category { display: inline-block; background: #dbeafe; color: #1e40af; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+  .article-card h2 { font-size: 1.4rem; margin-bottom: 1rem; }
+  .article-card h2 a { color: #1e293b; text-decoration: none; }
+  .article-card h2 a:hover { color: #3b82f6; }
+  .article-card p { color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .article-meta { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .read-more { display: inline-block; color: #3b82f6; text-decoration: none; font-weight: 600; }
+  .read-more:hover { color: #1e40af; }
+  @media (max-width: 768px) { .articles-hero { padding: 2.5rem 1rem 2rem; } .articles-hero h1 { font-size: 2rem; } .articles-grid { grid-template-columns: 1fr; } }
 </style>
