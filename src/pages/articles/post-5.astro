@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+const pageTitle = "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026";
+const description = "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام. وفّر ساعات من العمل بذكاء.";
+const publishDate = "2026-05-27";
+const articleImage = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80";
+
+const category = "ذكاء اصطناعي";
+const categorySlug = "ai";
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={description}
+  image={articleImage}
+  article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}
+>
+
+  <article class="article-container">
+    <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
+    <header class="article-header">
+      <span class="article-badge" style="background:#e0e7ff; color:#3730a3; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
+      <h1>{pageTitle}</h1>
+      <div class="article-meta"><span> {publishDate}</span><span>️ وقت القراءة: 9 دقائق</span></div>
+    </header>
+
+    <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+
+    <div class="article-content">
+      <p class="intro">الذكاء الاصطناعي لم يعد رفاهية، بل أصبح مساعدك الشخصي. في هذا المقال، نرصد أفضل 10 أدوات مجانية ستضاعف إنتاجيتك فوراً.</p>
+
+      <h2>1. ChatGPT & Claude (مساعدا الكتابة والبرمجة)</h2>
+      <p>لا غنى عنهما لصياغة المقالات، كتابة الأكواد، وتلخيص الملفات الطويلة. النسخ المجانية كافية لمعظم المهام اليومية.</p>
+
+      <h2>2. Leonardo AI & Bing Image Creator (توليد الصور)</h2>
+      <p>حوّل أفكارك النصية إلى صور احترافية بدقة عالية. مثالية لمقالات المدونات ومنشورات السوشيال ميديا.</p>
+
+      <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+
+      <h2>3. Notion AI & Otter.ai (إدارة الملاحظات والاجتماعات)</h2>
+      <p>Notion يلخص ملاحظاتك ويُنظم مشاريعك، بينما Otter يحول الاجتماعات الصوتية إلى نصوص مكتوبة بدقة مذهلة.</p>
+
+      <h2>4. Grammarly & QuillBot (تحسين اللغة)</h2>
+      <p>يصححان الأخطاء النحوية، يعيدان صياغة الجمل، ويضبطان نبرة الكتابة لتناسب جمهورك المستهدف.</p>
+
+      <h2>5. Remove.bg & Canva Magic Edit (تحرير الصور)</h2>
+      <p>أزل الخلفيات بنقرة واحدة، أو عدّل عناصر الصور باستخدام الذكاء الاصطناعي مباشرة داخل المتصفح.</p>
+
+      <h2>💡 نصيحة ذهبية</h2>
+      <p>لا تعتمد على أداة واحدة. ادمج بين 3 أدوات (كتابة + تصميم + تنظيم) لتحقيق أقصى استفادة ممكنة.</p>
+    </div>
+
+    <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+
+    <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-5" />
+    <div class="article-footer-actions">
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+      <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-container { max-width: 800px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
+  .intro { background: #e0e7ff; padding: 1.2rem; border-right: 4px solid #3730a3; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
+  .back-btn:hover { background: #cbd5e1; color: #1e293b; }
+  @media (max-width: 768px) { .article-container { padding: 1.5rem; margin: 1rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+</style>
