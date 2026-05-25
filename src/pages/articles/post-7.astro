@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+const pageTitle = "دليل تحسين محركات البحث (SEO) للمبتدئين: كيف تجعل موقعك يتصدر جوجل؟";
+const description = "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث. تعلم الكلمات المفتاحية، الروابط، وتجربة المستخدم.";
+const publishDate = "2026-05-29";
+const articleImage = "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=1200&q=80";
+
+const category = "أداء وتقنية";
+const categorySlug = "performance";
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={description}
+  image={articleImage}
+  article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}
+>
+
+  <article class="article-container">
+    <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
+    <header class="article-header">
+      <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
+      <h1>{pageTitle}</h1>
+      <div class="article-meta"><span> {publishDate}</span><span>⏱️ وقت القراءة: 10 دقائق</span></div>
+    </header>
+
+    <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+
+    <div class="article-content">
+      <p class="intro">تحسين محركات البحث (SEO) ليس سحراً، بل هو هندسة ذكية للمحتوى. في هذا الدليل، نكشف لك الأساسيات التي تجعل جوجل يحب موقعك.</p>
+
+      <h2>1. بحث الكلمات المفتاحية (Keyword Research)</h2>
+      <p>ابدأ بأدوات مثل Google Keyword Planner أو Ubersuggest. ابحث عن كلمات ذات حجم بحث جيد ومنافسة متوسطة، وادمجها بشكل طبيعي في العناوين والنص.</p>
+
+      <h2>2. تحسين On-Page SEO</h2>
+      <ul>
+        <li>✅ عنوان الصفحة (Title Tag) يجب أن يكون جذاباً ويحتوي الكلمة المفتاحية.</li>
+        <li>✅ وصف الميتا (Meta Description) يحفز النقر.</li>
+        <li>✅ استخدام العناوين H1, H2, H3 بشكل هرمي ومنطقي.</li>
+      </ul>
+
+      <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+
+      <h2>3. السرعة وتجربة المستخدم (Core Web Vitals)</h2>
+      <p>جوجل يعاقب المواقع البطيئة. اضغط الصور، فعّل التخزين المؤقت، واستخدم استضافة سريعة. الموقع الذي يعمل بسلاسة يبقى الزائر فيه أطول.</p>
+
+      <h2>4. الروابط الداخلية والخارجية</h2>
+      <p>اربط مقالاتك ببعضها البعض (Internal Links) لتقوية هيكل الموقع، وابحث عن مواقع موثوقة تضع روابط لمحتواك (Backlinks) لرفع المصداقية.</p>
+
+      <h2>5. المحتوى الطازج والمنتظم</h2>
+      <p>خوارزميات جوجل تفضل المواقع النشطة. انشر مقالاً واحداً أسبوعياً بجودة عالية، وحدث المقالات القديمة كل 6 أشهر.</p>
+
+      <h2>🛠️ أدوات مجانية ضرورية</h2>
+      <p>Google Search Console، Google Analytics، PageSpeed Insights، و Yoast SEO (إذا كنت تستخدم ووردبريس).</p>
+    </div>
+
+    <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+
+    <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-7" />
+    <div class="article-footer-actions">
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+      <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-container { max-width: 800px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #92400e; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #92400e; padding-right: 0.8rem; }
+  .intro { background: #fffbeb; padding: 1.2rem; border-right: 4px solid #92400e; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
+  .back-btn:hover { background: #cbd5e1; color: #1e293b; }
+  @media (max-width: 768px) { .article-container { padding: 1.5rem; margin: 1rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+</style>
