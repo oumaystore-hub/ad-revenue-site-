@@ -7,6 +7,10 @@ const pageTitle = "ChatGPT vs Claude AI: أيهما أفضل للمطورين ف
 const description = "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الكتابة، والأسعار. اكتشف الأداة الأنسب لمشروعك.";
 const publishDate = "2026-05-26";
 const articleImage = "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80";
+
+// ️ تعريف التصنيف
+const category = "ذكاء اصطناعي";
+const categorySlug = "ai";
 ---
 
 <BaseLayout 
@@ -16,21 +20,23 @@ const articleImage = "https://images.unsplash.com/photo-1677442136019-21780ecad9
   article={{
     publishedTime: publishDate,
     modifiedTime: publishDate,
-    author: "TH Tech"
+    author: "TH Tech",
+    category: category,
+    categorySlug: categorySlug
   }}
 >
 
   <article class="article-container">
-    
     <div class="article-hero-image">
       <img src={articleImage} alt={pageTitle} loading="lazy" />
     </div>
 
     <header class="article-header">
+      <span class="article-badge" style="background:#e0e7ff; color:#3730a3; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
       <h1>{pageTitle}</h1>
       <div class="article-meta">
         <span>📅 {publishDate}</span>
-        <span>🏷️ ذكاء اصطناعي</span>
+        <span>⏱️ وقت القراءة: 7 دقائق</span>
       </div>
     </header>
 
@@ -40,63 +46,41 @@ const articleImage = "https://images.unsplash.com/photo-1677442136019-21780ecad9
 
     <div class="article-content">
       <p class="intro">
-        مع تطور الذكاء الاصطناعي التوليدي، أصبح المطورون أمام خيارين رئيسيين: <strong>ChatGPT</strong> من OpenAI و <strong>Claude</strong> من Anthropic. لكن أيهما الأفضل للبرمجة؟ في هذا المقال، نقدم مقارنة عملية.
+        مع تطور الذكاء الاصطناعي، أصبح المطورون أمام خيارين: <strong>ChatGPT</strong> و <strong>Claude</strong>. لكن أيهما الأفضل؟
       </p>
-
-      <h2>1. جودة كتابة الأكواد البرمجية</h2>
-      <p>
-        اختبرنا كلا الأداتين في كتابة أكواد Python و JavaScript. النتائج كانت مثيرة للاهتمام:
-      </p>
-      <ul>        <li><strong>ChatGPT-4:</strong> أسرع في الكتابة، لكن يحتاج مراجعة للأخطاء البسيطة أحيانًا.</li>
-        <li><strong>Claude 3:</strong> أبطأ قليلاً، لكن الأكواد أكثر دقة وأفضل تنظيماً.</li>
+      <h2>1. جودة كتابة الأكواد</h2>
+      <ul>
+        <li><strong>ChatGPT-4:</strong> أسرع، لكن يحتاج مراجعة.</li>
+        <li><strong>Claude 3:</strong> أبطأ، لكن أكواد أكثر دقة.</li>
       </ul>
-      <p>
-        💡 <strong>الخلاصة:</strong> إذا كنت تريد سرعة، اختر ChatGPT. إذا كنت تريد دقة، اختر Claude.
-      </p>
 
-      <h2>2. فهم السياق والمشاريع الكبيرة</h2>
-      <p>
-        هنا يتفوق <strong>Claude</strong> بشكل واضح. السبب؟ نافذة سياق تصل إلى <strong>200,000 توكن</strong> (مقابل 128K لـ ChatGPT). يستطيع قراءة ملفات كاملة من الكود دفعة واحدة وفهم المشروع ككل.
-      </p>
+      <h2>2. فهم السياق</h2>
+      <p>يتفوق Claude بفضل نافذة سياق تصل إلى 200,000 توكن، مما يجعله مثالياً للمشاريع الكبيرة.</p>
 
       <div class="ad-slot">
         <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
       </div>
 
-      <h2>3. الأسعار والخطط</h2>
-      <p>
-        كلاهما يوفر خطة مجانية ممتازة. الخطة المدفوعة (Pro) تكلف 20 دولار شهرياً لكليهما. لكن في استخدام الـ API للمطورين، يعتبر Claude أرخص قليلاً في بعض النماذج المتقدمة.
-      </p>
+      <h2>3. الأسعار</h2>
+      <p>كلاهما $20/شهر، لكن Claude أرخص في API.</p>
 
       <h2>4. الأمان والخصوصية</h2>
-      <p>
-        إذا كنت تعمل على مشاريع حساسة أو خاصة بالشركات، فإن <strong>Claude</strong> يعد خيارًا أكثر أمانًا لأنه لا يستخدم بيانات مدخلاتك لتدريب النموذج بشكل افتراضي (يمكن تغيير ذلك في الإعدادات).
-      </p>
+      <p>Claude لا يستخدم بياناتك للتدريب افتراضيًا، مما يجعله خيارًا أفضل للشركات.</p>
 
-      <h2> التوصية النهائية</h2>
+      <h2>🏆 التوصية النهائية</h2>
       <p>
-        <strong>استخدم ChatGPT إذا:</strong> تريد سرعة في التنفيذ ومساعد في مهام متنوعة (ليس فقط برمجة).<br>
-        <strong>استخدم Claude إذا:</strong> تعمل على مشاريع برمجية كبيرة، تحتاج دقة عالية في الأكواد، والخصوصية مهمة لك.
+        <strong>ChatGPT:</strong> للسرعة والمهام المتنوعة.<br>
+        <strong>Claude:</strong> للمشاريع الكبيرة والدقة العالية.
       </p>
-
-      <blockquote style="background:#eff6ff; border-right:4px solid #3b82f6; padding:1rem; margin:2rem 0;">
-        "نصيحة احترافية: لماذا لا تستخدم الاثنين؟ الكثير من المطورين المحترفين يستخدمون Claude لكتابة الأكواد المعقدة وChatGPT للشرح السريع."
-      </blockquote>
     </div>
 
-    <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom Banner)</p>
-    </div>
-
-    <!-- 🔗 أزرار المشاركة -->
-    <SocialShare 
-      title={pageTitle} 
-      url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-4" 
-    />
+    <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-4" />
 
     <div class="article-footer-actions">
-      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+      <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
     </div>
+
   </article>
 </BaseLayout>
 
@@ -105,14 +89,13 @@ const articleImage = "https://images.unsplash.com/photo-1677442136019-21780ecad9
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
-  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; line-height: 1.3; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #3b82f6; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3b82f6; padding-right: 0.8rem; }
-  .article-content p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #334155; }
-  .intro { font-size: 1.2rem; color: #475569; font-weight: 500; border-right: 4px solid #3b82f6; padding-right: 1rem; background: #eff6ff; padding: 1.2rem; border-radius: 6px; margin-bottom: 2.5rem; }
+  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
+  .intro { background: #e0e7ff; padding: 1.2rem; border-right: 4px solid #3730a3; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
-  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
-  .back-btn:hover { background: #cbd5e1; color: #1e293b; transform: translateY(-2px); }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }  .back-btn:hover { background: #cbd5e1; color: #1e293b; }
   @media (max-width: 768px) { .article-container { padding: 1.5rem; margin: 1rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
 </style>
