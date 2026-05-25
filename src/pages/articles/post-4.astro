@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
 
 const pageTitle = "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟";
 const description = "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الكتابة، والأسعار. اكتشف الأداة الأنسب لمشروعك.";
@@ -10,7 +11,6 @@ const publishDate = "2026-05-26";
 
   <article class="article-container">
     
-    <!-- 🖼️ الصورة الرئيسية -->
     <div class="article-hero-image">
       <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80" alt="مقارنة ChatGPT و Claude AI" loading="lazy" />
     </div>
@@ -23,115 +23,53 @@ const publishDate = "2026-05-26";
       </div>
     </header>
 
-    <!-- إعلان علوي -->
     <div class="ad-slot">
       <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p>
     </div>
 
     <div class="article-content">
       <p class="intro">
-        مع تطور الذكاء الاصطناعي التوليدي، أصبح المطورون والمبرمجون أمام خيارين رئيسيين: <strong>ChatGPT</strong> من OpenAI و <strong>Claude</strong> من Anthropic. لكن أيهما الأفضل للبرمجة؟ في هذا المقال، نقدم مقارنة عملية مبنية على اختبارات حقيقية.
+        مع تطور الذكاء الاصطناعي، أصبح المطورون أمام خيارين رئيسيين: ChatGPT و Claude. لكن أيهما الأفضل للبرمجة؟
       </p>
 
-      <h2>1. جودة كتابة الأكواد البرمجية</h2>
-      <p>
-        اختبرنا كلا الأداتين في كتابة أكواد Python, JavaScript, و SQL. النتائج كانت مثيرة للاهتمام:
-      </p>
+      <h2>1. جودة كتابة الأكواد</h2>
       <ul>
-        <li><strong>ChatGPT-4:</strong> أسرع في الكتابة، لكن يحتاج مراجعة للأخطاء البسيطة</li>
-        <li><strong>Claude 3:</strong> أبطأ قليلاً، لكن الأكواد أكثر دقة وأفضل تنظيماً</li>
+        <li><strong>ChatGPT-4:</strong> أسرع، لكن يحتاج مراجعة</li>
+        <li><strong>Claude 3:</strong> أبطأ، لكن أكواد أكثر دقة</li>
       </ul>
-      <p>
-        💡 <strong>الخلاصة:</strong> إذا كنت تريد سرعة، اختر ChatGPT. إذا كنت تريد دقة، اختر Claude.
-      </p>
 
       <h2>2. فهم السياق والمشاريع الكبيرة</h2>
       <p>
-        هنا يتفوق <strong>Claude</strong> بشكل واضح. السبب؟      </p>
-      <ul>
-        <li>نافذة سياق تصل إلى <strong>200,000 توكن</strong> (مقابل 128K لـ ChatGPT)</li>
-        <li>يستطيع قراءة ملفات كاملة من الكود دفعة واحدة</li>
-        <li>أفضل في تتبع الأخطاء عبر ملفات متعددة</li>
-      </ul>
+        هنا يتفوق <strong>Claude</strong> بوضوح بفضل نافذة سياق تصل إلى 200,000 توكن.
+      </p>
 
-      <!-- إعلان وسط المقال -->
-      <div class="ad-slot">
-        <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p>
-      </div>
-
-      <h2>3. الأسعار والخطط المجانية</h2>
-      <table style="width:100%; border-collapse: collapse; margin: 1.5rem 0;">
-        <tr style="background:#1e3a8a; color:white;">
-          <th style="padding:12px; border:1px solid #ddd;">الميزة</th>
-          <th style="padding:12px; border:1px solid #ddd;">ChatGPT</th>
-          <th style="padding:12px; border:1px solid #ddd;">Claude</th>
-        </tr>
-        <tr>
-          <td style="padding:10px; border:1px solid #ddd;">الخطة المجانية</td>
-          <td style="padding:10px; border:1px solid #ddd;">✅ متاحة (GPT-3.5)</td>
-          <td style="padding:10px; border:1px solid #ddd;">✅ متاحة (Claude 3 Sonnet)</td>
-        </tr>
-        <tr style="background:#f8fafc;">
-          <td style="padding:10px; border:1px solid #ddd;">الخطة المدفوعة</td>
-          <td style="padding:10px; border:1px solid #ddd;">$20/شهر</td>
-          <td style="padding:10px; border:1px solid #ddd;">$20/شهر</td>
-        </tr>
-        <tr>
-          <td style="padding:10px; border:1px solid #ddd;">API</td>
-          <td style="padding:10px; border:1px solid #ddd;">✅ مدفوع حسب الاستخدام</td>
-          <td style="padding:10px; border:1px solid #ddd;">✅ أرخص بنسبة 30%</td>
-        </tr>
-      </table>
-
+      <h2>3. الأسعار</h2>
+      <p>
+        كلاهما $20/شهر للخطة المدفوعة، لكن Claude أرخص في API بنسبة 30%.
+      </p>
       <h2>4. الأمان والخصوصية</h2>
       <p>
-        إذا كنت تعمل على مشاريع حساسة أو خاصة بالشركات:
+        Claude لا يستخدم بياناتك للتدريب افتراضيًا، مما يجعله خيارًا أفضل للشركات.
       </p>
-      <ul>
-        <li><strong>Claude:</strong> لا يستخدم بياناتك للتدريب (افتراضياً)</li>
-        <li><strong>ChatGPT:</strong> يمكنك تعطيل التدريب من الإعدادات</li>
-      </ul>
-      <blockquote style="background:#fffbeb; border-right:5px solid #f59e0b; padding:1.5rem; margin:2rem 0; font-style:italic; color:#92400e; border-radius:0 8px 8px 0;">
-        "للشركات والمشاريع الحساسة، Claude خيار أكثر أماناً."
-      </blockquote>
 
       <h2>🏆 التوصية النهائية</h2>
-      <p>        <strong>استخدم ChatGPT إذا:</strong>
-      </p>
-      <ul>
-        <li>تريد سرعة في التنفيذ</li>
-        <li>تحتاج مساعد في مهام متنوعة (ليس فقط برمجة)</li>
-        <li>تستخدم Plugins و GPTs المخصصة</li>
-      </ul>
       <p>
-        <strong>استخدم Claude إذا:</strong>
+        <strong>استخدم ChatGPT إذا:</strong> تريد سرعة ومهام متنوعة<br>
+        <strong>استخدم Claude إذا:</strong> تعمل على مشاريع برمجية كبيرة وتحتاج دقة
       </p>
-      <ul>
-        <li>تعمل على مشاريع برمجية كبيرة</li>
-        <li>تحتاج دقة عالية في الأكواد</li>
-        <li>الخصوصية مهمة لك</li>
-      </ul>
 
-      <h2>🎁 نصيحة احترافية</h2>
-      <p>
-        لماذا لا تستخدم الاثنين؟ الكثير من المطورين المحترفين يستخدمون:
-      </p>
-      <ul>
-        <li>Claude لكتابة الأكواد المعقدة</li>
-        <li>ChatGPT للشرح السريع والمهام البسيطة</li>
-      </ul>
+      <blockquote style="background:#eff6ff; border-right:4px solid #3b82f6; padding:1rem; margin:2rem 0;">
+        "لماذا لا تستخدم الاثنين؟ الكثير من المحترفين يستخدمون Claude للأكواد المعقدة وChatGPT للمهام البسيطة."
+      </blockquote>
     </div>
 
-    <!-- إعلان سفلي -->
-    <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p>
-    </div>
+    <SocialShare 
+      title={pageTitle} 
+      url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-4" 
+    />
 
-    <!-- أزرار التنقل -->
     <div class="article-footer-actions">
-      <a href="/ad-revenue-site/articles" class="back-btn">↩️ جميع المقالات</a>
-      <span style="margin:0 10px; color:#94a3b8;">|</span>
-      <a href="/ad-revenue-site/articles/post-3" class="back-btn">📖 المقال السابق</a>
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
     </div>
 
   </article>
@@ -145,115 +83,28 @@ const publishDate = "2026-05-26";
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    line-height: 1.85;  }
+    line-height: 1.85;
+  }
   .article-hero-image {
     margin: -2.5rem -2.5rem 2rem -2.5rem;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
     height: 400px;
   }
-  .article-hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header {
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
-  }
-  .article-header h1 {
-    font-size: 2.2rem;
-    color: #1e293b;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .article-meta {
-    color: #64748b;
-    font-size: 0.9rem;
-    display: flex;
-    gap: 1.5rem;
-  }
-  .article-content p {
-    margin-bottom: 1.5rem;
-    font-size: 1.15rem;
-    color: #334155;
-  }
-  .article-content h2 {
-    color: #3b82f6;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
-    border-right: 4px solid #3b82f6;
-    padding-right: 0.8rem;
-  }
-  .article-content ul, .article-content ol {
-    margin-bottom: 1.5rem;
-    padding-right: 1.5rem;
-    background: #f8fafc;
-    padding: 1rem 2rem 1rem 1rem;
-    border-radius: 8px;
-  }
-  .article-content li {    margin-bottom: 0.6rem;
-    font-size: 1.1rem;
-    list-style-type: disc;
-  }
-  .intro {
-    font-size: 1.25rem;
-    color: #475569;
-    font-weight: 500;
-    border-right: 4px solid #3b82f6;
-    padding-right: 1rem;
-    background: #eff6ff;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 2rem;
-  }
-  .ad-slot {
-    margin: 2rem 0;
-    padding: 1rem;
-    background: #f1f5f9;
-    border-radius: 8px;
-    text-align: center;
-  }
-  .article-footer-actions {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e2e8f0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .back-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #e2e8f0;
-    color: #475569;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .back-btn:hover {
-    background: #cbd5e1;
-    color: #1e293b;
-  }
+  }  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; }
+  .article-content h2 { color: #3b82f6; margin-top: 2rem; font-size: 1.5rem; }
+  .intro { background: #eff6ff; padding: 1rem; border-right: 4px solid #3b82f6; border-radius: 4px; }
+  .ad-slot { margin: 2rem 0; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; }
   @media (max-width: 768px) {
-    .article-container {
-      padding: 1.5rem;      margin: 1rem;
-    }
-    .article-hero-image {
-      margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-      height: 220px;
-    }
-    .article-header h1 {
-      font-size: 1.6rem;
-    }
-    .article-footer-actions {
-      flex-direction: column;
-    }
+    .article-container { padding: 1.5rem; margin: 1rem; }
+    .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; }
   }
 </style>
