@@ -1,157 +1,256 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const pageTitle = "سياسة الخصوصية";
 ---
 
-<BaseLayout title={pageTitle} description="تعرف على سياسة الخصوصية وحماية البيانات في موقعنا.">
-  
-  <article class="legal-container">
-    
-    <header class="legal-header">
+<BaseLayout 
+  title="سياسة الخصوصية - TH Tech" 
+  description="سياسة الخصوصية والشروط القانونية لموقع TH Tech. نلتزم بحماية بياناتك وخصوصيتك وفقاً للمعايير الدولية."
+>
+
+  <section class="privacy-hero">
+    <div class="container">
       <h1>🔒 سياسة الخصوصية</h1>
-      <p>آخر تحديث: {new Date().toLocaleDateString('ar-EG')}</p>
-    </header>
-
-    <div class="legal-content">
-      <p class="intro">
-        نحن في <strong>موقعي</strong> نلتزم بحماية خصوصية زوارنا ومستخدمينا. توضح هذه السياسة كيفية جمعنا للبيانات، واستخدامنا لها، وحمايتها عند زيارتك لموقعنا. باستخدامك للموقع، فإنك توافق على الشروط المذكورة أدناه.
-      </p>
-
-      <h2>1. المعلومات التي نجمعها</h2>
-      <p>
-        قد نقوم بجمع معلومات معينة تلقائياً عند زيارتك للموقع لتحسين تجربة المستخدم، وتشمل:
-      </p>
-      <ul>
-        <li>عنوان بروتوكول الإنترنت (IP Address).</li>
-        <li>نوع المتصفح ونظام التشغيل.</li>
-        <li>الصفحات التي تمت زيارتها ووقت الزيارة.</li>
-      </ul>
-
-      <h2>2. ملفات تعريف الارتباط (Cookies)</h2>
-      <p>
-        نستخدم "ملفات تعريف الارتباط" (Cookies) لتخزين التفضيلات وتحسين تجربة التصفح. كما نسمح لطرف ثالث (Google) باستخدام ملفات تعريف الارتباط لعرض الإعلانات بناءً على زياراتك السابقة لهذا الموقع أو مواقع أخرى.
-      </p>
-
-      <h2>3. إعلانات Google (AdSense)</h2>
-      <p>
-        نحن نستخدم <strong>Google AdSense</strong> لعرض الإعلانات. تقوم Google وشركاؤها بعرض الإعلانات بناءً على زيارتك لموقعنا ومواقع أخرى على الإنترنت.
-      </p>
-      <p>
-        قد تستخدم Google تقنية <strong>DART cookie</strong> لتمكينها من عرض الإعلانات للزوار بناءً على زيارتهم لموقعنا والمواقع الأخرى على الإنترنت. يمكن للزوار إلغاء اشتراكهم في استخدام ملف تعريف ارتباط DART من خلال زيارة <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">سياسة خصوصية الإعلانات والمحتوى من Google</a>.
-      </p>
-
-      <h2>4. الروابط الخارجية</h2>
-      <p>
-        قد يحتوي موقعنا على روابط لمواقع خارجية. نحن غير مسؤولين عن ممارسات الخصوصية أو محتوى تلك المواقع. ننصحك بقراءة سياسة الخصوصية الخاصة بأي موقع خارجي تزوره.
-      </p>
-
-      <h2>5. حماية البيانات</h2>
-      <p>        نحن نتخذ إجراءات أمنية مناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التعديل أو الكشف أو التدمير.
-      </p>
-
-      <h2>6. تحديثات السياسة</h2>
-      <p>
-        قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سنقوم بإخطارك بأي تغييرات عن طريق نشر السياسة الجديدة على هذه الصفحة.
-      </p>
-
-      <h2>7. تواصل معنا</h2>
-      <p>
-        إذا كان لديك أي أسئلة حول سياسة الخصوصية، يرجى التواصل معنا عبر البريد الإلكتروني:
-      </p>
-      <p style="direction: ltr; text-align: center; font-weight: bold; color: #1e3a8a; font-size: 1.1rem;">
-        contact@example.com
-      </p>
+      <p>آخر تحديث: 25 مايو 2026</p>
     </div>
+  </section>
 
-  </article>
+  <section class="privacy-content">
+    <div class="container">
+      
+      <div class="privacy-card">
+        <h2>1. المعلومات التي نجمعها</h2>
+        <p>
+          في TH Tech، نجمع المعلومات التالية فقط عند زيارتك لموقعنا:
+        </p>
+        <ul>
+          <li>📊 <strong>بيانات الاستخدام:</strong> نوع المتصفح، نظام التشغيل، عنوان IP (مجهول)</li>
+          <li>🍪 <strong>ملفات تعريف الارتباط:</strong> لتحسين تجربة المستخدم</li>
+          <li>📧 <strong>البريد الإلكتروني:</strong> فقط إذا اشتركت في النشرة البريدية (اختياري)</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h2>2. كيف نستخدم معلوماتك</h2>
+        <p>نستخدم البيانات المجمعة للأغراض التالية فقط:</p>
+        <ul>
+          <li>✅ تحليل أداء الموقع وتحسينه</li>
+          <li>✅ فهم سلوك الزوار لتقديم محتوى أفضل</li>
+          <li>✅ عرض إعلانات ذات صلة باهتماماتك</li>
+          <li>✅ حماية الموقع من الاستخدام الضار</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h2>3. الأدوات التي نستخدمها</h2>
+        <div class="tools-grid">
+          <div class="tool-item">
+            <h3>📊 Google Analytics</h3>
+            <p>نستخدم Google Analytics 4 لتحليل الزيارات بشكل مجهول. يمكنك تعطيل التتبع من خلال:</p>
+            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" class="link-primary">تحميل إضافة إلغاء التفعيل</a>
+          </div>          <div class="tool-item">
+            <h3>📺 Google AdSense</h3>
+            <p>نعرض إعلانات عبر Google AdSense التي تستخدم ملفات تعريف الارتباط لتقديم إعلانات مخصصة.</p>
+            <a href="https://policies.google.com/technologies/ads" target="_blank" class="link-primary">معرفة المزيد عن إعلانات جوجل</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-card">
+        <h2>4. حماية بياناتك</h2>
+        <p>
+          نتخذ الإجراءات التالية لحماية معلوماتك:
+        </p>
+        <ul>
+          <li>🔐 تشفير HTTPS/SSL لجميع الاتصالات</li>
+          <li>🛡️ عدم بيع أو مشاركة بياناتك مع أطراف ثالثة</li>
+          <li>⏰ الاحتفاظ بالبيانات فقط للمدة اللازمة</li>
+          <li>🔒 تحديثات أمنية دورية للموقع</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h2>5. حقوقك</h2>
+        <p>لديك الحق في:</p>
+        <ul>
+          <li>✓ الوصول إلى بياناتك الشخصية</li>
+          <li>✓ طلب تصحيح أو حذف بياناتك</li>
+          <li>✓ الاعتراض على معالجة بياناتك</li>
+          <li>✓ سحب الموافقة في أي وقت</li>
+        </ul>
+        <p>
+          للتواصل بخصوص خصوصيتك: 
+          <a href="mailto:privacy@thtech.com" class="link-primary">privacy@thtech.com</a>
+        </p>
+      </div>
+
+      <div class="privacy-card">
+        <h2>6. ملفات تعريف الارتباط (Cookies)</h2>
+        <p>
+          نستخدم الأنواع التالية من الكوكيز:
+        </p>
+        <table class="cookies-table">
+          <thead>
+            <tr>
+              <th>النوع</th>
+              <th>الغرض</th>
+              <th>المدة</th>
+            </tr>
+          </thead>
+          <tbody>            <tr>
+              <td>ضرورية</td>
+              <td>تشغيل الموقع الأساسي</td>
+              <td>جلسة</td>
+            </tr>
+            <tr>
+              <td>تحليلية</td>
+              <td>Google Analytics</td>
+              <td>سنتان</td>
+            </tr>
+            <tr>
+              <td>إعلانية</td>
+              <td>Google AdSense</td>
+              <td>90 يوماً</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="privacy-card">
+        <h2>7. التغييرات على هذه السياسة</h2>
+        <p>
+          قد نقوم بتحديث سياسة الخصوصية هذه دورياً. سنقوم بإعلامك بأي تغييرات مهمة عبر:
+        </p>
+        <ul>
+          <li>📢 إشعار واضح على الموقع</li>
+          <li>📧 بريد إلكتروني (إذا كنت مشتركاً)</li>
+          <li>📅 تحديث تاريخ "آخر تحديث" في الأعلى</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card highlight">
+        <h2>📞 تواصل معنا</h2>
+        <p>
+          إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى التواصل معنا عبر:
+        </p>
+        <p>
+          📧 البريد الإلكتروني: <a href="mailto:contact@thtech.com">contact@thtech.com</a><br>
+          📄 صفحة <a href="/ad-revenue-site/contact">اتصل بنا</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  /* تنسيقات الصفحات القانونية */
-  .legal-container {
-    max-width: 800px; /* عرض مثالي للقراءة */
-    margin: 3rem auto;
-    background: white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    line-height: 1.9; /* مسافة مريحة للأسطر */
-  }
-
-  .legal-header {
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2.5rem;
+  .privacy-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);    color: white;
     text-align: center;
+    padding: 3rem 1rem 2.5rem;
   }
-
-  .legal-header h1 {
-    color: #1e3a8a; /* لون الهيدر الجديد */
-    font-size: 2.2rem;
+  .privacy-hero h1 {
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    font-weight: 800;
   }
-
-  .legal-header p {
-    color: #64748b;
-    font-size: 0.9rem;
-  }
-  .legal-content h2 {
-    color: #3b82f6; /* أزرق سماوي */
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    border-right: 4px solid #3b82f6;
-    padding-right: 0.8rem;
-  }
-
-  .legal-content p {
-    margin-bottom: 1.2rem;
-    color: #334155;
+  .privacy-hero p {
     font-size: 1.1rem;
+    opacity: 0.95;
   }
-
-  .legal-content ul {
-    margin-bottom: 1.5rem;
-    padding-right: 1.5rem;
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .privacy-content {
+    padding: 3rem 0;
     background: #f8fafc;
-    padding: 1rem 2rem 1rem 1rem;
-    border-radius: 8px;
   }
-
-  .legal-content li {
-    margin-bottom: 0.6rem;
-    font-size: 1.05rem;
-    list-style-type: disc;
-    color: #475569;
+  .privacy-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-right: 4px solid #3b82f6;
   }
-
-  .intro {
-    font-size: 1.2rem;
+  .privacy-card h2 {
     color: #1e293b;
-    font-weight: 500;
-    background: #eff6ff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .privacy-card h3 {
+    color: #3b82f6;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .privacy-card p {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+  }
+  .privacy-card ul {
+    margin: 1rem 0;    padding-right: 1.5rem;
+  }
+  .privacy-card li {
+    color: #475569;
+    margin-bottom: 0.8rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+  .tools-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .tool-item {
+    background: #f8fafc;
     padding: 1.5rem;
     border-radius: 8px;
-    border-right: 5px solid #1e3a8a;
-    margin-bottom: 2rem;
+    border-right: 3px solid #3b82f6;
   }
-
-  .legal-content a {
+  .link-primary {
     color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .link-primary:hover {
+    color: #1e40af;
     text-decoration: underline;
   }
-  .legal-content a:hover {
-    color: #1d4ed8;
+  .cookies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
   }
-
-  /* للجوال */  @media (max-width: 768px) {
-    .legal-container {
-      padding: 1.5rem;
-      margin: 1rem;
-    }
-    .legal-header h1 {
-      font-size: 1.6rem;
-    }
+  .cookies-table th,
+  .cookies-table td {
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    text-align: right;
+  }
+  .cookies-table thead {
+    background: #1e3a8a;
+    color: white;
+  }
+  .cookies-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+  }
+  .privacy-card.highlight {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);    border-right-color: #1e40af;
+  }
+  @media (max-width: 768px) {
+    .privacy-hero { padding: 2.5rem 1rem 2rem; }
+    .privacy-hero h1 { font-size: 2rem; }
+    .privacy-content { padding: 2rem 0; }
+    .privacy-card { padding: 1.8rem; }
+    .cookies-table { font-size: 0.9rem; }
+    .cookies-table th, .cookies-table td { padding: 0.6rem; }
   }
 </style>
