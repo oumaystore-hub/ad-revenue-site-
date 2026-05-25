@@ -2,6 +2,10 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+const { title, description, image, article } = Astro.props;
+const siteUrl = 'https://oumaystore-hub.github.io/ad-revenue-site';
+const ogImage = image || `${siteUrl}/og-default.jpg`;
 ---
 
 <!doctype html>
@@ -9,25 +13,45 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
     
-    <!-- 🏷️ العنوان والوصف -->
-    <title>{Astro.props.title || 'TH Tech'}</title>
-    <meta name="description" content={Astro.props.description || "TH Tech - Tech Hub | بوابتك التقنية الموثوقة للذكاء الاصطناعي والربح الرقمي."} />
-
-    <!-- 🔍 Google Search Console Verification -->
-    <!-- ⚠️ هام: إذا كان لديك كود التحقق من جوجل (يبدأ بـ google-site-verification)، ضعه هنا -->
-    <!-- <meta name="google-site-verification" content="YOUR_CODE_HERE" /> -->
-
-    <!-- 🔤 خطوط احترافية -->
+    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية للذكاء الاصطناعي والربح الرقمي'}</title>
+    <meta name="description" content={description || 'TH Tech | بوابتك التقنية الموثوقة للذكاء الاصطناعي، الربح من الإنترنت، وتحسين الأداء التقني.'} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href={Astro.url.href} />
+    
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title || 'TH Tech'} />
+    <meta property="og:description" content={description || 'TH Tech - Tech Hub'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ar_AR" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title || 'TH Tech'} />
+    <meta name="twitter:description" content={description || 'TH Tech'} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    {article && (
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": title,
+          "description": description,
+          "image": ogImage,
+          "datePublished": article.publishedTime,
+          "dateModified": article.modifiedTime || article.publishedTime,
+          "author": { "@type": "Organization", "name": article.author || 'TH Tech' },
+          "publisher": { "@type": "Organization", "name": 'TH Tech' },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href }
+        }
+      </script>
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
-
-    <!-- 🎨 مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!--  Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QW7XVX75J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,84 +62,40 @@ import '../styles/global.css';
   </head>
   <body>
     <Header />
-    
-    <main>
-      <slot />
-    </main>
-    
+    <main><slot /></main>
     <Footer />
 
-    <!-- ⬆️ زر العودة للأعلى -->
-    <button id="backToTop" title="العودة للأعلى">
-      <i class="fa-solid fa-arrow-up"></i>    </button>
-
-    <!-- 📊 عداد وقت القراءة التلقائي (مدمج هنا) -->
+    <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // البحث عن محتوى المقال
-        const articleContent = document.querySelector('.article-content');
-        if (articleContent) {
-          const text = articleContent.innerText;
-          const wordsPerMinute = 200; // متوسط سرعة القراءة
-          const wordCount = text.split(/\s+/).length;
-          const readingTime = Math.ceil(wordCount / wordsPerMinute);
-          
-          // إضافة الوقت بجانب تاريخ المقال
-          const metaElement = document.querySelector('.article-meta');
-          if (metaElement) {
-            const timeSpan = document.createElement('span');
-            timeSpan.innerHTML = ` ️ ${readingTime} دقيقة قراءة`;
-            timeSpan.style.opacity = "0.9";
-            metaElement.appendChild(timeSpan);
+        const content = document.querySelector('.article-content');
+        if (content) {
+          const words = content.innerText.split(/\s+/).length;
+          const time = Math.ceil(words / 200);
+          const meta = document.querySelector('.article-meta');
+          if (meta) {
+            const span = document.createElement('span');
+            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
+            span.style.opacity = "0.9";
+            meta.appendChild(span);
           }
         }
       });
-    </script>
-
-    <!-- ⬆️ سكريبت زر الصعود -->
-    <script>
       const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-      });
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
-      body {
-        font-family: 'Cairo', sans-serif;
-      }
+      body { font-family: 'Cairo', sans-serif; margin: 0; }
       #backToTop {
-        position: fixed;
-        bottom: 2rem;
-        left: 2rem;
-        background: #3b82f6;
-        color: white;        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-        transition: all 0.3s ease;
-        z-index: 999;
+        position: fixed; bottom: 2rem; left: 2rem;
+        background: #3b82f6; color: white; width: 45px; height: 45px;
+        border-radius: 50%; border: none; cursor: pointer; display: none;
+        align-items: center; justify-content: center; font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999;
       }
-      #backToTop:hover {
-        background: #1e3a8a;
-        transform: translateY(-3px);
-      }
-      #backToTop.visible {
-        display: flex;
-      }
-    </style>
+      #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
+      #backToTop.visible { display: flex; }    </style>
   </body>
 </html>
