@@ -7,6 +7,7 @@
         <li><a href="/ad-revenue-site/articles">المقالات</a></li>
         <li><a href="/ad-revenue-site/about">من نحن</a></li>
         <li><a href="/ad-revenue-site/contact">اتصل بنا</a></li>
+        <li><a href="/ad-revenue-site/privacy-policy" class="nav-link-small">الخصوصية</a></li>
       </ul>
     </nav>
     <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">☰</button>
@@ -17,22 +18,27 @@
   .site-header {
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     padding: 1rem 0;
-    position: sticky; top: 0; z-index: 100;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
   .container {
-    max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
-    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .logo {
-    font-family: 'Inter', sans-serif; /* خط احترافي مخصص للشعار */
+    font-family: 'Inter', sans-serif;
     font-weight: 900;
     font-size: 1.9rem;
     color: #ffffff;
     text-decoration: none;
     letter-spacing: -0.5px;
     text-transform: uppercase;
-    /* تأثير لوني خفيف يعطي عمقاً واحترافية */
     background: linear-gradient(to right, #ffffff, #bfdbfe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -42,7 +48,11 @@
   .logo:hover { opacity: 0.9; }
   
   .main-nav ul {
-    display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0;
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   .main-nav a {
     color: rgba(255, 255, 255, 0.95);
@@ -57,15 +67,27 @@
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
   }
+  .nav-link-small {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.8rem !important;
+  }
   .mobile-toggle {
     display: none;
     background: rgba(255, 255, 255, 0.2);
-    border: none; color: white; font-size: 1.5rem;
-    padding: 0.5rem; border-radius: 6px; cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
   }
   @media (max-width: 768px) {
     .main-nav {
-      display: none; position: absolute; top: 100%; right: 0; left: 0;
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
       background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
       padding: 1rem;
     }
