@@ -33,11 +33,11 @@ import '../styles/global.css';
       gtag('js', new Date());
       gtag('config', 'G-6QW7XVX75J');
     </script>
-<!-- 📊 Reading Time Estimator -->
-<script>
-  function calculateReadingTime() {
-    const article = document.querySelector('.article-content');
-    if (!article) return;
+    <!-- 📊 Reading Time Estimator -->
+    <script>
+      function calculateReadingTime() {
+      const article = document.querySelector('.article-content');
+      if (!article) return;
     
     const text = article.innerText;
     const wordsPerMinute = 200;
@@ -50,8 +50,8 @@ import '../styles/global.css';
       timeSpan.innerHTML = `⏱️ ${readingTime} دقيقة قراءة`;
       meta.appendChild(timeSpan);
     }
-  document.addEventListener('DOMContentLoaded', calculateReadingTime);
-</script>
+    document.addEventListener('DOMContentLoaded', calculateReadingTime);
+    </script>
   </head>
   <body>
     <Header />
