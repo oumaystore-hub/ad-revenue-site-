@@ -2,11 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 
-// 📝 بيانات المقال (غيّرها في المقالات الأخرى)
+//  بيانات المقال
 const pageTitle = "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026";
 const description = "اكتشف أهم 5 تقنيات ستغير المستقبل: الذكاء الاصطناعي التوليدي، التجارة الذكية، الأمن السيبراني، والحوسبة السحابية.";
 const publishDate = "2026-05-23";
 const articleImage = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80";
+
+// 🏷️ تعريف التصنيف
+const category = "تقنية";
+const categorySlug = "tech";
 ---
 
 <BaseLayout 
@@ -16,185 +20,78 @@ const articleImage = "https://images.unsplash.com/photo-1485827404703-89b55fcc59
   article={{
     publishedTime: publishDate,
     modifiedTime: publishDate,
-    author: "TH Tech"
+    author: "TH Tech",
+    category: category,        // إضافة التصنيف للـ Layout
+    categorySlug: categorySlug // إضافة الرابط اللطيف للـ Layout
   }}
 >
 
   <article class="article-container">
-    
-    <!-- 🖼️ الصورة الرئيسية -->
     <div class="article-hero-image">
       <img src={articleImage} alt={pageTitle} loading="lazy" />
     </div>
 
     <header class="article-header">
+      <span class="article-badge" style="background:#dbeafe; color:#1e40af; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
       <h1>{pageTitle}</h1>
       <div class="article-meta">
-        <span> {publishDate}</span>
-        <span>🏷️ تقنية وذكاء اصطناعي</span>
+        <span>📅 {publishDate}</span>
+        <span>️ وقت القراءة: 6 دقائق</span>
       </div>
     </header>
 
-    <!-- إعلان علوي -->
     <div class="ad-slot">
       <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top Banner)</p>
     </div>
 
     <div class="article-content">
       <p class="intro">
-        يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل. ومع دخول سنة 2026، لم تعد التقنية رفاهية، بل أصبحت العمود الفقري للأعمال، التعليم، وحتى التفاعل الاجتماعي. في هذا المقال، نستعرض أبرز 5 اتجاهات تقنية ستغير قواعد اللعبة.
+        يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل. ومع دخول سنة 2026، لم تعد التقنية رفاهية، بل أصبحت العمود الفقري للأعمال، التعليم، وحتى التفاعل الاجتماعي.
       </p>
 
       <h2>1. الذكاء الاصطناعي التوليدي (Generative AI)</h2>
-      <p>
-        لم يعد الذكاء الاصطناعي مقتصرًا على الروبوتات أو الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد البرمجية، تصميم الجرافيك، خدمة العملاء الآلية، وحتى تحليل البيانات الضخمة.      </p>
+      <p>لم يعد مقتصرًا على الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد، التصميم، وتحليل البيانات الضخمة.</p>
 
       <h2>2. التجارة الإلكترونية الذكية</h2>
-      <p>
-        المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة عالية، مما يرفع معدلات التحويل بشكل ملحوظ.
-      </p>
+      <p>المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة.</p>
 
-      <!-- إعلان وسط المقال -->
       <div class="ad-slot">
         <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
       </div>
 
-      <h2>3. الأمن السيبراني كضرورة قصوى</h2>
-      <p>
-        مع تزايد الهجمات الإلكترونية وسرقة البيانات، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد على حد سواء. التحديثات الأمنية والمصادقة الثنائية لم تعد خيارات، بل أساسيات.
-      </p>
+      <h2>3. الأمن السيبراني كضرورة</h2>
+      <p>مع تزايد الهجمات الإلكترونية، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد.</p>
 
       <h2>4. الحوسبة السحابية الهجينة</h2>
-      <p>
-        النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة، مما يضمن استمرارية العمل، تقليل التكاليف، وسهولة التوسع العالمي دون تعقيدات تقنية.
-      </p>
+      <p>النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة، مما يضمن استمرارية العمل وتقليل التكاليف.</p>
 
-      <h2>5. الأجهزة المرنة والقابلة للطي</h2>
-      <p>
-        الهواتف والأجهزة المرنة أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين، المبرمجين، وصناع المحتوى المتنقلين حول العالم.
-      </p>
+      <h2>5. الأجهزة القابلة للطي</h2>
+      <p>أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين والمبرمجين.</p>
     </div>
 
-    <!-- إعلان سفلي -->
-    <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom Banner)</p>
-    </div>
+    <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" />
 
-    <!-- 🔗 أزرار المشاركة الاجتماعية -->
-    <SocialShare 
-      title={pageTitle} 
-      url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" 
-    />
-
-    <!-- أزرار التنقل -->
     <div class="article-footer-actions">
-      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+      <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
     </div>
 
   </article>
 </BaseLayout>
 
 <style>
-  .article-container {
-    max-width: 800px;    margin: 2rem auto;
-    background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    line-height: 1.85;
-  }
-  .article-hero-image {
-    margin: -2.5rem -2.5rem 2rem -2.5rem;
-    border-radius: 12px 12px 0 0;
-    overflow: hidden;
-    height: 400px;
-  }
-  .article-hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .article-header {
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .article-header h1 {
-    font-size: 2.2rem;
-    color: #1e293b;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .article-meta {
-    color: #64748b;
-    font-size: 0.9rem;
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  .article-content h2 {
-    color: #3b82f6;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
-    border-right: 4px solid #3b82f6;
-    padding-right: 0.8rem;
-  }
-  .article-content p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    color: #334155;
-  }
-  .intro {    font-size: 1.2rem;
-    color: #475569;
-    font-weight: 500;
-    border-right: 4px solid #3b82f6;
-    padding-right: 1rem;
-    background: #eff6ff;
-    padding: 1.2rem;
-    border-radius: 6px;
-    margin-bottom: 2.5rem;
-  }
-  .ad-slot {
-    margin: 2rem 0;
-    padding: 1rem;
-    background: #f8fafc;
-    border-radius: 8px;
-    border: 1px dashed #cbd5e1;
-    text-align: center;
-  }
-  .article-footer-actions {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e2e8f0;
-    text-align: center;
-  }
-  .back-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #e2e8f0;
-    color: #475569;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .back-btn:hover {
-    background: #cbd5e1;
-    color: #1e293b;
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    .article-container {
-      padding: 1.5rem;
-      margin: 1rem;
-    }
-    .article-hero-image {
-      margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-      height: 220px;
-    }
-    .article-header h1 {      font-size: 1.7rem;
-    }
-  }
+  .article-container { max-width: 800px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #3b82f6; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3b82f6; padding-right: 0.8rem; }
+  .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #3b82f6; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
+  .back-btn:hover { background: #cbd5e1; color: #1e293b; }
+  @media (max-width: 768px) { .article-container { padding: 1.5rem; margin: 1rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
 </style>
