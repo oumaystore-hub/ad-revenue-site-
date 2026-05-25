@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// 🗺️ تعريف المسارات الثابتة التي سيقوم Astro بإنشائها
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'tech' }, props: { name: 'تقنية', desc: 'كل ما هو جديد في عالم التكنولوجيا والابتكار' } },
+    { params: { slug: 'ai' }, props: { name: 'ذكاء اصطناعي', desc: 'أدوات، شروحات، ومقارنات لأحدث نماذج الذكاء الاصطناعي' } },
+    { params: { slug: 'money' }, props: { name: 'ربح رقمي', desc: 'طرق عملية ومجربة للربح من الإنترنت وبناء المشاريع الرقمية' } },
+    { params: { slug: 'performance' }, props: { name: 'أداء وتقنية', desc: 'تحسين سرعة المواقع، SEO، وتجربة المستخدم' } }
+  ];
+}
+
+const { name, desc } = Astro.props;
+const currentSlug = Astro.params.slug;
+
+// 📋 قاعدة بيانات المقالات (مطابقة تماماً للمقالات الأربعة)
+const allArticles = [
+  { 
+    title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", 
+    url: "/ad-revenue-site/articles/post-1", 
+    category: "تقنية", 
+    slug: "tech", 
+    date: "2026-05-23", 
+    summary: "اكتشف أهم 5 تقنيات ستغير المستقبل: الذكاء الاصطناعي التوليدي، التجارة الذكية، والأمن السيبراني." 
+  },
+  { 
+    title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت", 
+    url: "/ad-revenue-site/articles/post-2", 
+    category: "ربح رقمي", 
+    slug: "money", 
+    date: "2026-05-24", 
+    summary: "خطوات عملية لبدء مشروعك الرقمي من الصفر حتى تحقيق الدخل الأول عبر الإعلانات والتسويق." 
+  },
+  { 
+    title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", 
+    url: "/ad-revenue-site/articles/post-3", 
+    category: "أداء وتقنية", 
+    slug: "performance", 
+    date: "2026-05-25", 
+    summary: "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة." 
+  },
+  { 
+    title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", 
+    url: "/ad-revenue-site/articles/post-4", 
+    category: "ذكاء اصطناعي", 
+    slug: "ai", 
+    date: "2026-05-26", 
+    summary: "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الدقة، والأسعار." 
+  }];
+
+//  تصفية المقالات حسب القسم الحالي
+const filteredArticles = allArticles.filter(article => article.slug === currentSlug);
+---
+
+<BaseLayout title={`مقالات ${name} - TH Tech`} description={desc}>
+  
+  <!-- 🏷️ رأس القسم -->
+  <section class="category-hero">
+    <div class="container">
+      <h1> {name}</h1>
+      <p>{desc}</p>
+      <a href="/ad-revenue-site/articles" class="back-link">← عرض جميع المقالات</a>
+    </div>
+  </section>
+
+  <!-- 📰 شبكة المقالات -->
+  <section class="articles-grid-section">
+    <div class="container">
+      {filteredArticles.length > 0 ? (
+        <div class="articles-grid">
+          {filteredArticles.map((article) => (
+            <article class="article-card">
+              <div class="article-card-content">
+                <div class="article-category">{article.category}</div>
+                <h2><a href={article.url}>{article.title}</a></h2>
+                <p>{article.summary}</p>
+                <div class="article-meta"><span>📅 {article.date}</span></div>
+                <a href={article.url} class="read-more">اقرأ المزيد ←</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="no-results">لا توجد مقالات منشورة في هذا القسم حالياً.</p>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* 🎨 رأس القسم */
+  .category-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    text-align: center;
+    padding: 3.5rem 1rem 3rem;
+  }  .category-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; font-weight: 800; }
+  .category-hero p { font-size: 1.2rem; opacity: 0.95; margin-bottom: 1.5rem; }
+  .back-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    background: rgba(255,255,255,0.2);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.3); }
+
+  /* 📦 الشبكة والبطاقات */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .articles-grid-section { padding: 3rem 0; background: #f8fafc; min-height: 60vh; }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .article-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+  .article-category {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .article-card h2 { font-size: 1.4rem; margin-bottom: 1rem; line-height: 1.4; }
+  .article-card h2 a { color: #1e293b; text-decoration: none; transition: color 0.3s; }
+  .article-card h2 a:hover { color: #3b82f6; }
+  .article-card p { color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .article-meta { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .read-more {
+    display: inline-block;
+    color: #3b82f6;    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .read-more:hover { color: #1e40af; transform: translateX(-5px); }
+  .no-results { text-align: center; padding: 3rem; color: #64748b; font-size: 1.1rem; }
+
+  /* 📱 تجاوب الشاشات */
+  @media (max-width: 768px) {
+    .category-hero { padding: 2.5rem 1rem 2rem; }
+    .category-hero h1 { font-size: 2rem; }
+    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .articles-grid-section { padding: 2rem 0; }
+  }
+</style>
