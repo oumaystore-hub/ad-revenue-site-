@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
 
-const pageTitle = "أسرار تحسين Core Web Vitals لزيادة أرباح موقعك";
-const description = "دليل عملي لتحسين سرعة موقعك، تقليل الاهتزاز البصري، وتسريع التفاعل. خطوات تقنية بسيطة ترفع ترتيبك في جوجل وتزيد عائد الإعلانات.";
+const pageTitle = "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals";
+const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة لتحسين تجربة المستخدم وSEO.";
 const publishDate = "2026-05-25";
 ---
 
@@ -10,95 +11,67 @@ const publishDate = "2026-05-25";
 
   <article class="article-container">
     
-    <!-- 🖼️ الصورة الرئيسية للمقال -->
     <div class="article-hero-image">
-      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80" alt="تحسين سرعة الموقع والأداء التقني" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" alt="تحسين سرعة المواقع" loading="lazy" />
     </div>
 
     <header class="article-header">
       <h1>{pageTitle}</h1>
       <div class="article-meta">
         <span>📅 {publishDate}</span>
-        <span>⏱️ وقت القراءة: 6 دقائق</span>
+        <span>⏱️ وقت القراءة: 8 دقائق</span>
       </div>
     </header>
 
-    <!-- مكان إعلان علوي -->
     <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top Banner)</p>
+      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p>
     </div>
 
     <div class="article-content">
       <p class="intro">
-        سرعة الموقع لم تعد مجرد "رفاهية تقنية"، بل أصبحت <strong>معيارًا مباشرًا للربح</strong>. جوجل يعاقب المواقع البطيئة بخفض الترتيب، والزائر يغادر الصفحة إذا تأخر التحميل أكثر من 3 ثوانٍ. في هذا المقال، نشرح لك مقاييس Core Web Vitals الجديدة وكيف تحسّنها بخطوات عملية ترفع دخلك الإعلاني.
+        سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. في هذا الدليل، نكشف لك الأسرار العملية لجعل موقعك يطير بسرعة.
       </p>
 
-      <h2>1. LCP: Largest Contentful Content (أكبر عنصر مرئي)</h2>
+      <h2>1. ضغط الصور بدون فقدان الجودة</h2>
       <p>
-        يقيس الوقت الذي يستغرقه ظهور أكبر عنصر في الشاشة (صورة، فيديو، أو نص رئيسي). الهدف: أقل من <strong>2.5 ثانية</strong>.
+        استخدم صيغ WebP أو AVIF. هذه الصيغ تقلل حجم الصور بنسبة 70-80% دون تأثير ملحوظ على الجودة.
       </p>
       <ul>
-        <li>🖼️ <strong>ضغط الصور:</strong> استخدم صيغ WebP أو AVIF بدلاً من PNG/JPG التقليدية.</li>
-        <li>⚡ <strong>التخزين المؤقت (Caching):</strong> فعّل Cache-Control في الاستضافة لتقليل تحميل الملفات المتكرر.</li>
-        <li>🌐 <strong>شبكات CDN:</strong> وزّع محتواك عبر سيرفرات قريبة جغرافيًا من الزائر.</li>
+        <li>🛠️ أدوات مجانية: TinyPNG, Squoosh</li>
+        <li>📐 احجام مناسبة: لا تستخدم صور 4K لمواقع الويب</li>
       </ul>
 
-      <h2>2. INP: Interaction to Next Paint (سرعة الاستجابة)</h2>
+      <h2>2. تمكين التخزين المؤقت (Caching)</h2>
       <p>
-        حلت محل مقياس FID القديم، وتقيس مدى سرعة استجابة الموقع عند النقر أو التمرير. الهدف: أقل من <strong>200 ملي ثانية</strong>.
-      </p>
-      <p>        💡 <strong>نصيحة تقنية:</strong> قلّل من JavaScript غير الضروري، واستخدم `defer` أو `async` في تحميل السكربتات الخارجية. تجنب المعالجات الثقيلة (Heavy Event Listeners) التي توقف التفاعل المؤقت.
+        الـ Caching يخزن نسخة من موقعك في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x.
       </p>
 
-      <!-- إعلان وسط المقال -->
-      <div class="ad-slot">
-        <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
-      </div>
-
-      <h2>3. CLS: Cumulative Layout Shift (الثبات البصري)</h2>
-      <p>
-        يقيس مقدار "القفز" أو الاهتزاز المفاجئ للعناصر أثناء التحميل. الهدف: أقل من <strong>0.1</strong>.
+      <h2>3. تقليل حجم JavaScript وCSS</h2>
+      <p>        احذف الكود غير المستخدم، ودمج الملفات، واستخدم Minification.
       </p>
-      <p>
-        السبب الرئيسي لارتفاع CLS هو تحميل الإعلانات أو الصور بدون أبعاد محددة. الحل بسيط:
-      </p>
-      <ol>
-        <li>حدد دائمًا `width` و `height` للصور والفيديوهات في الـ HTML.</li>
-        <li>احجز مساحة ثابتة لوحدات AdSense باستخدام `min-height` في الـ CSS.</li>
-        <li>تجنب حقن محتوى ديناميكي فوق النص المرئي للزائر.</li>
-      </ol>
 
-      <blockquote style="background:#fffbeb; border-right:5px solid #f59e0b; padding:1.5rem; margin:2rem 0; font-style:italic; color:#92400e; border-radius:0 8px 8px 0;">
-        "الموقع السريع يبني الثقة، والثبات البصري يبقي الزائر، والنتيجة: نقرات أعلى وأرباح أكثر."
+      <h2>4. استخدام CDN</h2>
+      <p>
+        شبكات CDN توزع محتواك على سيرفرات حول العالم، مما يقلل زمن الوصول للزوار من أي مكان.
+      </p>
+
+      <h2>5. اختيار استضافة سريعة</h2>
+      <p>
+        الاستضافة الرخيصة قد تكلفك زوارك! استثمر في استضافة SSD مع دعم HTTP/2 وHTTP/3.
+      </p>
+
+      <blockquote style="background:#fffbeb; border-right:5px solid #f59e0b; padding:1.5rem; margin:2rem 0; color:#92400e;">
+        "السرعة ليست مجرد رقم، بل هي تجربة مستخدم ومرتبة في جوجل."
       </blockquote>
-
-      <h2>4. أدوات القياس والمراقبة المجانية</h2>
-      <p>
-        لا تعمل في الظلام. استخدم هذه الأدوات الرسمية من جوجل لمراقبة أداء موقعك باستمرار:
-      </p>
-      <ul>
-        <li>📊 <strong>PageSpeed Insights:</strong> تحليل فوري مع اقتراحات قابلة للتنفيذ.</li>
-        <li>📈 <strong>Search Console (تجربة الصفحة):</strong> تقارير أسبوعية عن أداء صفحاتك الحقيقية.</li>
-        <li>🔍 <strong>Chrome DevTools (Lighthouse):</strong> فحص محلي سريع قبل النشر.</li>
-      </ul>
-
-      <h2>🚀 الخلاصة: السرعة = دخل</h2>
-      <p>
-        تحسين Core Web Vitals ليس مشروعًا لمرة واحدة، بل عادة أسبوعية. خصص 30 دقيقة كل أسبوع لمراجعة التقارير، ضغط الصور الجديدة، ومراجعة السكربتات الثقيلة. ستلاحظ فرقًا واضحًا في معدل البقاء، عدد الصفحات المشاهدة، وعائد الإعلانات خلال 30 يومًا فقط.
-      </p>
-      <p>
-        <strong>تحدي اليوم:</strong> افتح PageSpeed Insights، أدخل رابط موقعك، ونفّذ أول 3 اقتراحات تظهر لك. اكتب النتيجة في التعليقات!
-      </p>
     </div>
 
-    <!-- إعلان سفلي -->
-    <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom Banner)</p>
-    </div>
+    <SocialShare 
+      title={pageTitle} 
+      url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-3" 
+    />
 
-    <div class="article-footer-actions">      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
-      <span style="margin:0 10px; color:#94a3b8;">|</span>
-      <a href="/ad-revenue-site/articles/post-2" class="back-btn">📖 المقال السابق</a>
+    <div class="article-footer-actions">
+      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
     </div>
 
   </article>
@@ -114,118 +87,26 @@ const publishDate = "2026-05-25";
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     line-height: 1.85;
   }
-
-  /* 🖼️ تنسيق الصورة الرئيسية */
   .article-hero-image {
     margin: -2.5rem -2.5rem 2rem -2.5rem;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
     height: 400px;
   }
-  .article-hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header {
     border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;    margin-bottom: 2rem;
   }
-  .article-header h1 {
-    font-size: 2.2rem;
-    color: #1e293b;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .article-meta {
-    color: #64748b;
-    font-size: 0.9rem;
-    display: flex;
-    gap: 1.5rem;
-  }
-  .article-content p {    margin-bottom: 1.5rem;
-    font-size: 1.15rem;
-    color: #334155;
-  }
-  .article-content h2 {
-    color: #3b82f6;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
-    border-right: 4px solid #3b82f6;
-    padding-right: 0.8rem;
-  }
-  .article-content ul, .article-content ol {
-    margin-bottom: 1.5rem;
-    padding-right: 1.5rem;
-    background: #f8fafc;
-    padding: 1rem 2rem 1rem 1rem;
-    border-radius: 8px;
-  }
-  .article-content li {
-    margin-bottom: 0.6rem;
-    font-size: 1.1rem;
-    list-style-type: disc;
-  }
-  .intro {
-    font-size: 1.25rem;
-    color: #475569;
-    font-weight: 500;
-    border-right: 4px solid #3b82f6;
-    padding-right: 1rem;
-    background: #eff6ff;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 2rem;
-  }
-  .ad-slot {
-    margin: 2rem 0;
-    padding: 1rem;
-    background: #f1f5f9;
-    border-radius: 8px;
-    text-align: center;
-  }
-  .article-footer-actions {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e2e8f0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .back-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #e2e8f0;
-    color: #475569;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .back-btn:hover {
-    background: #cbd5e1;
-    color: #1e293b;
-  }
-
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; }
+  .article-content h2 { color: #3b82f6; margin-top: 2rem; font-size: 1.5rem; }
+  .intro { background: #eff6ff; padding: 1rem; border-right: 4px solid #3b82f6; border-radius: 4px; }
+  .ad-slot { margin: 2rem 0; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; }
   @media (max-width: 768px) {
-    .article-container {
-      padding: 1.5rem;
-      margin: 1rem;
-    }
-    .article-hero-image {
-      margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-      height: 220px;
-    }
-    .article-header h1 {
-      font-size: 1.6rem;
-    }
-    .article-footer-actions {
-      flex-direction: column;
-    }
+    .article-container { padding: 1.5rem; margin: 1rem; }
+    .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; }
   }
 </style>
