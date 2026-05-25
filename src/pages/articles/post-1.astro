@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
 
 const pageTitle = "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026";
 const description = "يشهد عالم التكنولوجيا تطورًا متسارعًا. تعرف على الذكاء الاصطناعي، التجارة الإلكترونية الذكية، والأمن السيبراني.";
@@ -46,8 +47,8 @@ const publishDate = "2026-05-23";
         المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر، اقتراح المنتجات بدقة، وحتى تعديل الأسعار ديناميكيًا حسب الطلب. هذا ليس ترفًا، بل أصبح معيارًا للبقاء في السوق التنافسي.
       </p>
       <ul>
-        <li>تخصيص تجربة المستخدم بناءً على سجل التصفح.</li>
-        <li>الدفع عبر العملات الرقمية والمحافظ الإلكترونية.</li>        <li>الشحن الآلي وتتبع الطرود بالذكاء الاصطناعي.</li>
+        <li>تخصيص تجربة المستخدم بناءً على سجل التصفح.</li>        <li>الدفع عبر العملات الرقمية والمحافظ الإلكترونية.</li>
+        <li>الشحن الآلي وتتبع الطرود بالذكاء الاصطناعي.</li>
       </ul>
 
       <!-- إعلان وسط المقال -->
@@ -81,6 +82,12 @@ const publishDate = "2026-05-23";
       <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom Banner)</p>
     </div>
 
+    <!-- 🔗 أزرار المشاركة الاجتماعية -->
+    <SocialShare 
+      title={pageTitle} 
+      url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" 
+    />
+
     <div class="article-footer-actions">
       <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة لقائمة المقالات</a>
     </div>
@@ -89,16 +96,14 @@ const publishDate = "2026-05-23";
 </BaseLayout>
 
 <style>
-  .article-container {
-    max-width: 800px;
+  .article-container {    max-width: 800px;
     margin: 2rem auto;
     background: white;
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    line-height: 1.85;  }
-
-  /* 🖼️ تنسيق الصورة الرئيسية */
+    line-height: 1.85;
+  }
   .article-hero-image {
     margin: -2.5rem -2.5rem 2rem -2.5rem;
     border-radius: 12px 12px 0 0;
@@ -110,7 +115,6 @@ const publishDate = "2026-05-23";
     height: 100%;
     object-fit: cover;
   }
-
   .article-header {
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 1.5rem;
@@ -141,11 +145,11 @@ const publishDate = "2026-05-23";
     border-right: 4px solid #3b82f6;
     padding-right: 0.8rem;
   }
-  .article-content ul {
-    margin-bottom: 1.5rem;
+  .article-content ul {    margin-bottom: 1.5rem;
     padding-right: 1.5rem;
     background: #f8fafc;
-    padding: 1rem 2rem 1rem 1rem;    border-radius: 8px;
+    padding: 1rem 2rem 1rem 1rem;
+    border-radius: 8px;
   }
   .article-content li {
     margin-bottom: 0.6rem;
@@ -190,11 +194,11 @@ const publishDate = "2026-05-23";
     background: #cbd5e1;
     color: #1e293b;
   }
-
   @media (max-width: 768px) {
     .article-container {
       padding: 1.5rem;
-      margin: 1rem;    }
+      margin: 1rem;
+    }
     .article-hero-image {
       margin: -1.5rem -1.5rem 1.5rem -1.5rem;
       height: 220px;
