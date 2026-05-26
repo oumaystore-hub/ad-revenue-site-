@@ -3,60 +3,65 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 
 const pageTitle = "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026";
 const description = "اكتشف أهم 5 تقنيات ستغير المستقبل: الذكاء الاصطناعي التوليدي، التجارة الذكية، الأمن السيبراني، والحوسبة السحابية.";
 const publishDate = "2026-05-23";
 const articleImage = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80";
+
 const category = "تقنية";
 const categorySlug = "tech";
 ---
 
-<BaseLayout 
-  title={pageTitle} 
-  description={description}
-  image={articleImage}
-  article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}
->
+<BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
 
   <div class="article-wrapper">
     <main class="article-main">
       <article class="article-container">
         <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
+        
         <header class="article-header">
           <span class="article-badge" style="background:#dbeafe; color:#1e40af; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
           <h1>{pageTitle}</h1>
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
+
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+
         <div class="article-content">
-          <p class="intro">يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل. ومع دخول سنة 2026، لم تعد التقنية رفاهية، بل أصبحت العمود الفقري للأعمال والتعليم.</p>
-          <h2>1. الذكاء الاصطناعي التوليدي (Generative AI)</h2>
-          <p>لم يعد مقتصرًا على الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد، التصميم، وتحليل البيانات الضخمة.</p>
+          <p class="intro">يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل.</p>
+          <h2>1. الذكاء الاصطناعي التوليدي</h2>
+          <p>لم يعد مقتصرًا على الأبحاث الأكاديمية.</p>
           <h2>2. التجارة الإلكترونية الذكية</h2>
-          <p>المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة.</p>
-          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          <h2>3. الأمن السيبراني كضرورة</h2>
-          <p>مع تزايد الهجمات الإلكترونية، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد.</p>
-          <h3>أهمية التشفير</h3>
-          <p>التشفير من طرف إلى طرف يحمي بياناتك من الوصول غير المصرح به.</p>
-          <h2>4. الحوسبة السحابية الهجينة</h2>
-          <p>النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة.</p>
-          <h2>5. الأجهزة القابلة للطي</h2>
-          <p>أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين والمبرمجين.</p>
+          <p>المتاجر التقليدية تتحول إلى منصات ذكية.</p>
         </div>
+
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" />
+        
+        <!-- 👤 صندوق الكاتب -->
+        <AuthorBio author={{
+          name: "TH Tech Team",
+          role: "فريق TH Tech",
+          bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي. نهدف إلى تقديم محتوى عملي وموثوق.",
+          avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128",
+          social: {
+            twitter: "https://twitter.com/thtech",
+            email: "contact@thtech.com"
+          }
+        }} />
+        
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
+        
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
-    <aside class="article-sidebar">
-      <TableOfContents />
-    </aside>
+    <aside class="article-sidebar"><TableOfContents /></aside>
   </div>
 
 </BaseLayout>
@@ -70,7 +75,6 @@ const categorySlug = "tech";
   .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .article-content h2 { color: #3b82f6; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3b82f6; padding-right: 0.8rem; }
-  .article-content h3 { color: #64748b; margin-top: 2rem; margin-bottom: 0.8rem; font-size: 1.3rem; padding-right: 0.5rem; }
   .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #3b82f6; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
