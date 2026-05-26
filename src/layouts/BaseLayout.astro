@@ -1,4 +1,4 @@
----
+هخ ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -138,5 +138,29 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
     </style>
+/* 📑 تنسيق تخطيط المقال مع جدول المحتويات */
+.article-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.article-main {
+  min-width: 0;
+}
+.article-sidebar {
+  position: relative;
+}
+@media (max-width: 1024px) {
+  .article-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .article-sidebar {
+    order: -1;
+  }
+}
   </body>
 </html>
