@@ -26,13 +26,13 @@ jobs:
         with:
           node-version: '20'
           
+      # ✅ استخدم npm install بدلاً من npm ci
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         
       - name: Build
         run: npm run build
         
-      # ✅ هنا نستخدم الإصدار الثالث الذي يستخدم الأدوات الحديثة
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -45,7 +45,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # ✅ هنا نستخدم الإصدار الرابع لضمان التوافق
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
