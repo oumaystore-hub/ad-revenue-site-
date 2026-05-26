@@ -7,9 +7,7 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
+      <button class="search-trigger" onclick="openSearch()" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
       
       <nav class="main-nav" id="nav">
         <ul>
@@ -18,243 +16,70 @@ import SearchModal from './SearchModal.astro';
           <li class="dropdown">
             <button class="dropdown-toggle">📂 الأقسام</button>
             <div class="dropdown-menu">
-              <a href="/ad-revenue-site/category/ai" class="dropdown-item">
-                <span class="dropdown-icon">🤖</span>
-                <span class="dropdown-text">ذكاء اصطناعي</span>
-              </a>
-              <a href="/ad-revenue-site/category/money" class="dropdown-item">
-                <span class="dropdown-icon">💰</span>
-                <span class="dropdown-text">ربح رقمي</span>
-              </a>
-              <a href="/ad-revenue-site/category/tech" class="dropdown-item">
-                <span class="dropdown-icon">💻</span>
-                <span class="dropdown-text">تقنية</span>
-              </a>
-              <a href="/ad-revenue-site/category/performance" class="dropdown-item">
-                <span class="dropdown-icon">⚡</span>
-                <span class="dropdown-text">أداء</span>
-              </a>
+              <a href="/ad-revenue-site/category/ai" class="dropdown-item"><span class="cat-icon">🤖</span><span>ذكاء اصطناعي</span></a>
+              <a href="/ad-revenue-site/category/money" class="dropdown-item"><span class="cat-icon">💰</span><span>ربح رقمي</span></a>
+              <a href="/ad-revenue-site/category/tech" class="dropdown-item"><span class="cat-icon">💻</span><span>تقنية</span></a>
+              <a href="/ad-revenue-site/category/performance" class="dropdown-item"><span class="cat-icon">⚡</span><span>أداء</span></a>
             </div>
           </li>
           
-          <li><a href="/ad-revenue-site/articles" class="nav-item">📄 المقالات</a></li>
+          <li><a href="/ad-revenue-site/articles" class="nav-item"> المقالات</a></li>
           <li><a href="/ad-revenue-site/about" class="nav-item">👤 من نحن</a></li>
-          <li><a href="/ad-revenue-site/contact" class="nav-item">✉️ اتصل بنا</a></li>
+          <li><a href="/ad-revenue-site/contact" class="nav-item">️ اتصل بنا</a></li>
         </ul>
       </nav>
 
-      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
+      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active'); document.querySelector('.dropdown')?.classList.remove('active')">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
-  </div>  
+  </div>
   <SearchModal />
 </header>
 
 <style>
-  .site-header { 
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
-    padding: 0.8rem 0; 
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
-  }
-  .container { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 1.5rem; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-  }
-  .logo { 
-    font-family: 'Inter', sans-serif; 
-    font-weight: 900; 
-    font-size: 1.9rem; 
-    color: #fff; 
-    text-decoration: none; 
-  }
-  .header-actions { 
-    display: flex; 
-    align-items: center; 
-    gap: 1rem; 
-  }
+  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
+  .header-actions { display: flex; align-items: center; gap: 1rem; }
+  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.3s; }
+  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
   
-  /* زر البحث */
-  .search-trigger { 
-    background: rgba(255,255,255,0.15); 
-    border: 1px solid rgba(255,255,255,0.3); 
-    color: white; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.1rem; 
-    transition: all 0.3s; 
-  }
-  .search-trigger:hover {     background: rgba(255,255,255,0.3); 
-    transform: scale(1.05); 
-  }
+  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+  .nav-item { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 600; padding: 0.6rem 1rem; border-radius: 8px; transition: all 0.3s; font-size: 0.9rem; white-space: nowrap; }
+  .nav-item:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
   
-  /* القائمة الرئيسية */
-  .main-nav ul { 
-    display: flex; 
-    gap: 0.5rem; 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-    align-items: center; 
-  }
-  .nav-item { 
-    color: rgba(255,255,255,0.95); 
-    text-decoration: none; 
-    font-weight: 600; 
-    padding: 0.6rem 1rem; 
-    border-radius: 8px; 
-    transition: all 0.3s; 
-    font-size: 0.9rem; 
-    white-space: nowrap;
-  }
-  .nav-item:hover { 
-    background: rgba(255,255,255,0.2); 
-    transform: translateY(-2px); 
-  }
-  
-  /* القائمة المنسدلة - مصححة */
-  .dropdown { 
-    position: relative; 
-  }
-  .dropdown-toggle { 
-    background: rgba(255,255,255,0.15); 
-    border: 1px solid rgba(255,255,255,0.3); 
-    color: white; 
-    padding: 0.6rem 1rem; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .dropdown-toggle:hover { 
-    background: rgba(255,255,255,0.25); 
-  }
+  /* 🔽 القائمة الجانبية للأقسام */
+  .dropdown { position: relative; }
+  .dropdown-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+  .dropdown-toggle:hover { background: rgba(255,255,255,0.25); }
   
   .dropdown-menu {
-    display: none;    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: white;
-    min-width: 240px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    padding: 0.8rem;
-    z-index: 100;
-    border: 1px solid #e2e8f0;
-    animation: fadeIn 0.2s ease;
+    display: none; position: absolute; top: calc(100% + 10px); right: 0;
+    background: white; min-width: 240px; border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 0.8rem;
+    z-index: 100; border: 1px solid #e2e8f0; animation: fadeIn 0.2s ease;
   }
-  
-  .dropdown:hover .dropdown-menu { 
-    display: block; 
-  }
-  
+  .dropdown:hover .dropdown-menu { display: block; }
   .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.9rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #334155;
-    transition: all 0.2s;
-    margin-bottom: 0.3rem;
+    display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 1rem;
+    border-radius: 8px; text-decoration: none; color: #334155;
+    transition: all 0.2s; margin-bottom: 0.3rem; font-weight: 600;
   }
+  .dropdown-item:hover { background: #f1f5f9; transform: translateX(-5px); }
+  .cat-icon { font-size: 1.3rem; width: 28px; text-align: center; }
   
-  .dropdown-item:last-child {
-    margin-bottom: 0;
-  }
+  .mobile-toggle { display: none; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.3rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; }
   
-  .dropdown-item:hover {
-    background: #f1f5f9;
-    transform: translateX(-5px);
-  }
-  
-  .dropdown-icon {
-    font-size: 1.3rem;
-    width: 32px;
-    text-align: center;
-  }
-  
-  .dropdown-text {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  
-  /* زر الموبايل */  .mobile-toggle { 
-    display: none; 
-    background: rgba(255,255,255,0.2); 
-    border: none; 
-    color: white; 
-    font-size: 1.3rem; 
-    padding: 0.5rem; 
-    border-radius: 8px; 
-    cursor: pointer; 
-  }
-  
-  /* تنسيق الموبايل */
   @media (max-width: 900px) {
-    .main-nav { 
-      display: none; 
-      position: absolute; 
-      top: 100%; 
-      right: 0; 
-      left: 0; 
-      background: white; 
-      padding: 1rem; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-      border-radius: 0 0 16px 16px; 
-    }
-    .main-nav.active { 
-      display: block; 
-    }
-    .main-nav ul { 
-      flex-direction: column; 
-      gap: 0.5rem; 
-    }
-    .nav-item, .dropdown-toggle { 
-      color: #334155; 
-      background: #f8fafc; 
-      width: 100%; 
-      text-align: right; 
-    }
-    .nav-item:hover, .dropdown-toggle:hover { 
-      background: #e2e8f0; 
-    }
-    .dropdown-menu { 
-      position: static; 
-      box-shadow: none; 
-      border: none; 
-      padding: 0.8rem; 
-      display: none; 
-      background: #f8fafc;
-      margin-top: 0.5rem;
-    }
-    .dropdown.active .dropdown-menu {       display: block; 
-    }
-    .dropdown-item {
-      color: #475569;
-      padding: 0.8rem;
-    }
-    .dropdown-item:hover {
-      background: #e2e8f0;
-      transform: translateX(-3px);
-    }
-    .mobile-toggle { 
-      display: block; 
-    }
+    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: white; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 0 0 16px 16px; }
+    .main-nav.active { display: block; }
+    .main-nav ul { flex-direction: column; gap: 0.5rem; }
+    .nav-item, .dropdown-toggle { color: #334155; background: #f8fafc; width: 100%; text-align: right; }
+    .nav-item:hover, .dropdown-toggle:hover { background: #e2e8f0; }
+    .dropdown-menu { position: static; box-shadow: none; border: none; padding: 0.5rem 0; background: transparent; display: none; }
+    .dropdown.active .dropdown-menu { display: block; }
+    .dropdown-item { color: #475569; padding: 0.8rem 1rem; }
+    .mobile-toggle { display: block; }
   }
 </style>
