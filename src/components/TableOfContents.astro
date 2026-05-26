@@ -1,179 +1,188 @@
 ---
-// 📑 جدول المحتويات التلقائي
-const { articleContent } = Astro.props;
+// 📑 جدول المحتويات التلقائي مع زر دائري مضيء
 ---
 
+<!-- 🟡 الزر الدائري المضيء -->
+<button class="toc-toggle-btn" id="tocToggleBtn" onclick="toggleTOC()" aria-label="عرض المحتويات">
+  📑
+</button>
+
+<!-- 📋 لوحة المحتويات -->
 <div class="table-of-contents" id="tableOfContents">
   <div class="toc-header">
     <h3>📑 محتويات المقال</h3>
-    <button class="toc-toggle" onclick="document.querySelector('.toc-list').classList.toggle('active')">
-      <i class="fa-solid fa-chevron-down"></i>
-    </button>
+    <button class="toc-close" onclick="toggleTOC()" aria-label="إغلاق">✕</button>
   </div>
   <nav class="toc-list">
-    <ul>
-      <!-- سيتم ملؤها تلقائياً بالJavaScript -->
-    </ul>
+    <ul></ul>
   </nav>
 </div>
 
 <style>
+  /* 🟡 الزر الدائري المضيء */
+  .toc-toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    border: 3px solid white;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+  }
+  
+  /* ✨ تأثير الوميض المستمر */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+    50% { box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.3); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+  }  
+  .toc-toggle-btn:hover {
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+    animation: none;
+  }
+  
+  .toc-toggle-btn.active {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+    animation: pulse-orange 2s infinite;
+  }
+  
+  @keyframes pulse-orange {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+    50% { box-shadow: 0 0 20px 5px rgba(245, 158, 11, 0.3); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+  }
+  
+  /* 📋 لوحة المحتويات */
   .table-of-contents {
-    position: sticky;
+    position: fixed;
     top: 100px;
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    left: 90px;
+    width: 320px;
     max-height: calc(100vh - 120px);
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 1.5rem;
+    z-index: 998;
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s ease;
     overflow-y: auto;
   }
+  
+  .table-of-contents.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+  }
+  
   .toc-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;    padding-bottom: 0.8rem;
     border-bottom: 2px solid #e2e8f0;
   }
-  .toc-header h3 {
-    font-size: 1rem;
-    color: #1e293b;
-    margin: 0;
-    font-weight: 700;
-  }
-  .toc-toggle {
-    background: none;
+  .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0; font-weight: 700; }
+  .toc-close {
+    background: #fee2e2;
     border: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
     cursor: pointer;
-    color: #64748b;    padding: 0.3rem;
-    transition: transform 0.3s;
-  }
-  .toc-toggle.active {
-    transform: rotate(180deg);
-  }
-  .toc-list {
-    max-height: 500px;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  .toc-list.active {
-    max-height: 1000px;
-  }
-  .toc-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .toc-list li {
-    margin-bottom: 0.5rem;
-  }
-  .toc-list a {
-    display: block;
-    padding: 0.5rem 0.8rem;
-    color: #475569;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    color: #dc2626;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
-    border-right: 3px solid transparent;
   }
-  .toc-list a:hover {
-    background: #f1f5f9;
-    color: #3b82f6;
-    border-right-color: #3b82f6;
-    padding-right: 1rem;
+  .toc-close:hover { background: #fecaca; transform: rotate(90deg); }
+  
+  .toc-list ul { list-style: none; padding: 0; margin: 0; }
+  .toc-list li { margin-bottom: 0.5rem; }
+  .toc-list a {
+    display: block; padding: 0.6rem 0.9rem; color: #475569;
+    text-decoration: none; border-radius: 8px; font-size: 0.9rem;
+    transition: all 0.2s; border-right: 3px solid transparent;
+    line-height: 1.5;
   }
-  .toc-list a.active {
-    background: #dbeafe;
-    color: #1e40af;
-    border-right-color: #3b82f6;
-    font-weight: 600;
-  }
-  .toc-list .h3 {
-    padding-right: 1.8rem;
-    font-size: 0.85rem;
-    color: #64748b;
-  }
-  @media (max-width: 1024px) {    .table-of-contents {
-      display: none;
-    }
-  }
+  .toc-list a:hover { background: #f1f5f9; color: #3b82f6; border-right-color: #3b82f6; }
+  .toc-list a.active { background: #dbeafe; color: #1e40af; border-right-color: #3b82f6; font-weight: 600; }
+  .toc-list .h3 { padding-right: 1.8rem; font-size: 0.85rem; color: #64748b; }
+  
+  /* 📱 إخفاء الزر واللوحة في الموبايل */
   @media (max-width: 768px) {
+    .toc-toggle-btn,
     .table-of-contents {
-      display: block;
-      position: fixed;
-      top: 70px;
-      left: 1rem;
-      right: 1rem;
-      max-height: 300px;
-      z-index: 100;
-    }
-    .toc-list {
-      max-height: 0;
-    }
-    .toc-list.active {
-      max-height: 400px;
+      display: none !important;
     }
   }
 </style>
 
 <script>
-  // 📑 إنشاء جدول المحتويات تلقائياً
+  // دالة عالمية لفتح/إغلاق الجدول
+  window.toggleTOC = () => {
+    const toc = document.getElementById('tableOfContents');
+    const btn = document.getElementById('tocToggleBtn');
+    toc.classList.toggle('active');
+    btn.classList.toggle('active');
+  };
+  
+  // إنشاء المحتويات تلقائياً
   document.addEventListener('DOMContentLoaded', () => {
-    const articleContent = document.querySelector('.article-content');
-    if (!articleContent) return;
+    const articleContent = document.querySelector('.article-content');    if (!articleContent) return;
 
     const headings = articleContent.querySelectorAll('h2, h3');
     const tocList = document.querySelector('.toc-list ul');
     
     if (headings.length === 0) {
-      document.getElementById('tableOfContents').style.display = 'none';
+      document.getElementById('tocToggleBtn').style.display = 'none';
       return;
     }
 
     headings.forEach((heading, index) => {
-      // إنشاء ID لكل عنوان إذا لم يكن موجوداً
-      if (!heading.id) {
-        heading.id = `heading-${index}`;
-      }
-
-      // إنشاء عنصر القائمة
+      if (!heading.id) heading.id = `heading-${index}`;
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = `#${heading.id}`;
       a.textContent = heading.textContent;
       a.classList.add(heading.tagName.toLowerCase());
-      // إضافة event listener
+      
       a.addEventListener('click', (e) => {
         e.preventDefault();
         heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // تحديث العنصر النشط
         document.querySelectorAll('.toc-list a').forEach(link => link.classList.remove('active'));
         a.classList.add('active');
       });
-
+      
       li.appendChild(a);
       tocList.appendChild(li);
     });
 
-    // تتبع العنصر النشط أثناء التمرير
+    // تتبع القسم النشط
     window.addEventListener('scroll', () => {
       let current = '';
       headings.forEach(heading => {
-        const sectionTop = heading.offsetTop;
-        if (scrollY >= sectionTop - 150) {
-          current = heading.id;
-        }
+        if (window.scrollY >= heading.offsetTop - 150) current = heading.id;
       });
-
       document.querySelectorAll('.toc-list a').forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
+        if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
       });
     });
   });
