@@ -1,5 +1,4 @@
 ---
-// 📦 استيراد مكونات البحث
 import SearchModal from './SearchModal.astro';
 ---
 
@@ -8,7 +7,6 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <!-- 🔍 زر البحث -->
       <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -17,7 +15,7 @@ import SearchModal from './SearchModal.astro';
         <ul>
           <li><a href="/ad-revenue-site" class="nav-item">🏠 الرئيسية</a></li>
           <li class="dropdown">
-            <button class="dropdown-toggle">📂 الأقسام <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;margin-right:4px;"></i></button>
+            <button class="dropdown-toggle">📂 الأقسام</button>
             <ul class="dropdown-menu">
               <li><a href="/ad-revenue-site/category/ai">🤖 ذكاء اصطناعي</a></li>
               <li><a href="/ad-revenue-site/category/money">💰 ربح رقمي</a></li>
@@ -26,64 +24,40 @@ import SearchModal from './SearchModal.astro';
             </ul>
           </li>
           <li><a href="/ad-revenue-site/articles" class="nav-item">📄 المقالات</a></li>
-          <li><a href="/ad-revenue-site/about" class="nav-item">👤 من نحن</a></li>
-          <li><a href="/ad-revenue-site/contact" class="nav-item">✉️ اتصل بنا</a></li>
         </ul>
       </nav>
 
-      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active'); document.querySelector('.dropdown')?.classList.remove('active')">
+      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </div>
   
-  <!-- استدعاء نافذة البحث -->
   <SearchModal />
 </header>
 
 <style>
   .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+  .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 1rem; }
-  
-  /* 🔍 زر البحث */
-  .search-trigger {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-  }
+  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.3s; }
   .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-  
-  .main-nav ul { display: flex; gap: 0.3rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-  .nav-item { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: 8px; transition: all 0.3s; font-size: 0.9rem; white-space: nowrap; }
-  .nav-item:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-  
+  .main-nav ul { display: flex; gap: 0.3rem; list-style: none; margin: 0; padding: 0; }
+  .nav-item { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: 8px; transition: all 0.3s; }
+  .nav-item:hover { background: rgba(255,255,255,0.2); }
   .dropdown { position: relative; }
-  .dropdown-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 0.9rem; padding: 0.5rem 0.9rem; border-radius: 8px; display: flex; align-items: center; gap: 0.4rem; }
-  .dropdown-toggle:hover { background: rgba(255,255,255,0.25); }
-  .dropdown-menu { display: none; position: absolute; top: 110%; right: 0; background: white; min-width: 220px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 0.5rem 0; z-index: 100; border: 1px solid #e2e8f0; }
-  .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
-  .dropdown-menu a { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.2rem; color: #334155; text-decoration: none; font-size: 0.95rem; transition: background 0.2s; }
-  .dropdown-menu a:hover { background: #f8fafc; color: #3b82f6; }
-  
-  .mobile-toggle { display: none; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.3rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; }
-  
+  .dropdown-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; }
+  .dropdown-menu { display: none; position: absolute; top: 110%; right: 0; background: white; min-width: 200px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 0.5rem 0; }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 0.7rem 1rem; color: #334155; text-decoration: none; }
+  .dropdown-menu a:hover { background: #f8fafc; }
+  .mobile-toggle { display: none; background: rgba(255,255,255,0.2); border: none; color: white; padding: 0.5rem; border-radius: 8px; cursor: pointer; }
   @media (max-width: 900px) {
-    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: white; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 0 0 16px 16px; }
-    .main-nav.active { display: block; animation: slideDown 0.3s ease; }
-    .main-nav ul { flex-direction: column; gap: 0.5rem; }
-    .nav-item, .dropdown-toggle { color: #334155; background: #f8fafc; width: 100%; text-align: right; border-radius: 8px; }
-    .nav-item:hover, .dropdown-toggle:hover { background: #e2e8f0; }
-    .dropdown-menu { position: static; box-shadow: none; border: none; padding: 0 1rem; display: none; }
-    .dropdown.active .dropdown-menu { display: block; }
-    .dropdown-menu a { color: #475569; padding: 0.7rem 0; }
-    .mobile-toggle { display: flex; }
+    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: white; padding: 1rem; }
+    .main-nav.active { display: block; }
+    .main-nav ul { flex-direction: column; }
+    .nav-item, .dropdown-toggle { color: #334155; background: #f8fafc; }
+    .mobile-toggle { display: block; }
   }
 </style>
