@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 
 const pageTitle = "دليل تحسين محركات البحث (SEO) للمبتدئين: كيف تجعل موقعك يتصدر جوجل؟";
 const description = "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث. تعلم الكلمات المفتاحية، الروابط، وتجربة المستخدم.";
@@ -22,35 +23,24 @@ const categorySlug = "performance";
         <header class="article-header">
           <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
           <h1>{pageTitle}</h1>
-          <div class="article-meta"><span>📅 {publishDate}</span></div>
+          <div class="article-meta"><span> {publishDate}</span></div>
         </header>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
 
         <div class="article-content">
           <p class="intro">تحسين محركات البحث (SEO) ليس سحراً، بل هو هندسة ذكية للمحتوى. في هذا الدليل، نكشف لك الأساسيات التي تجعل جوجل يحب موقعك.</p>
-
           <h2>1. بحث الكلمات المفتاحية (Keyword Research)</h2>
           <p>ابدأ بأدوات مثل Google Keyword Planner أو Ubersuggest. ابحث عن كلمات ذات حجم بحث جيد ومنافسة متوسطة، وادمجها بشكل طبيعي في العناوين والنص.</p>
-
           <h2>2. تحسين On-Page SEO</h2>
-          <ul>
-            <li>✅ عنوان الصفحة (Title Tag) يجب أن يكون جذاباً ويحتوي الكلمة المفتاحية.</li>
-            <li>✅ وصف الميتا (Meta Description) يحفز النقر ويوضح المحتوى.</li>
-            <li>✅ استخدام العناوين H1, H2, H3 بشكل هرمي ومنطقي لتسهيل القراءة والزحف.</li>
-          </ul>
-
+          <ul><li>✅ عنوان الصفحة (Title Tag) يجب أن يكون جذاباً ويحتوي الكلمة المفتاحية.</li><li>✅ وصف الميتا (Meta Description) يحفز النقر ويوضح المحتوى.</li><li>✅ استخدام العناوين H1, H2, H3 بشكل هرمي ومنطقي لتسهيل القراءة والزحف.</li></ul>
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
-
           <h2>3. السرعة وتجربة المستخدم (Core Web Vitals)</h2>
           <p>جوجل يعاقب المواقع البطيئة. اضغط الصور، فعّل التخزين المؤقت، واستخدم استضافة سريعة. الموقع الذي يعمل بسلاسة يبقى الزائر فيه أطول.</p>
-
           <h2>4. الروابط الداخلية والخارجية</h2>
           <p>اربط مقالاتك ببعضها البعض (Internal Links) لتقوية هيكل الموقع، وابحث عن مواقع موثوقة تضع روابط لمحتواك (Backlinks) لرفع المصداقية.</p>
-
           <h2>5. المحتوى الطازج والمنتظم</h2>
           <p>خوارزميات جوجل تفضل المواقع النشطة. انشر مقالاً واحداً أسبوعياً بجودة عالية، وحدث المقالات القديمة كل 6 أشهر لضمان دقتها.</p>
-
           <h2>🛠️ أدوات مجانية ضرورية</h2>
           <p>Google Search Console، Google Analytics، PageSpeed Insights، و Yoast SEO (إذا كنت تستخدم ووردبريس).</p>
         </div>
@@ -58,6 +48,15 @@ const categorySlug = "performance";
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-7" />
+        
+        <AuthorBio author={{
+          name: "TH Tech Team",
+          role: "فريق TH Tech",
+          bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي. نهدف إلى تقديم محتوى عملي وموثوق.",
+          avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128",
+          social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" }
+        }} />
+        
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         
         <div class="article-footer-actions">
