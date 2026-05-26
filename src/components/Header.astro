@@ -7,79 +7,219 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <button class="search-trigger" onclick="openSearch()" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
       
       <nav class="main-nav" id="nav">
-        <ul>
-          <li><a href="/ad-revenue-site" class="nav-item">🏠 الرئيسية</a></li>
-          
-          <li class="dropdown">
-            <button class="dropdown-toggle">📂 الأقسام</button>
-            <div class="dropdown-menu">
-              <a href="/ad-revenue-site/category/ai" class="dropdown-item"><span class="cat-icon">🤖</span><span>ذكاء اصطناعي</span></a>
-              <a href="/ad-revenue-site/category/money" class="dropdown-item"><span class="cat-icon">💰</span><span>ربح رقمي</span></a>
-              <a href="/ad-revenue-site/category/tech" class="dropdown-item"><span class="cat-icon">💻</span><span>تقنية</span></a>
-              <a href="/ad-revenue-site/category/performance" class="dropdown-item"><span class="cat-icon">⚡</span><span>أداء</span></a>
-            </div>
-          </li>
-          
-          <li><a href="/ad-revenue-site/articles" class="nav-item"> المقالات</a></li>
-          <li><a href="/ad-revenue-site/about" class="nav-item">👤 من نحن</a></li>
-          <li><a href="/ad-revenue-site/contact" class="nav-item">️ اتصل بنا</a></li>
-        </ul>
-      </nav>
+        <!-- زر الإغلاق داخل القائمة للموبايل -->
+        <button class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
 
-      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active'); document.querySelector('.dropdown')?.classList.remove('active')">
-        <i class="fa-solid fa-bars"></i>
+        <ul class="nav-links">
+          <li><a href="/ad-revenue-site" class="nav-item active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+          <li><a href="/ad-revenue-site/articles" class="nav-item"><i class="fa-solid fa-newspaper"></i> المقالات</a></li>
+          <li><a href="/ad-revenue-site/about" class="nav-item"><i class="fa-solid fa-user-group"></i> من نحن</a></li>
+          <li><a href="/ad-revenue-site/contact" class="nav-item"><i class="fa-solid fa-envelope"></i> اتصل بنا</a></li>
+        </ul>
+
+        <!-- قسم الأقسام بتصميم شبكي -->
+        <div class="nav-categories-section">
+          <span class="section-title">تصفح الأقسام</span>
+          <div class="categories-grid">
+            <a href="/ad-revenue-site/category/ai" class="cat-card">
+              <span class="cat-icon bg-ai"></span>
+              <span class="cat-name">ذكاء اصطناعي</span>
+            </a>
+            <a href="/ad-revenue-site/category/money" class="cat-card">
+              <span class="cat-icon bg-money">💰</span>
+              <span class="cat-name">ربح رقمي</span>
+            </a>
+            <a href="/ad-revenue-site/category/tech" class="cat-card">
+              <span class="cat-icon bg-tech">💻</span>
+              <span class="cat-name">تقنية</span>
+            </a>
+            <a href="/ad-revenue-site/category/performance" class="cat-card">
+              <span class="cat-icon bg-perf">⚡</span>
+              <span class="cat-name">أداء</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
+        <i class="fa-solid fa-bars-staggered"></i>
       </button>
     </div>
   </div>
+  
   <SearchModal />
 </header>
 
 <style>
-  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
+  /* 🎨 تنسيق الهيدر العام */
+  .site-header { 
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
+    padding: 0.8rem 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+  }
+  .container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 1.5rem; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
+  .logo { 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 900; 
+    font-size: 1.9rem; 
+    color: #fff; 
+    text-decoration: none; 
+    letter-spacing: -0.5px;
+  }
   .header-actions { display: flex; align-items: center; gap: 1rem; }
-  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.3s; }
-  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
   
-  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-  .nav-item { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 600; padding: 0.6rem 1rem; border-radius: 8px; transition: all 0.3s; font-size: 0.9rem; white-space: nowrap; }
-  .nav-item:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-  
-  /* 🔽 القائمة الجانبية للأقسام */
-  .dropdown { position: relative; }
-  .dropdown-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
-  .dropdown-toggle:hover { background: rgba(255,255,255,0.25); }
-  
-  .dropdown-menu {
-    display: none; position: absolute; top: calc(100% + 10px); right: 0;
-    background: white; min-width: 240px; border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 0.8rem;
-    z-index: 100; border: 1px solid #e2e8f0; animation: fadeIn 0.2s ease;
+  /* زر البحث */
+  .search-trigger { 
+    background: rgba(255,255,255,0.15); 
+    border: 1px solid rgba(255,255,255,0.3); 
+    color: white; 
+    width: 42px; height: 42px; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 1.2rem; 
+    transition: all 0.3s; 
   }
-  .dropdown:hover .dropdown-menu { display: block; }
-  .dropdown-item {
-    display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 1rem;
-    border-radius: 8px; text-decoration: none; color: #334155;
-    transition: all 0.2s; margin-bottom: 0.3rem; font-weight: 600;
+  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }  
+  /* القائمة الرئيسية (للديسكتوب) */
+  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+  .nav-item { 
+    color: rgba(255,255,255,0.9); 
+    text-decoration: none; 
+    font-weight: 600; 
+    padding: 0.6rem 1.2rem; 
+    border-radius: 10px; 
+    transition: all 0.3s; 
+    display: flex; align-items: center; gap: 0.5rem;
   }
-  .dropdown-item:hover { background: #f1f5f9; transform: translateX(-5px); }
-  .cat-icon { font-size: 1.3rem; width: 28px; text-align: center; }
+  .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.2); color: white; }
   
-  .mobile-toggle { display: none; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.3rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; }
-  
+  /* إخفاء أجزاء الموبايل في الديسكتوب */
+  .close-menu, .nav-categories-section { display: none; }
+
+  /* 📱 تنسيق الموبايل الاحترافي */
   @media (max-width: 900px) {
-    .main-nav { display: none; position: absolute; top: 100%; right: 0; left: 0; background: white; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 0 0 16px 16px; }
+    .main-nav { 
+      display: none; 
+      position: fixed; 
+      top: 0; right: 0; 
+      width: 85%; /* عرض القائمة */
+      max-width: 320px;
+      height: 100vh; 
+      background: rgba(255, 255, 255, 0.98); /* خلفية بيضاء نقية */
+      backdrop-filter: blur(15px); /* تأثير الزجاج */
+      padding: 2rem 1.5rem; 
+      box-shadow: -10px 0 40px rgba(0,0,0,0.2); 
+      z-index: 2000; 
+      overflow-y: auto;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
     .main-nav.active { display: block; }
-    .main-nav ul { flex-direction: column; gap: 0.5rem; }
-    .nav-item, .dropdown-toggle { color: #334155; background: #f8fafc; width: 100%; text-align: right; }
-    .nav-item:hover, .dropdown-toggle:hover { background: #e2e8f0; }
-    .dropdown-menu { position: static; box-shadow: none; border: none; padding: 0.5rem 0; background: transparent; display: none; }
-    .dropdown.active .dropdown-menu { display: block; }
-    .dropdown-item { color: #475569; padding: 0.8rem 1rem; }
-    .mobile-toggle { display: block; }
+    
+    /* زر الإغلاق */
+    .close-menu {
+      position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      background: #f1f5f9;
+      border: none;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      color: #64748b;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;      transition: 0.3s;
+    }
+    .close-menu:hover { background: #e2e8f0; color: #0f172a; }
+
+    /* الروابط */
+    .nav-links { list-style: none; padding: 0; margin: 0 0 2rem 0; }
+    .nav-links li { margin-bottom: 0.8rem; }
+    .nav-item { 
+      color: #334155; 
+      background: transparent; 
+      padding: 1rem; 
+      border-radius: 12px; 
+      font-size: 1.1rem; 
+      font-weight: 700;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .nav-item:hover { background: #f0f9ff; color: #0284c7; }
+    .nav-item i { width: 24px; text-align: center; font-size: 1.2rem; color: #3b82f6; }
+    
+    /* قسم الأقسام الشبكي */
+    .nav-categories-section { display: block; }
+    .section-title { 
+      display: block; 
+      font-size: 0.85rem; 
+      color: #94a3b8; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      margin-bottom: 1rem; 
+      letter-spacing: 1px;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* عمودين */
+      gap: 12px;
+    }
+    .cat-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1.2rem 0.5rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .cat-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #bae6fd; }
+    
+    .cat-icon { 
+      font-size: 1.8rem; 
+      margin-bottom: 0.5rem;       width: 45px; height: 45px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+    }
+    /* ألوان خلفيات الأيقونات */
+    .bg-ai { background: #e0e7ff; }
+    .bg-money { background: #dcfce7; }
+    .bg-tech { background: #dbeafe; }
+    .bg-perf { background: #fef3c7; }
+
+    .cat-name { 
+      color: #475569; 
+      font-weight: 700; 
+      font-size: 0.95rem; 
+    }
+    
+    .mobile-toggle { 
+      display: flex; 
+      background: rgba(255,255,255,0.15); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      color: white; 
+      width: 42px; height: 42px; 
+      border-radius: 12px; 
+      cursor: pointer; 
+      align-items: center; justify-content: center; 
+      font-size: 1.2rem; 
+    }
   }
 </style>
