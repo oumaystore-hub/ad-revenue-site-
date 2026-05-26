@@ -1,86 +1,74 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 
-// 📝 بيانات المقال
 const pageTitle = "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals";
 const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة لتحسين تجربة المستخدم وSEO.";
 const publishDate = "2026-05-25";
 const articleImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80";
 
-// 🏷️ تعريف التصنيف
 const category = "أداء وتقنية";
 const categorySlug = "performance";
 ---
 
-<BaseLayout 
-  title={pageTitle} 
-  description={description}
-  image={articleImage}
-  article={{
-    publishedTime: publishDate,
-    modifiedTime: publishDate,
-    author: "TH Tech",
-    category: category,
-    categorySlug: categorySlug
-  }}
->
+<BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
 
-  <article class="article-container">
-    <div class="article-hero-image">
-      <img src={articleImage} alt={pageTitle} loading="lazy" />
-    </div>
+  <div class="article-wrapper">
+    <main class="article-main">
+      <article class="article-container">
+        <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
+        <header class="article-header">
+          <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
+          <h1>{pageTitle}</h1>
+          <div class="article-meta"><span>📅 {publishDate}</span></div>
+        </header>
 
-    <header class="article-header">
-      <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
-      <h1>{pageTitle}</h1>
-      <div class="article-meta">
-        <span>📅 {publishDate}</span>
-        <span>️ وقت القراءة: 8 دقائق</span>
-      </div>
-    </header>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
 
-    <div class="ad-slot">
-      <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top Banner)</p>
-    </div>
+        <div class="article-content">
+          <p class="intro">سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. في هذا الدليل، نكشف لك الأسرار العملية لجعل موقعك يطير بسرعة.</p>
 
-    <div class="article-content">
-      <p class="intro">
-        سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. في هذا الدليل، نكشف لك الأسرار العملية لجعل موقعك يطير بسرعة.
-      </p>
+          <h2>1. ضغط الصور بدون فقدان الجودة</h2>
+          <p>استخدم صيغ WebP أو AVIF. تقلل الحجم بنسبة 70-80% دون تأثير ملحوظ على الجودة. أدوات مجانية مثل TinyPNG أو Squoosh كفيلة بالمهمة.</p>
 
-      <h2>1. ضغط الصور بدون فقدان الجودة</h2>
-      <p>استخدم صيغ WebP أو AVIF. تقلل الحجم بنسبة 80% دون تأثير على الجودة.</p>
+          <h2>2. تمكين التخزين المؤقت (Caching)</h2>
+          <p>الـ Caching يخزن نسخة من موقعك في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x. فعّله عبر استضافتك أو إضافات مثل WP Rocket.</p>
 
-      <h2>2. تمكين التخزين المؤقت (Caching)</h2>
-      <p>يخزن نسخة من موقعك في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x.</p>
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
 
-      <div class="ad-slot">
-        <p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (In-Article)</p>
-      </div>
+          <h2>3. تقليل حجم JavaScript وCSS</h2>
+          <p>احذف الكود غير المستخدم، ادمج الملفات، واستخدم Minification. هذا يقلل وقت التحميل الأولي بشكل كبير ويحسن نقاط PageSpeed.</p>
 
-      <h2>3. تقليل حجم JavaScript وCSS</h2>
-      <p>احذف الكود غير المستخدم واستخدم Minification لتسريع التحميل.</p>
+          <h2>4. استخدام CDN (شبكة توصيل المحتوى)</h2>
+          <p>شبكات CDN توزع محتواك على سيرفرات حول العالم. إذا كان زائرك في مصر والسيرفر في أمريكا، الـ CDN سيجلب له البيانات من أقرب نقطة.</p>
 
-      <h2>4. استخدام CDN</h2>
-      <p>شبكات CDN توزع محتواك حول العالم، مما يقلل زمن الوصول.</p>
+          <h2>5. اختيار استضافة سريعة</h2>
+          <p>الاستضافة الرخيصة قد تكلفك زوارك! استثمر في استضافة تستخدم أقراص SSD/NVMe، وتدعم بروتوكول HTTP/2 أو HTTP/3.</p>
 
-      <h2>🏆 الخلاصة</h2>
-      <p>ابدأ بقياس سرعتك عبر PageSpeed Insights وطبق هذه الخطوات واحدة تلو الأخرى.</p>
-    </div>
+          <h2>🏆 الخلاصة</h2>
+          <p>ابدأ بقياس سرعتك الحالية عبر Google PageSpeed Insights، ثم طبق هذه الخطوات واحدة تلو الأخرى، وستلاحظ الفرق فورًا.</p>
+        </div>
 
-    <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-3" />
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
 
-    <div class="article-footer-actions">
-      <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-      <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;"> المزيد من قسم {category}</a>
-    </div>
+        <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-3" />
+        <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
+        
+        <div class="article-footer-actions">
+          <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+          <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+        </div>
+      </article>
+    </main>
+    <aside class="article-sidebar"><TableOfContents /></aside>
+  </div>
 
-  </article>
 </BaseLayout>
 
 <style>
-  .article-container { max-width: 800px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
@@ -93,5 +81,5 @@ const categorySlug = "performance";
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
   .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
   .back-btn:hover { background: #cbd5e1; color: #1e293b; }
-  @media (max-width: 768px) { .article-container { padding: 1.5rem; margin: 1rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
 </style>
