@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 
 const pageTitle = "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals";
 const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة لتحسين تجربة المستخدم وSEO.";
@@ -29,24 +30,17 @@ const categorySlug = "performance";
 
         <div class="article-content">
           <p class="intro">سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. في هذا الدليل، نكشف لك الأسرار العملية لجعل موقعك يطير بسرعة.</p>
-
           <h2>1. ضغط الصور بدون فقدان الجودة</h2>
           <p>استخدم صيغ WebP أو AVIF. تقلل الحجم بنسبة 70-80% دون تأثير ملحوظ على الجودة. أدوات مجانية مثل TinyPNG أو Squoosh كفيلة بالمهمة.</p>
-
           <h2>2. تمكين التخزين المؤقت (Caching)</h2>
           <p>الـ Caching يخزن نسخة من موقعك في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x. فعّله عبر استضافتك أو إضافات مثل WP Rocket.</p>
-
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
-
           <h2>3. تقليل حجم JavaScript وCSS</h2>
           <p>احذف الكود غير المستخدم، ادمج الملفات، واستخدم Minification. هذا يقلل وقت التحميل الأولي بشكل كبير ويحسن نقاط PageSpeed.</p>
-
           <h2>4. استخدام CDN (شبكة توصيل المحتوى)</h2>
           <p>شبكات CDN توزع محتواك على سيرفرات حول العالم. إذا كان زائرك في مصر والسيرفر في أمريكا، الـ CDN سيجلب له البيانات من أقرب نقطة.</p>
-
           <h2>5. اختيار استضافة سريعة</h2>
           <p>الاستضافة الرخيصة قد تكلفك زوارك! استثمر في استضافة تستخدم أقراص SSD/NVMe، وتدعم بروتوكول HTTP/2 أو HTTP/3.</p>
-
           <h2>🏆 الخلاصة</h2>
           <p>ابدأ بقياس سرعتك الحالية عبر Google PageSpeed Insights، ثم طبق هذه الخطوات واحدة تلو الأخرى، وستلاحظ الفرق فورًا.</p>
         </div>
@@ -54,6 +48,15 @@ const categorySlug = "performance";
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-3" />
+        
+        <AuthorBio author={{
+          name: "TH Tech Team",
+          role: "فريق TH Tech",
+          bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي. نهدف إلى تقديم محتوى عملي وموثوق.",
+          avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128",
+          social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" }
+        }} />
+        
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         
         <div class="article-footer-actions">
