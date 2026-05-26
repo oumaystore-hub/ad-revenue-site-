@@ -1,4 +1,4 @@
-هخ ---
+---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -13,45 +13,29 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية للذكاء الاصطناعي والربح الرقمي'}</title>
-    <meta name="description" content={description || 'TH Tech | بوابتك التقنية الموثوقة للذكاء الاصطناعي، الربح من الإنترنت، وتحسين الأداء التقني.'} />
+    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية'}</title>
+    <meta name="description" content={description || 'TH Tech | بوابتك التقنية الموثوقة.'} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href={Astro.url.href} />
-    
     <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={title || 'TH Tech'} />
-    <meta property="og:description" content={description || 'TH Tech - Tech Hub'} />
+    <meta property="og:description" content={description || 'TH Tech'} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="ar_AR" />
-    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title || 'TH Tech'} />
     <meta name="twitter:description" content={description || 'TH Tech'} />
     <meta name="twitter:image" content={ogImage} />
-    
     {article && (
       <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": title,
-          "description": description,
-          "image": ogImage,
-          "datePublished": article.publishedTime,
-          "dateModified": article.modifiedTime || article.publishedTime,
-          "author": { "@type": "Organization", "name": article.author || 'TH Tech' },
-          "publisher": { "@type": "Organization", "name": 'TH Tech' },
-          "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href }
-        }
+        { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "image": ogImage, "datePublished": article.publishedTime, "dateModified": article.modifiedTime || article.publishedTime, "author": { "@type": "Organization", "name": article.author || 'TH Tech' }, "publisher": { "@type": "Organization", "name": 'TH Tech' }, "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href } }
       </script>
     )}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QW7XVX75J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -61,25 +45,19 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
     </script>
   </head>
   <body>
-    <!-- 📊 شريط تقدم القراءة -->
     <div class="reading-progress-bar" id="readingProgressBar"></div>
-    
     <Header />
     <main><slot /></main>
     <Footer />
-
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     
     <script>
-      // 📊 حساب تقدم القراءة
       window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById('readingProgressBar').style.width = scrolled + '%';
       });
-
-      // عداد وقت القراءة
       document.addEventListener('DOMContentLoaded', () => {
         const content = document.querySelector('.article-content');
         if (content) {
@@ -88,79 +66,29 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
           const meta = document.querySelector('.article-meta');
           if (meta) {
             const span = document.createElement('span');
-            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
+            span.innerHTML = `️ ${time} دقيقة قراءة`;
             span.style.opacity = "0.9";
             meta.appendChild(span);
           }
         }
       });
-
-      // زر الصعود للأعلى
-      const btn = document.getElementById('backToTop');      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
       btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; margin: 0; }
-      
-      /* 📊 شريط تقدم القراءة */
-      .reading-progress-bar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
-        width: 0%;
-        z-index: 9999;
-        transition: width 0.1s ease;
-        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-      }
-      
-      #backToTop {
-        position: fixed;
-        bottom: 2rem;
-        left: 2rem;
-        background: #3b82f6;
-        color: white;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-        transition: 0.3s;
-        z-index: 999;
-      }
+      .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
+      #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
+      
+      /* 📑 تنسيق شبكة المقال وجدول المحتويات */
+      .article-wrapper { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+      .article-main { min-width: 0; }
+      .article-sidebar { position: relative; }
+      @media (max-width: 1024px) { .article-wrapper { grid-template-columns: 1fr; gap: 1.5rem; } .article-sidebar { order: -1; } }
     </style>
-/* 📑 تنسيق تخطيط المقال مع جدول المحتويات */
-.article-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-.article-main {
-  min-width: 0;
-}
-.article-sidebar {
-  position: relative;
-}
-@media (max-width: 1024px) {
-  .article-wrapper {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .article-sidebar {
-    order: -1;
-  }
-}
   </body>
 </html>
