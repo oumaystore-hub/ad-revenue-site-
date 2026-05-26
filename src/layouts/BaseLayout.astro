@@ -13,7 +13,7 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية'}</title>
+    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية للذكاء الاصطناعي والربح الرقمي'}</title>
     <meta name="description" content={description || 'TH Tech | بوابتك التقنية الموثوقة.'} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href={Astro.url.href} />
@@ -78,13 +78,14 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
     </script>
 
     <style>
-      body { font-family: 'Cairo', sans-serif; margin: 0; }
+      /* ✅ تصغير حجم الخط ليكون مريحاً واحترافياً */
+      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; }
+      
       .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
       #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
       
-      /* 📑 تنسيق شبكة المقال وجدول المحتويات */
       .article-wrapper { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
       .article-main { min-width: 0; }
       .article-sidebar { position: relative; }
