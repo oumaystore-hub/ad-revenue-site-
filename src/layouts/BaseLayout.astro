@@ -61,12 +61,25 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
     </script>
   </head>
   <body>
+    <!-- 📊 شريط تقدم القراءة -->
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+    
     <Header />
     <main><slot /></main>
     <Footer />
 
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
+    
     <script>
+      // 📊 حساب تقدم القراءة
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('readingProgressBar').style.width = scrolled + '%';
+      });
+
+      // عداد وقت القراءة
       document.addEventListener('DOMContentLoaded', () => {
         const content = document.querySelector('.article-content');
         if (content) {
@@ -81,21 +94,49 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
           }
         }
       });
-      const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+
+      // زر الصعود للأعلى
+      const btn = document.getElementById('backToTop');      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
       btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; margin: 0; }
+      
+      /* 📊 شريط تقدم القراءة */
+      .reading-progress-bar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+        width: 0%;
+        z-index: 9999;
+        transition: width 0.1s ease;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+      
       #backToTop {
-        position: fixed; bottom: 2rem; left: 2rem;
-        background: #3b82f6; color: white; width: 45px; height: 45px;
-        border-radius: 50%; border: none; cursor: pointer; display: none;
-        align-items: center; justify-content: center; font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999;
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: #3b82f6;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        transition: 0.3s;
+        z-index: 999;
       }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
-      #backToTop.visible { display: flex; }    </style>
+      #backToTop.visible { display: flex; }
+    </style>
   </body>
 </html>
