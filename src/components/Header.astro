@@ -12,36 +12,37 @@ import SearchModal from './SearchModal.astro';
       </button>
       
       <nav class="main-nav" id="nav">
-        <!-- زر الإغلاق داخل القائمة للموبايل -->
+        <!-- زر الإغلاق -->
         <button class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
+        <!-- الروابط الأساسية -->
         <ul class="nav-links">
-          <li><a href="/ad-revenue-site" class="nav-item active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+          <li><a href="/ad-revenue-site" class="nav-item"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
           <li><a href="/ad-revenue-site/articles" class="nav-item"><i class="fa-solid fa-newspaper"></i> المقالات</a></li>
           <li><a href="/ad-revenue-site/about" class="nav-item"><i class="fa-solid fa-user-group"></i> من نحن</a></li>
           <li><a href="/ad-revenue-site/contact" class="nav-item"><i class="fa-solid fa-envelope"></i> اتصل بنا</a></li>
         </ul>
 
-        <!-- قسم الأقسام بتصميم شبكي -->
+        <!-- قسم الأقسام بتصميم شبكي ملون -->
         <div class="nav-categories-section">
-          <span class="section-title">تصفح الأقسام</span>
+          <span class="section-title">الأقسام</span>
           <div class="categories-grid">
             <a href="/ad-revenue-site/category/ai" class="cat-card">
-              <span class="cat-icon bg-ai"></span>
+              <div class="cat-icon-wrapper bg-ai"></div>
               <span class="cat-name">ذكاء اصطناعي</span>
             </a>
             <a href="/ad-revenue-site/category/money" class="cat-card">
-              <span class="cat-icon bg-money">💰</span>
+              <div class="cat-icon-wrapper bg-money">💰</div>
               <span class="cat-name">ربح رقمي</span>
             </a>
             <a href="/ad-revenue-site/category/tech" class="cat-card">
-              <span class="cat-icon bg-tech">💻</span>
+              <div class="cat-icon-wrapper bg-tech">💻</div>
               <span class="cat-name">تقنية</span>
             </a>
             <a href="/ad-revenue-site/category/performance" class="cat-card">
-              <span class="cat-icon bg-perf">⚡</span>
+              <div class="cat-icon-wrapper bg-perf">⚡</div>
               <span class="cat-name">أداء</span>
             </a>
           </div>
@@ -95,8 +96,8 @@ import SearchModal from './SearchModal.astro';
     display: flex; align-items: center; justify-content: center; 
     font-size: 1.2rem; 
     transition: all 0.3s; 
-  }
-  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }  
+  }  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+  
   /* القائمة الرئيسية (للديسكتوب) */
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .nav-item { 
@@ -108,7 +109,7 @@ import SearchModal from './SearchModal.astro';
     transition: all 0.3s; 
     display: flex; align-items: center; gap: 0.5rem;
   }
-  .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.2); color: white; }
+  .nav-item:hover { background: rgba(255,255,255,0.2); color: white; }
   
   /* إخفاء أجزاء الموبايل في الديسكتوب */
   .close-menu, .nav-categories-section { display: none; }
@@ -119,13 +120,11 @@ import SearchModal from './SearchModal.astro';
       display: none; 
       position: fixed; 
       top: 0; right: 0; 
-      width: 85%; /* عرض القائمة */
-      max-width: 320px;
+      width: 280px; /* ✅ تم التصغير ليكون أصغر */
       height: 100vh; 
-      background: rgba(255, 255, 255, 0.98); /* خلفية بيضاء نقية */
-      backdrop-filter: blur(15px); /* تأثير الزجاج */
-      padding: 2rem 1.5rem; 
-      box-shadow: -10px 0 40px rgba(0,0,0,0.2); 
+      background: #ffffff; 
+      box-shadow: -5px 0 30px rgba(0,0,0,0.15); 
+      padding: 1.5rem 1.2rem; 
       z-index: 2000; 
       overflow-y: auto;
       animation: slideIn 0.3s ease-out;
@@ -137,77 +136,84 @@ import SearchModal from './SearchModal.astro';
     /* زر الإغلاق */
     .close-menu {
       position: absolute;
-      top: 1.5rem; left: 1.5rem;
-      background: #f1f5f9;
-      border: none;
-      width: 40px; height: 40px;
+      top: 1.2rem; left: 1.2rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      width: 36px; height: 36px;
       border-radius: 50%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #64748b;
       cursor: pointer;
-      display: flex; align-items: center; justify-content: center;      transition: 0.3s;
-    }
-    .close-menu:hover { background: #e2e8f0; color: #0f172a; }
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.2s;    }
+    .close-menu:hover { background: #f1f5f9; color: #0f172a; }
 
     /* الروابط */
-    .nav-links { list-style: none; padding: 0; margin: 0 0 2rem 0; }
-    .nav-links li { margin-bottom: 0.8rem; }
+    .nav-links { list-style: none; padding: 0; margin: 3rem 0 1.5rem 0; } /* مساحة لزر الإغلاق */
+    .nav-links li { margin-bottom: 0.6rem; }
     .nav-item { 
       color: #334155; 
-      background: transparent; 
-      padding: 1rem; 
-      border-radius: 12px; 
-      font-size: 1.1rem; 
+      background: #f8fafc; 
+      padding: 0.9rem; 
+      border-radius: 10px; 
+      font-size: 1rem; 
       font-weight: 700;
-      display: flex; align-items: center; gap: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      border: 1px solid transparent;
     }
-    .nav-item:hover { background: #f0f9ff; color: #0284c7; }
-    .nav-item i { width: 24px; text-align: center; font-size: 1.2rem; color: #3b82f6; }
+    .nav-item:hover { 
+      background: #eff6ff; 
+      border-color: #bfdbfe; 
+      color: #1e40af; 
+    }
+    .nav-item i { width: 20px; text-align: center; font-size: 1rem; color: #3b82f6; }
     
     /* قسم الأقسام الشبكي */
     .nav-categories-section { display: block; }
     .section-title { 
       display: block; 
-      font-size: 0.85rem; 
+      font-size: 0.75rem; 
       color: #94a3b8; 
       font-weight: 800; 
-      text-transform: uppercase; 
-      margin-bottom: 1rem; 
-      letter-spacing: 1px;
+      margin-bottom: 0.8rem; 
+      letter-spacing: 0.5px;
+      text-align: right;
     }
     .categories-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* عمودين */
-      gap: 12px;
+      grid-template-columns: 1fr 1fr; 
+      gap: 10px; /* ✅ تقليل المسافات */
     }
     .cat-card {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 1.2rem 0.5rem;
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 12px;
+      padding: 1rem 0.5rem;
       text-decoration: none;
       transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
-    .cat-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #bae6fd; }
-    
-    .cat-icon { 
-      font-size: 1.8rem; 
-      margin-bottom: 0.5rem;       width: 45px; height: 45px;
+    .cat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.06); border-color: #e2e8f0; }    
+    .cat-icon-wrapper { 
+      font-size: 1.5rem; 
+      margin-bottom: 0.4rem; 
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
     }
-    /* ألوان خلفيات الأيقونات */
-    .bg-ai { background: #e0e7ff; }
-    .bg-money { background: #dcfce7; }
-    .bg-tech { background: #dbeafe; }
-    .bg-perf { background: #fef3c7; }
+    
+    /* ✅ ألوان واضحة وصارخة للأيقونات */
+    .bg-ai { background: #dbeafe; } /* أزرق فاتح */
+    .bg-money { background: #dcfce7; } /* أخضر فاتح */
+    .bg-tech { background: #e0e7ff; } /* نيلي فاتح */
+    .bg-perf { background: #fef3c7; } /* أصفر فاتح */
 
     .cat-name { 
       color: #475569; 
       font-weight: 700; 
-      font-size: 0.95rem; 
+      font-size: 0.85rem; 
+      text-align: center;
     }
     
     .mobile-toggle { 
