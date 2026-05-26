@@ -23,7 +23,7 @@ const categorySlug = "performance";
         <header class="article-header">
           <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
           <h1>{pageTitle}</h1>
-          <div class="article-meta"><span> {publishDate}</span></div>
+          <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
@@ -48,15 +48,7 @@ const categorySlug = "performance";
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-7" />
-        
-        <AuthorBio author={{
-          name: "TH Tech Team",
-          role: "فريق TH Tech",
-          bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي. نهدف إلى تقديم محتوى عملي وموثوق.",
-          avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128",
-          social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" }
-        }} />
-        
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         
         <div class="article-footer-actions">
