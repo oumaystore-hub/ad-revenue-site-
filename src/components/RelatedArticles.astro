@@ -1,0 +1,112 @@
+---
+// 📰 مكون المقالات ذات الصلة
+const { currentSlug, currentCategory } = Astro.props;
+
+// قائمة جميع المقالات
+const allArticles = [
+  { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", url: "/ad-revenue-site/articles/post-1", category: "تقنية", slug: "tech", date: "2026-05-23" },
+  { title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت", url: "/ad-revenue-site/articles/post-2", category: "ربح رقمي", slug: "money", date: "2026-05-24" },
+  { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", url: "/ad-revenue-site/articles/post-3", category: "أداء وتقنية", slug: "performance", date: "2026-05-25" },
+  { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", url: "/ad-revenue-site/articles/post-4", category: "ذكاء اصطناعي", slug: "ai", date: "2026-05-26" },
+  { title: "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك", url: "/ad-revenue-site/articles/post-5", category: "ذكاء اصطناعي", slug: "ai", date: "2026-05-27" },
+  { title: "أفضل 5 تطبيقات للربح من الهاتف بجدية", url: "/ad-revenue-site/articles/post-6", category: "ربح رقمي", slug: "money", date: "2026-05-28" },
+  { title: "دليل تحسين محركات البحث (SEO) للمبتدئين", url: "/ad-revenue-site/articles/post-7", category: "أداء وتقنية", slug: "performance", date: "2026-05-29" }
+];
+
+// تصفية المقالات: نفس القسم + ليس المقال الحالي
+const relatedArticles = allArticles
+  .filter(article => article.slug === currentSlug)
+  .slice(0, 3);
+---
+
+{relatedArticles.length > 0 && (
+  <div class="related-articles">
+    <h2 class="related-title">📖 مقالات ذات صلة</h2>
+    <div class="related-grid">
+      {relatedArticles.map((article) => (
+        <article class="related-card">
+          <div class="related-category">{article.category}</div>
+          <h3><a href={article.url}>{article.title}</a></h3>
+          <div class="related-meta"><span>📅 {article.date}</span></div>
+          <a href={article.url} class="related-link">اقرأ المقال ←</a>
+        </article>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .related-articles {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 16px;
+    border: 2px solid #bae6fd;
+  }
+  .related-title {
+    font-size: 1.8rem;
+    color: #1e3a8a;
+    margin-bottom: 2rem;
+    text-align: center;    font-weight: 800;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .related-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+  .related-category {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .related-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  .related-card h3 a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .related-card h3 a:hover {
+    color: #3b82f6;
+  }
+  .related-meta {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .related-link {
+    display: inline-block;
+    color: #3b82f6;
+    text-decoration: none;    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .related-link:hover {
+    color: #1e40af;
+    transform: translateX(-5px);
+  }
+  @media (max-width: 768px) {
+    .related-articles { padding: 2rem 1rem; margin-top: 3rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    .related-title { font-size: 1.5rem; }
+  }
+</style>
