@@ -1,0 +1,174 @@
+---
+// 🔍 نافذة البحث الداخلي
+---
+
+<div class="search-overlay" id="searchOverlay" onclick="closeSearch()">
+  <div class="search-modal" onclick="event.stopPropagation()">
+    <div class="search-header">
+      <input type="text" id="searchInput" placeholder="🔍 ابحث عن مقال، موضوع، أو تقنية..." autocomplete="off" />
+      <button class="search-close" onclick="closeSearch()" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="search-results" id="searchResults">
+      <p class="search-hint">ابدأ الكتابة للبحث في المقالات...</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 12vh;
+  }
+  .search-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  
+  .search-modal {
+    background: white;
+    width: 92%;
+    max-width: 650px;
+    border-radius: 16px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  
+  .search-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }  #searchInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.15rem;
+    padding: 0.5rem;
+    outline: none;
+    font-family: 'Cairo', sans-serif;
+    color: #1e293b;
+  }
+  #searchInput::placeholder { color: #94a3b8; }
+  .search-close {
+    background: #e2e8f0;
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #475569;
+    font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .search-close:hover { background: #cbd5e1; color: #0f172a; }
+  
+  .search-results {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 0.8rem;
+  }
+  .search-result-item {
+    display: block;
+    padding: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent;
+  }
+  .search-result-item:hover {
+    background: #f1f5f9;
+    border-color: #bae6fd;
+    transform: translateX(-4px);
+  }
+  .search-result-item h4 {
+    margin: 0 0 0.4rem;
+    color: #1e293b;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }  .search-result-item span {
+    color: #64748b;
+    font-size: 0.85rem;
+    display: block;
+  }
+  .search-hint, .no-results {
+    text-align: center;
+    color: #94a3b8;
+    padding: 2.5rem 1rem;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .search-overlay { padding-top: 8vh; }
+    .search-modal { width: 96%; border-radius: 12px; }
+    .search-results { max-height: 60vh; }
+  }
+</style>
+
+<script>
+  // 📚 بيانات المقالات للبحث (مطابقة 100% للمقالات المنشورة)
+  const articles = [
+    { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", url: "/ad-revenue-site/articles/post-1", category: "تقنية", desc: "اكتشف أهم 5 تقنيات ستغير المستقبل: الذكاء الاصطناعي التوليدي، التجارة الذكية، والأمن السيبراني." },
+    { title: "دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت", url: "/ad-revenue-site/articles/post-2", category: "ربح رقمي", desc: "خطوات عملية ومجربة لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل." },
+    { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", url: "/ad-revenue-site/articles/post-3", category: "أداء وتقنية", desc: "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة." },
+    { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", url: "/ad-revenue-site/articles/post-4", category: "ذكاء اصطناعي", desc: "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الكتابة، والأسعار." },
+    { title: "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026", url: "/ad-revenue-site/articles/post-5", category: "ذكاء اصطناعي", desc: "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام." },
+    { title: "أفضل 5 تطبيقات للربح من الهاتف بجدية (بدون إعلانات مزعجة)", url: "/ad-revenue-site/articles/post-6", category: "ربح رقمي", desc: "تطبيقات حقيقية تدفع فعلياً. تعرف على طرق الربح من المشي، المشاركة الآمنة، والاستبيانات." },
+    { title: "دليل تحسين محركات البحث (SEO) للمبتدئين: كيف تجعل موقعك يتصدر جوجل؟", url: "/ad-revenue-site/articles/post-7", category: "أداء وتقنية", desc: "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث وتصدر جوجل." }
+  ];
+
+  const overlay = document.getElementById('searchOverlay');
+  const input = document.getElementById('searchInput');
+  const results = document.getElementById('searchResults');
+
+  // دوال عالمية للوصول إليها من HTML
+  window.openSearch = () => {
+    overlay.classList.add('active');
+    input.value = '';
+    input.focus();
+    results.innerHTML = '<p class="search-hint">ابدأ الكتابة للبحث في المقالات...</p>';
+  };
+
+  window.closeSearch = () => {
+    overlay.classList.remove('active');
+  };
+
+  input.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    if (!query) {      results.innerHTML = '<p class="search-hint">ابدأ الكتابة للبحث في المقالات...</p>';
+      return;
+    }
+
+    const filtered = articles.filter(a =>
+      a.title.toLowerCase().includes(query) ||
+      a.category.toLowerCase().includes(query) ||
+      a.desc.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      results.innerHTML = '<p class="no-results">لا توجد نتائج مطابقة لبحثك. جرب كلمات أخرى.</p>';
+    } else {
+      results.innerHTML = filtered.map(a => `
+        <a href="${a.url}" class="search-result-item">
+          <h4>${a.title}</h4>
+          <span>📂 ${a.category} • ${a.desc.substring(0, 60)}...</span>
+        </a>
+      `).join('');
+    }
+  });
+
+  // إغلاق بالضغط على Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') window.closeSearch();
+  });
+</script>
