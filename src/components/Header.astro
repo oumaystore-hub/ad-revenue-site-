@@ -26,31 +26,19 @@ import SearchModal from './SearchModal.astro';
         <div class="nav-categories-section">
           <span class="section-title">الأقسام</span>
           <div class="categories-grid">
-            <a href="/ad-revenue-site/category/ai" class="cat-card">
-              <div class="cat-icon-wrapper bg-ai">🤖</div>
-              <span class="cat-name">ذكاء اصطناعي</span>
-            </a>
-            <a href="/ad-revenue-site/category/money" class="cat-card">
-              <div class="cat-icon-wrapper bg-money">💰</div>
-              <span class="cat-name">ربح رقمي</span>
-            </a>
-            <a href="/ad-revenue-site/category/tech" class="cat-card">
-              <div class="cat-icon-wrapper bg-tech">💻</div>
-              <span class="cat-name">تقنية</span>
-            </a>
-            <a href="/ad-revenue-site/category/performance" class="cat-card">
-              <div class="cat-icon-wrapper bg-perf">🚀</div>
-              <span class="cat-name">أداء</span>
-            </a>
+            <a href="/ad-revenue-site/category/ai" class="cat-card"><div class="cat-icon-wrapper bg-ai">🤖</div><span class="cat-name">ذكاء اصطناعي</span></a>
+            <a href="/ad-revenue-site/category/money" class="cat-card"><div class="cat-icon-wrapper bg-money">💰</div><span class="cat-name">ربح رقمي</span></a>
+            <a href="/ad-revenue-site/category/tech" class="cat-card"><div class="cat-icon-wrapper bg-tech">💻</div><span class="cat-name">تقنية</span></a>
+            <a href="/ad-revenue-site/category/performance" class="cat-card"><div class="cat-icon-wrapper bg-perf">🚀</div><span class="cat-name">أداء</span></a>
           </div>
         </div>
       </nav>
 
       <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
-        <i class="fa-solid fa-bars-staggered"></i>      </button>
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
     </div>
   </div>
-  
   <SearchModal />
 </header>
 
@@ -59,8 +47,7 @@ import SearchModal from './SearchModal.astro';
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 1rem; }
-  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
-  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .nav-item { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 0.6rem; }
   .nav-item:hover { background: rgba(255,255,255,0.2); color: white; }
@@ -70,22 +57,20 @@ import SearchModal from './SearchModal.astro';
     .main-nav { 
       display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh; 
       background: #f8fafc; box-shadow: -5px 0 30px rgba(0,0,0,0.1); 
-      padding: 4.5rem 1rem 1.5rem 1rem; z-index: 2000; overflow-y: auto;
+      padding: 4rem 1rem 1.5rem 1rem; z-index: 2000; overflow-y: auto;
     }
     .main-nav.active { display: block; }
     
     .close-menu {
-      position: absolute; top: 1.2rem; left: 1rem;
+      position: absolute; top: 1rem; left: 1rem;
       background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%;
       font-size: 1.1rem; color: #475569; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
     }
 
-    /* ✅ حل جذري: تحويل القائمة لشبكة 2x2 */
+    /* ✅ إصلاح جذري: جعل القائمة شبكة 2x2 وإظهار المحتوى */
     .nav-links { 
-      list-style: none; 
-      padding: 0; 
-      margin: 0; 
+      list-style: none; padding: 0; margin: 0; 
       display: grid !important;
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 10px !important;
@@ -93,60 +78,44 @@ import SearchModal from './SearchModal.astro';
     .nav-links li { width: 100%; }
     
     .nav-item { 
-      background: #ffffff; 
-      padding: 1rem 0.5rem; 
-      border-radius: 12px; 
-      font-size: 0.85rem;       font-weight: 700; 
+      display: flex !important; /* ✅ الحل: تفعيل Flexbox */
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff; 
+      padding: 0.6rem 0.4rem; /* ✅ تصغير الحجم */
+      border-radius: 10px; 
+      font-size: 0.75rem; /* ✅ تصغير الخط */
+      font-weight: 700; 
+      color: #334155; /* ✅ لون النص واضح */
       text-align: center;
       border: 1px solid #e2e8f0;
-      gap: 0.5rem;
+      gap: 4px; /* ✅ مسافة ضيقة بين الأيقونة والنص */
+      text-decoration: none;
+      transition: all 0.2s ease;
     }
-    .nav-item:hover { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-    .nav-item i { font-size: 1.3rem; margin: 0; }
-    .nav-item span { display: block; }
+    .nav-item i { 
+      font-size: 1.1rem; /* ✅ تصغير الأيقونة */
+      color: #3b82f6;       display: block;
+      line-height: 1;
+    }
+    .nav-item span { display: block; line-height: 1.2; }
+    .nav-item:hover { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; transform: translateY(-2px); }
     
-    .nav-categories-section { display: block; margin-top: 1.5rem; }
+    .nav-categories-section { display: block; margin-top: 1.2rem; }
     .section-title { font-size: 0.8rem; color: #94a3b8; font-weight: 800; margin-bottom: 0.8rem; text-align: right; display: block; }
     
-    .categories-grid { 
-      display: grid; 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 10px; 
-    }
+    .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .cat-card {
-      background: #ffffff; 
-      border: 1px solid #e2e8f0; 
-      border-radius: 12px;
-      padding: 1rem 0.5rem; 
-      text-decoration: none; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 0.8rem 0.5rem; text-decoration: none; display: flex; flex-direction: column; align-items: center;
     }
     .cat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
-    
-    .cat-icon-wrapper { 
-      font-size: 1.8rem; 
-      margin-bottom: 0.5rem; 
-      width: 50px; 
-      height: 50px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      border-radius: 50%;
-    }
-    .bg-ai { background: #dbeafe; }
-    .bg-money { background: #dcfce7; }
-    .bg-tech { background: #e0e7ff; }
-    .bg-perf { background: #fef3c7; }
-    
+    .cat-icon-wrapper { font-size: 1.6rem; margin-bottom: 0.4rem; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .bg-ai { background: #dbeafe; } .bg-money { background: #dcfce7; }
+    .bg-tech { background: #e0e7ff; } .bg-perf { background: #fef3c7; }
     .cat-name { color: #475569; font-weight: 700; font-size: 0.85rem; text-align: center; }
     
-    .mobile-toggle { 
-      display: flex; background: rgba(255,255,255,0.15); 
-      border: 1px solid rgba(255,255,255,0.3); color: white;       width: 42px; height: 42px; border-radius: 12px; cursor: pointer; 
-      align-items: center; justify-content: center; font-size: 1.2rem; 
-    }
+    .mobile-toggle { display: flex; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; align-items: center; justify-content: center; font-size: 1.2rem; }
   }
 </style>
