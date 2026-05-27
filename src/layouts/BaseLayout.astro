@@ -53,12 +53,15 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     
     <script>
+      // شريط التقدم
       window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById('readingProgressBar').style.width = scrolled + '%';
       });
+      
+      // حساب وقت القراءة
       document.addEventListener('DOMContentLoaded', () => {
         const content = document.querySelector('.article-content');
         if (content) {
@@ -67,50 +70,104 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
           const meta = document.querySelector('.article-meta');
           if (meta) {
             const span = document.createElement('span');
-            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
+            span.innerHTML = `️ ${time} دقيقة قراءة`;
             span.style.opacity = "0.9";
             meta.appendChild(span);
           }
         }
       });
+      
+      // زر الصعود للأعلى
       const btn = document.getElementById('backToTop');
       window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
       btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
-      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
+      /*  الألوان الأساسية (الوضع النهاري) */
+      body { 
+        font-family: 'Cairo', sans-serif; 
+        margin: 0; 
+        font-size: 16px; 
+        line-height: 1.7; 
+        background: #f8fafc; 
+        color: #1e293b;
+        transition: background 0.3s, color 0.3s; 
+      }
       
-      /* 🌙 Dark Mode Styles */
-      .dark-mode {
-        background: #0f172a;
-        color: #f1f5f9;
+      /* 🌙 الألوان في الوضع الليلي */
+      body.dark-mode {         background: #0f172a; 
+        color: #f1f5f9; 
       }
-      .dark-mode .site-header {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      
+      /* تنسيق الهيدر */
+      .site-header { 
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
+        transition: background 0.3s; 
       }
-      .dark-mode .article-container {
-        background: #1e293b;
-        color: #f1f5f9;
+      body.dark-mode .site-header { 
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%); 
       }
-      .dark-mode .article-header {
+      
+      /* تنسيق البطاقات والمحتوى */
+      .article-container, .article-card, .cat-card, .popular-posts, .nav-item { 
+        background: #ffffff; 
+        color: #1e293b;
+        transition: background 0.3s, color 0.3s, border-color 0.3s;
+      }
+      body.dark-mode .article-container, 
+      body.dark-mode .article-card, 
+      body.dark-mode .cat-card, 
+      body.dark-mode .popular-posts, 
+      body.dark-mode .nav-item { 
+        background: #1e293b; 
+        color: #f1f5f9; 
         border-color: #334155;
       }
-      .dark-mode h1, .dark-mode h2, .dark-mode h3 {        color: #f1f5f9;
-      }
-      .dark-mode p {
-        color: #cbd5e1;
-      }
-      .dark-mode .ad-slot {
-        background: #334155;
-        border-color: #475569;
-      }
       
+      /* تنسيق العناوين والنصوص */
+      h1, h2, h3, h4 { color: #1e293b; transition: color 0.3s; }
+      p { color: #475569; transition: color 0.3s; }
+      body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 { color: #f1f5f9; }
+      body.dark-mode p { color: #cbd5e1; }
+      
+      /* تنسيق الروابط */
+      a { color: #3b82f6; transition: color 0.3s; }
+      body.dark-mode a { color: #60a5fa; }
+      
+      /* تنسيق الأقسام والقوائم */
+      .nav-links li a { background: #ffffff; color: #334155; border-color: #e2e8f0; }
+      body.dark-mode .nav-links li a { background: #334155; color: #f1f5f9; border-color: #475569; }
+      
+      /* تنسيق المساحات الإعلانية */
+      .ad-slot { background: #f8fafc; border-color: #cbd5e1; transition: background 0.3s, border-color 0.3s; }
+      body.dark-mode .ad-slot { background: #334155; border-color: #475569; }
+      
+      /* شريط التقدم والأزرار العائمة */
       .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
-      #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
+            #backToTop { 
+        position: fixed; 
+        bottom: 2rem; 
+        left: 2rem; 
+        background: #3b82f6; 
+        color: white; 
+        width: 45px; 
+        height: 45px; 
+        border-radius: 50%; 
+        border: none; 
+        cursor: pointer; 
+        display: none; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 1.2rem; 
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); 
+        transition: 0.3s; 
+        z-index: 999; 
+      }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
       
+      /* تنسيق شبكة المقال */
       .article-wrapper { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
       .article-main { min-width: 0; }
       .article-sidebar { position: relative; }
