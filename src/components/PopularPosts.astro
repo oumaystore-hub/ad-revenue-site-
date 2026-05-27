@@ -1,0 +1,141 @@
+---
+// 🔥 المقالات الأكثر قراءة
+const popularArticles = [
+  { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", url: "/ad-revenue-site/articles/post-4", views: "12.5K", category: "ذكاء اصطناعي" },
+  { title: "دليل المبتدئين: كيف تبدأ ربحًا حقيقيًا من الإنترنت", url: "/ad-revenue-site/articles/post-2", views: "9.8K", category: "ربح رقمي" },
+  { title: "أفضل 10 أدوات ذكاء اصطناعي مجانية", url: "/ad-revenue-site/articles/post-5", views: "8.2K", category: "ذكاء اصطناعي" },
+  { title: "دليل تحسين محركات البحث SEO", url: "/ad-revenue-site/articles/post-7", views: "7.1K", category: "أداء وتقنية" }
+];
+---
+
+<div class="popular-posts">
+  <h3 class="popular-title">🔥 الأكثر قراءة</h3>
+  <div class="popular-list">
+    {popularArticles.map((article, index) => (
+      <a href={article.url} class="popular-item">
+        <span class="popular-rank">#{index + 1}</span>
+        <div class="popular-content">
+          <h4>{article.title}</h4>
+          <div class="popular-meta">
+            <span class="popular-category">{article.category}</span>
+            <span class="popular-views">👁 {article.views}</span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .popular-posts {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  
+  .popular-title {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin: 0 0 1.2rem 0;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid #f1f5f9;
+    font-weight: 800;
+  }
+  
+  .popular-list {
+    display: flex;
+    flex-direction: column;    gap: 0.8rem;
+  }
+  
+  .popular-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+  
+  .popular-item:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    transform: translateX(-5px);
+  }
+  
+  .popular-rank {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #3b82f6;
+    min-width: 35px;
+    text-align: center;
+  }
+  
+  .popular-content {
+    flex: 1;
+  }
+  
+  .popular-content h4 {
+    font-size: 0.95rem;
+    color: #1e293b;
+    margin: 0 0 0.4rem 0;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  
+  .popular-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+  
+  .popular-category {
+    background: #dbeafe;
+    color: #1e40af;    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+  }
+  
+  .popular-views {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  /* Dark Mode Support */
+  .dark-mode .popular-posts {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .dark-mode .popular-title {
+    color: #f1f5f9;
+    border-color: #334155;
+  }
+  .dark-mode .popular-item {
+    background: #334155;
+  }
+  .dark-mode .popular-item:hover {
+    background: #475569;
+  }
+  .dark-mode .popular-content h4 {
+    color: #f1f5f9;
+  }
+  .dark-mode .popular-meta {
+    color: #94a3b8;
+  }
+  
+  @media (max-width: 768px) {
+    .popular-posts {
+      margin: 1.5rem 0;
+      padding: 1.2rem;
+    }
+    .popular-content h4 {
+      font-size: 0.9rem;
+    }
+  }
+</style>
