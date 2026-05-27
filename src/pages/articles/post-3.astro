@@ -4,6 +4,7 @@ import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import PopularPosts from '../../components/PopularPosts.astro';
 
 const pageTitle = "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals";
 const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة لتحسين تجربة المستخدم وSEO.";
@@ -55,6 +56,7 @@ const categorySlug = "performance";
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
+         <PopularPosts />
       </article>
     </main>
     <aside class="article-sidebar"><TableOfContents /></aside>
