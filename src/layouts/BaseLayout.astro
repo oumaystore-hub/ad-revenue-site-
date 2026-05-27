@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
 import '../styles/global.css';
 
 const { title, description, image, article } = Astro.props;
@@ -46,9 +47,9 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
   </head>
   <body>
     <div class="reading-progress-bar" id="readingProgressBar"></div>
-    <Header />
-    <main><slot /></main>
+    <Header />    <main><slot /></main>
     <Footer />
+    <DarkModeToggle />
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     
     <script>
@@ -66,7 +67,7 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
           const meta = document.querySelector('.article-meta');
           if (meta) {
             const span = document.createElement('span');
-            span.innerHTML = `️ ${time} دقيقة قراءة`;
+            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
             span.style.opacity = "0.9";
             meta.appendChild(span);
           }
@@ -78,8 +79,32 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
     </script>
 
     <style>
-      /* ✅ تصغير حجم الخط ليكون مريحاً واحترافياً */
-      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; }
+      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
+      
+      /* 🌙 Dark Mode Styles */
+      .dark-mode {
+        background: #0f172a;
+        color: #f1f5f9;
+      }
+      .dark-mode .site-header {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      }
+      .dark-mode .article-container {
+        background: #1e293b;
+        color: #f1f5f9;
+      }
+      .dark-mode .article-header {
+        border-color: #334155;
+      }
+      .dark-mode h1, .dark-mode h2, .dark-mode h3 {        color: #f1f5f9;
+      }
+      .dark-mode p {
+        color: #cbd5e1;
+      }
+      .dark-mode .ad-slot {
+        background: #334155;
+        border-color: #475569;
+      }
       
       .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
       #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
