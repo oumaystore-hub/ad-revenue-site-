@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import DarkModeToggle from '../components/DarkModeToggle.astro';
 import '../styles/global.css';
 
 const { title, description, image, article } = Astro.props;
@@ -47,21 +46,17 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
   </head>
   <body>
     <div class="reading-progress-bar" id="readingProgressBar"></div>
-    <Header />    <main><slot /></main>
-    <Footer />
-    <DarkModeToggle />
+    <Header />
+    <main><slot /></main>    <Footer />
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     
     <script>
-      // شريط التقدم
       window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById('readingProgressBar').style.width = scrolled + '%';
       });
-      
-      // حساب وقت القراءة
       document.addEventListener('DOMContentLoaded', () => {
         const content = document.querySelector('.article-content');
         if (content) {
@@ -70,104 +65,57 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
           const meta = document.querySelector('.article-meta');
           if (meta) {
             const span = document.createElement('span');
-            span.innerHTML = `️ ${time} دقيقة قراءة`;
+            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
             span.style.opacity = "0.9";
             meta.appendChild(span);
           }
         }
       });
-      
-      // زر الصعود للأعلى
       const btn = document.getElementById('backToTop');
       window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
       btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
-      /*  الألوان الأساسية (الوضع النهاري) */
-      body { 
-        font-family: 'Cairo', sans-serif; 
-        margin: 0; 
-        font-size: 16px; 
-        line-height: 1.7; 
-        background: #f8fafc; 
-        color: #1e293b;
-        transition: background 0.3s, color 0.3s; 
+      /* 🌙 الوضع النهاري (الافتراضي) */
+      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; background: #f8fafc; color: #1e293b; transition: all 0.3s ease; }
+      
+      /* 🌙 الوضع الليلي - شامل لكل العناصر */
+      body.dark-mode { background: #0f172a; color: #f1f5f9; }
+      body.dark-mode .site-header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+      
+      /* البطاقات والمحتوى */
+      body.dark-mode .article-container, body.dark-mode .article-card, body.dark-mode .cat-card, body.dark-mode .popular-posts, body.dark-mode .nav-item, body.dark-mode .features-card, body.dark-mode .intro {
+        background: #1e293b; color: #cbd5e1; border-color: #334155;
       }
       
-      /* 🌙 الألوان في الوضع الليلي */
-      body.dark-mode {         background: #0f172a; 
-        color: #f1f5f9; 
-      }
+      /* النصوص والعناوين */
+      body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode .article-header h1 { color: #f1f5f9; }
+      body.dark-mode p, body.dark-mode .article-meta, body.dark-mode .cat-name, body.dark-mode .section-title, body.dark-mode .article-content p { color: #cbd5e1; }
       
-      /* تنسيق الهيدر */
-      .site-header { 
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
-        transition: background 0.3s; 
-      }
-      body.dark-mode .site-header { 
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%); 
-      }
-      
-      /* تنسيق البطاقات والمحتوى */
-      .article-container, .article-card, .cat-card, .popular-posts, .nav-item { 
-        background: #ffffff; 
-        color: #1e293b;
-        transition: background 0.3s, color 0.3s, border-color 0.3s;
-      }
-      body.dark-mode .article-container, 
-      body.dark-mode .article-card, 
-      body.dark-mode .cat-card, 
-      body.dark-mode .popular-posts, 
-      body.dark-mode .nav-item { 
-        background: #1e293b; 
-        color: #f1f5f9; 
-        border-color: #334155;
-      }
-      
-      /* تنسيق العناوين والنصوص */
-      h1, h2, h3, h4 { color: #1e293b; transition: color 0.3s; }
-      p { color: #475569; transition: color 0.3s; }
-      body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 { color: #f1f5f9; }
-      body.dark-mode p { color: #cbd5e1; }
-      
-      /* تنسيق الروابط */
-      a { color: #3b82f6; transition: color 0.3s; }
-      body.dark-mode a { color: #60a5fa; }
-      
-      /* تنسيق الأقسام والقوائم */
-      .nav-links li a { background: #ffffff; color: #334155; border-color: #e2e8f0; }
-      body.dark-mode .nav-links li a { background: #334155; color: #f1f5f9; border-color: #475569; }
-      
-      /* تنسيق المساحات الإعلانية */
-      .ad-slot { background: #f8fafc; border-color: #cbd5e1; transition: background 0.3s, border-color 0.3s; }
+      /* عناصر خاصة */
       body.dark-mode .ad-slot { background: #334155; border-color: #475569; }
+      body.dark-mode .intro { border-right-color: #60a5fa; }
+      body.dark-mode .article-content h2 { color: #60a5fa; border-right-color: #60a5fa; }      body.dark-mode .article-badge { background: #1e40af; color: #bfdbfe; }
+      body.dark-mode .back-btn { background: #334155; color: #cbd5e1; }
+      body.dark-mode .back-btn:hover { background: #475569; color: #f1f5f9; }
+      body.dark-mode .article-header { border-bottom-color: #334155; }
+      body.dark-mode .article-footer-actions { border-top-color: #334155; }
       
-      /* شريط التقدم والأزرار العائمة */
+      /* القائمة الجانبية والأزرار */
+      body.dark-mode .main-nav { background: #1e293b; }
+      body.dark-mode .nav-item { background: #334155; color: #f1f5f9; border-color: #475569; }
+      body.dark-mode .nav-item i { color: #60a5fa; }
+      body.dark-mode .cat-card { background: #1e293b; border-color: #334155; }
+      body.dark-mode .cat-name { color: #cbd5e1; }
+      body.dark-mode .search-trigger, body.dark-mode .mobile-toggle { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
+      
+      /* العناصر الثابتة */
       .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
-            #backToTop { 
-        position: fixed; 
-        bottom: 2rem; 
-        left: 2rem; 
-        background: #3b82f6; 
-        color: white; 
-        width: 45px; 
-        height: 45px; 
-        border-radius: 50%; 
-        border: none; 
-        cursor: pointer; 
-        display: none; 
-        align-items: center; 
-        justify-content: center; 
-        font-size: 1.2rem; 
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); 
-        transition: 0.3s; 
-        z-index: 999; 
-      }
+      #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
       
-      /* تنسيق شبكة المقال */
       .article-wrapper { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
       .article-main { min-width: 0; }
       .article-sidebar { position: relative; }
