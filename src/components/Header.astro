@@ -7,7 +7,7 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <!-- ✨ زر الوضع الليلي الجديد -->
+      <!-- 🌙 زر الوضع الليلي -->
       <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
         <span class="toggle-thumb"><i class="fa-solid fa-moon" id="themeIcon"></i></span>
       </button>
@@ -31,11 +31,23 @@ import SearchModal from './SearchModal.astro';
         <div class="nav-categories-section">
           <span class="section-title">الأقسام</span>
           <div class="categories-grid">
-            <a href="/ad-revenue-site/category/ai" class="cat-card"><div class="cat-icon-wrapper bg-ai">🤖</div><span class="cat-name">ذكاء اصطناعي</span></a>
-            <a href="/ad-revenue-site/category/money" class="cat-card"><div class="cat-icon-wrapper bg-money"></div><span class="cat-name">ربح رقمي</span></a>
-            <a href="/ad-revenue-site/category/tech" class="cat-card"><div class="cat-icon-wrapper bg-tech"></div><span class="cat-name">تقنية</span></a>
-            <a href="/ad-revenue-site/category/performance" class="cat-card"><div class="cat-icon-wrapper bg-perf"></div><span class="cat-name">أداء</span></a>
-          </div>
+            <!-- ✅ جميع الإيموجي موجودة الآن -->
+            <a href="/ad-revenue-site/category/ai" class="cat-card">
+              <div class="cat-icon-wrapper bg-ai">🤖</div>
+              <span class="cat-name">ذكاء اصطناعي</span>
+            </a>
+            <a href="/ad-revenue-site/category/money" class="cat-card">
+              <div class="cat-icon-wrapper bg-money">💰</div>
+              <span class="cat-name">ربح رقمي</span>
+            </a>
+            <a href="/ad-revenue-site/category/tech" class="cat-card">
+              <div class="cat-icon-wrapper bg-tech">💻</div>
+              <span class="cat-name">تقنية</span>
+            </a>
+            <a href="/ad-revenue-site/category/performance" class="cat-card">
+              <div class="cat-icon-wrapper bg-perf">🚀</div>
+              <span class="cat-name">أداء</span>
+            </a>          </div>
         </div>
       </nav>
 
@@ -47,46 +59,24 @@ import SearchModal from './SearchModal.astro';
   <SearchModal />
 </header>
 
-<style>  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: background 0.3s; }
+<style>
+  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: background 0.3s; }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 0.8rem; }
   
-  /* ✨ تصميم الزر الجديد */
-  .theme-toggle {
-    width: 52px; height: 28px;
-    background: rgba(255,255,255, 0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50px;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.3s ease;
-    position: relative;
-  }
+  /* 🌙 زر التبديل */
+  .theme-toggle { width: 52px; height: 28px; background: rgba(255,255,255, 0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; cursor: pointer; padding: 0; transition: all 0.3s ease; position: relative; }
   .theme-toggle:hover { background: rgba(255,255,255, 0.3); box-shadow: 0 0 12px rgba(255,255,255,0.2); }
-  
-  .toggle-thumb {
-    position: absolute;
-    top: 2px; left: 2px;
-    width: 24px; height: 24px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
+  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
   .toggle-thumb i { font-size: 0.85rem; color: #1e3a8a; transition: transform 0.4s ease; }
-
-  /* حالة الدارك مود */
+  
+  /* Dark Mode Styles */
+  body.dark-mode .site-header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
   body.dark-mode .theme-toggle { background: #334155; border-color: #475569; }
-  body.dark-mode .toggle-thumb {
-    left: calc(100% - 26px); /* يتحرك لليمين في RTL */
-    background: #fbbf24;
-    box-shadow: 0 0 15px #fbbf24;
-  }
+  body.dark-mode .toggle-thumb { left: calc(100% - 26px); background: #fbbf24; box-shadow: 0 0 15px #fbbf24; }
   body.dark-mode .toggle-thumb i { color: #1e293b; transform: rotate(180deg); }
   
-  /* تنسيقات القائمة (نفس السابقة لضمان الاستقرار) */
   .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
   .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
@@ -96,7 +86,8 @@ import SearchModal from './SearchModal.astro';
 
   @media (max-width: 900px) {
     .main-nav { display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh; background: #f8fafc; box-shadow: -5px 0 30px rgba(0,0,0,0.1); padding: 4rem 1rem 1.5rem 1rem; z-index: 2000; overflow-y: auto; }
-    .main-nav.active { display: block; }    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .main-nav.active { display: block; }
+    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .nav-links { list-style: none; padding: 0; margin: 0; display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
     .nav-links li { width: 100%; }
     .nav-item { display: flex !important; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; padding: 0.6rem 0.4rem; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #334155; text-align: center; border: 1px solid #e2e8f0; gap: 4px; text-decoration: none; }
@@ -105,34 +96,45 @@ import SearchModal from './SearchModal.astro';
     .nav-categories-section { display: block; margin-top: 1.2rem; }
     .section-title { font-size: 0.8rem; color: #94a3b8; font-weight: 800; margin-bottom: 0.8rem; text-align: right; display: block; }
     .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .cat-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.8rem 0.5rem; text-decoration: none; display: flex; flex-direction: column; align-items: center; }
-    .cat-icon-wrapper { font-size: 1.6rem; margin-bottom: 0.4rem; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .cat-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.8rem 0.5rem; text-decoration: none; display: flex; flex-direction: column; align-items: center; }    .cat-icon-wrapper { font-size: 1.6rem; margin-bottom: 0.4rem; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
     .bg-ai { background: #dbeafe; } .bg-money { background: #dcfce7; } .bg-tech { background: #e0e7ff; } .bg-perf { background: #fef3c7; }
     .cat-name { color: #475569; font-weight: 700; font-size: 0.85rem; text-align: center; }
     .mobile-toggle { display: flex; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; align-items: center; justify-content: center; font-size: 1.2rem; }
   }
 </style>
 
-<!-- ✅ سكريبت يعمل عالمياً بفضل is:inline -->
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('themeToggle');
+<!-- ✅ سكريبت محسّن ومضمون -->
+<script>
+  // التحقق من الوضع المحفوظ فور تحميل الصفحة
+  const savedMode = localStorage.getItem('darkMode');
+  if (savedMode === 'enabled') {
+    document.body.classList.add('dark-mode');
     const icon = document.getElementById('themeIcon');
-    if (!toggle) return;
-
-    // تحميل الحالة المحفوظة
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      document.body.classList.add('dark-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
+    if (icon) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
     }
-
-    // التبديل عند الضغط
-    toggle.addEventListener('click', () => {
+  }
+  
+  // إضافة حدث الضغط
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    toggle.addEventListener('click', function() {
       document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('themeIcon');
       const isDark = document.body.classList.contains('dark-mode');
-      icon.classList.toggle('fa-moon', !isDark);
-      icon.classList.toggle('fa-sun', isDark);
+      
+      if (icon) {
+        if (isDark) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        } else {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      }
+      
       localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
     });
-  });
+  }
 </script>
