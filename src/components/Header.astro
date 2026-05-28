@@ -7,12 +7,9 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <!-- ✨ زر الوضع الليلي بتصميم سحري -->
+      <!-- ✨ زر الوضع الليلي الجديد -->
       <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
-        <span class="toggle-track"></span>
-        <span class="toggle-thumb">
-          <i class="fa-solid fa-moon" id="themeIcon"></i>
-        </span>
+        <span class="toggle-thumb"><i class="fa-solid fa-moon" id="themeIcon"></i></span>
       </button>
       
       <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
@@ -47,80 +44,51 @@ import SearchModal from './SearchModal.astro';
       </button>
     </div>
   </div>
-  <SearchModal /></header>
+  <SearchModal />
+</header>
 
-<style>
-  /* تنسيق الهيدر العام */
-  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: background 0.3s; }
+<style>  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: background 0.3s; }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 0.8rem; }
   
-  /* ✨ تصميم زر التبديل الجديد (Magic Toggle) */
+  /* ✨ تصميم الزر الجديد */
   .theme-toggle {
-    position: relative;
-    width: 60px;
-    height: 32px;
-    background: rgba(255,255,255, 0.2); /* خلفية شفافة */
+    width: 52px; height: 28px;
+    background: rgba(255,255,255, 0.2);
     border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50px; /* شكل كبسولة */
+    border-radius: 50px;
     cursor: pointer;
     padding: 0;
-    transition: all 0.4s ease;
-    display: flex;
-    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
   }
+  .theme-toggle:hover { background: rgba(255,255,255, 0.3); box-shadow: 0 0 12px rgba(255,255,255,0.2); }
   
-  .theme-toggle:hover {
-    background: rgba(255,255,255, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* توهج عند اللمس */
-  }
-
-  /* الدائرة المنزلقة */
   .toggle-thumb {
     position: absolute;
-    left: 4px; /* مكان البداية */
-    width: 24px;
-    height: 24px;
+    top: 2px; left: 2px;
+    width: 24px; height: 24px;
     background: #ffffff;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* حركة مرنة */
-    z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
+  .toggle-thumb i { font-size: 0.85rem; color: #1e3a8a; transition: transform 0.4s ease; }
 
-  /* الأيقونة داخل الدائرة */
-  .toggle-thumb i {
-    font-size: 0.9rem;
-    color: #1e3a8a; /* لون أزرق غامق */
-    transition: transform 0.4s ease;  }
-
-  /* ✅ حالة الوضع الليلي */
-  body.dark-mode .theme-toggle {
-    background: #1e293b; /* خلفية داكنة */
-    border-color: #475569;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); /* ظل داخلي */
-  }
-
+  /* حالة الدارك مود */
+  body.dark-mode .theme-toggle { background: #334155; border-color: #475569; }
   body.dark-mode .toggle-thumb {
-    left: calc(100% - 28px); /* تحريك الدائرة لليمين (بسبب RTL) */
-    background: #fbbf24; /* لون ذهبي للشمس */
-    box-shadow: 0 0 15px #fbbf24; /* توهج ذهبي قوي */
+    left: calc(100% - 26px); /* يتحرك لليمين في RTL */
+    background: #fbbf24;
+    box-shadow: 0 0 15px #fbbf24;
   }
-
-  body.dark-mode .toggle-thumb i {
-    color: #1e293b;
-    transform: rotate(180deg); /* تدوير الأيقونة */
-  }
+  body.dark-mode .toggle-thumb i { color: #1e293b; transform: rotate(180deg); }
   
-  /* زر البحث */
+  /* تنسيقات القائمة (نفس السابقة لضمان الاستقرار) */
   .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
   .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-  
-  /* القائمة والأقسام (نفس الكود السابق لضمان عدم الكسر) */
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .nav-item { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 0.6rem; }
   .nav-item:hover { background: rgba(255,255,255,0.2); color: white; }
@@ -128,8 +96,7 @@ import SearchModal from './SearchModal.astro';
 
   @media (max-width: 900px) {
     .main-nav { display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh; background: #f8fafc; box-shadow: -5px 0 30px rgba(0,0,0,0.1); padding: 4rem 1rem 1.5rem 1rem; z-index: 2000; overflow-y: auto; }
-    .main-nav.active { display: block; }
-    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .main-nav.active { display: block; }    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .nav-links { list-style: none; padding: 0; margin: 0; display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
     .nav-links li { width: 100%; }
     .nav-item { display: flex !important; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; padding: 0.6rem 0.4rem; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #334155; text-align: center; border: 1px solid #e2e8f0; gap: 4px; text-decoration: none; }
@@ -145,29 +112,27 @@ import SearchModal from './SearchModal.astro';
     .mobile-toggle { display: flex; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; align-items: center; justify-content: center; font-size: 1.2rem; }
   }
 </style>
-<script>
-  // 🌙 كود تبديل الوضع الليلي
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  
-  // التحقق من الوضع المحفوظ
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-  }
-  
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    if (document.body.classList.contains('dark-mode')) {
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
-      localStorage.setItem('darkMode', 'enabled');
-    } else {
-      themeIcon.classList.remove('fa-sun');
-      themeIcon.classList.add('fa-moon');
-      localStorage.setItem('darkMode', 'disabled');
+
+<!-- ✅ سكريبت يعمل عالمياً بفضل is:inline -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (!toggle) return;
+
+    // تحميل الحالة المحفوظة
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
     }
+
+    // التبديل عند الضغط
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      icon.classList.toggle('fa-moon', !isDark);
+      icon.classList.toggle('fa-sun', isDark);
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    });
   });
 </script>
