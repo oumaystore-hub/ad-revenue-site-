@@ -7,11 +7,6 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <!-- زر دارك مود بسيط وواضح -->
-      <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي">
-        <i class="fa-solid fa-moon"></i>
-      </button>
-      
       <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -47,146 +42,15 @@ import SearchModal from './SearchModal.astro';
   <SearchModal />
 </header>
 
-<style>  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
-  .header-actions { display: flex; align-items: center; gap: 0.8rem; }
-
-  /* زر التبديل */
-  .theme-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .theme-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.05);
-  }
-  .theme-btn.active {
-    background: #f59e0b;
-    color: #1e293b;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-  }
-  .theme-btn.active i {
-    transform: rotate(180deg);
-  }
-
-  .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
-  .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-
-  /* القائمة */
-  .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
-  .nav-item { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 0.6rem; }
-  .nav-item:hover { background: rgba(255,255,255,0.2); color: white; }
-  .close-menu, .navأتفهّم غضبك — لقد مررت بالكثير من المحاولات، والنتيجة لا تزال غير مرضية:  
-- الزر لم يُرضِ ذوقك،  
-- الوضع الليلي لا يعمل بشكل كامل,  
-- المقالات أصبحت باهتة (غير واضحة)،  
-- الأيقونات اختفت أو لم تظهر.
-
-### ✅ الحل النهائي — **بدون أي تعقيد**:
-سأعطيك ملفين جاهزين للنسخ واللصق، **يعملان فوراً على GitHub Pages**، بدون أخطاء Build، وبتصميم أنيق وواضح.
-
----
-## 📥 فقط انسخ ولصق:
-
-### 1. **`src/components/Header.astro`**
-```astro
----
-import SearchModal from './SearchModal.astro';
----
-
-<header class="site-header">
-  <div class="container">
-    <a href="/ad-revenue-site" class="logo">TH Tech</a>
-    
-    <div class="header-actions">
-      <!-- زر دارك مود بسيط وواضح -->
-      <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي">
-        <i class="fa-solid fa-moon"></i>
-      </button>
-      
-      <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-      
-      <nav class="main-nav" id="nav">
-        <button class="close-menu" onclick="document.getElementById('nav').classList.remove('active')">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <ul class="nav-links">
-          <li><a href="/ad-revenue-site" class="nav-item"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a></li>
-          <li><a href="/ad-revenue-site/articles" class="nav-item"><i class="fa-solid fa-newspaper"></i><span>المقالات</span></a></li>
-          <li><a href="/ad-revenue-site/about" class="nav-item"><i class="fa-solid fa-user-group"></i><span>من نحن</span></a></li>
-          <li><a href="/ad-revenue-site/contact" class="nav-item"><i class="fa-solid fa-envelope"></i><span>اتصل بنا</span></a></li>
-        </ul>
-
-        <div class="nav-categories-section">
-          <span class="section-title">الأقسام</span>
-          <div class="categories-grid">
-            <a href="/ad-revenue-site/category/ai" class="cat-card"><div class="cat-icon-wrapper bg-ai">🤖</div><span class="cat-name">ذكاء اصطناعي</span></a>
-            <a href="/ad-revenue-site/category/money" class="cat-card"><div class="cat-icon-wrapper bg-money">💰</div><span class="cat-name">ربح رقمي</span></a>
-            <a href="/ad-revenue-site/category/tech" class="cat-card"><div class="cat-icon-wrapper bg-tech">💻</div><span class="cat-name">تقنية</span></a>
-            <a href="/ad-revenue-site/category/performance" class="cat-card"><div class="cat-icon-wrapper bg-perf">🚀</div><span class="cat-name">أداء</span></a>
-          </div>
-        </div>
-      </nav>
-
-      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
-        <i class="fa-solid fa-bars-staggered"></i>
-      </button>
-    </div>  </div>
-  <SearchModal />
-</header>
-
 <style>
   .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 0.8rem; }
 
-  /* زر التبديل */
-  .theme-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .theme-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.05);
-  }
-  .theme-btn.active {
-    background: #f59e0b;
-    color: #1e293b;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-  }
-  .theme-btn.active i {
-    transform: rotate(180deg);
-  }
-
   .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
   .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
 
-  /* القائمة */
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .nav-item { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 0.6rem; }
   .nav-item:hover { background: rgba(255,255,255,0.2); color: white; }
@@ -194,7 +58,8 @@ import SearchModal from './SearchModal.astro';
 
   @media (max-width: 900px) {
     .main-nav { display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh; background: #f8fafc; box-shadow: -5px 0 30px rgba(0,0,0,0.1); padding: 4rem 1rem 1.5rem 1rem; z-index: 2000; overflow-y: auto; }
-    .main-nav.active { display: block; }    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .main-nav.active { display: block; }
+    .close-menu { position: absolute; top: 1rem; left: 1rem; background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .nav-links { list-style: none; padding: 0; margin: 0; display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
     .nav-links li { width: 100%; }
     .nav-item { display: flex !important; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; padding: 0.6rem 0.4rem; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #334155; text-align: center; border: 1px solid #e2e8f0; gap: 4px; text-decoration: none; }
@@ -213,12 +78,13 @@ import SearchModal from './SearchModal.astro';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('themeBtn');
-    if (!btn) return;
+    const searchBtn = document.querySelector('.search-trigger');
+    const closeMenu = document.querySelector('.close-menu');
+    const nav = document.getElementById('nav');
+    const mobileToggle = document.querySelector('.mobile-toggle');
 
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      btn.classList.toggle('active');
-    });
+    if (searchBtn) searchBtn.onclick = () => window.openSearch?.();
+    if (closeMenu) closeMenu.onclick = () => nav.classList.remove('active');
+    if (mobileToggle) mobileToggle.onclick = () => nav.classList.toggle('active');
   });
 </script>
