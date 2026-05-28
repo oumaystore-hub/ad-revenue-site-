@@ -7,9 +7,9 @@ import SearchModal from './SearchModal.astro';
     <a href="/ad-revenue-site" class="logo">TH Tech</a>
     
     <div class="header-actions">
-      <!-- زر التبديل -->
-      <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
-        <span class="toggle-thumb"><i class="fa-solid fa-moon" id="themeIcon"></i></span>
+      <!-- 🌙 زر دارك مود بسيط وأنيق -->
+      <button class="dark-toggle-btn" id="darkToggle" aria-label="تبديل الوضع الليلي">
+        <i class="fa-solid fa-moon"></i>
       </button>
       
       <button class="search-trigger" onclick="openSearch()" aria-label="بحث">
@@ -47,21 +47,42 @@ import SearchModal from './SearchModal.astro';
   <SearchModal />
 </header>
 
-<style>
-  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+<style>  .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.9rem; color: #fff; text-decoration: none; }
   .header-actions { display: flex; align-items: center; gap: 0.8rem; }
-  
-  /* زر التبديل */
-  .theme-toggle { width: 52px; height: 28px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; cursor: pointer; position: relative; transition: all 0.3s ease; }
-  .theme-toggle:hover { box-shadow: 0 0 12px rgba(255,255,255,0.2); }
-  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-  .toggle-thumb i { font-size: 0.85rem; color: #1e3a8a; }
-  
+
+  /* ✨ زر الدارك مود الجديد: بسيط، أنيق، ويعمل */
+  .dark-toggle-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dark-toggle-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+  }
+  .dark-toggle-btn.active {
+    background: #f59e0b;
+    color: #1e293b;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+  }
+  .dark-toggle-btn.active i {
+    transform: rotate(180deg);
+  }
+
   .search-trigger { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
   .search-trigger:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-  
+
   /* القائمة */
   .main-nav ul { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .nav-item { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 0.6rem; }
@@ -75,8 +96,7 @@ import SearchModal from './SearchModal.astro';
     .nav-links { list-style: none; padding: 0; margin: 0; display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
     .nav-links li { width: 100%; }
     .nav-item { display: flex !important; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; padding: 0.6rem 0.4rem; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #334155; text-align: center; border: 1px solid #e2e8f0; gap: 4px; text-decoration: none; }
-    .nav-item i { font-size: 1.1rem; color: #3b82f6; display: block; line-height: 1; }
-    .nav-item span { display: block; line-height: 1.2; }
+    .nav-item i { font-size: 1.1rem; color: #3b82f6; display: block; line-height: 1; }    .nav-item span { display: block; line-height: 1.2; }
     .nav-categories-section { display: block; margin-top: 1.2rem; }
     .section-title { font-size: 0.8rem; color: #94a3b8; font-weight: 800; margin-bottom: 0.8rem; text-align: right; display: block; }
     .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -87,3 +107,16 @@ import SearchModal from './SearchModal.astro';
     .mobile-toggle { display: flex; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; align-items: center; justify-content: center; font-size: 1.2rem; }
   }
 </style>
+
+<script>
+  // ✅ كود بسيط جداً يعمل في المتصفح فقط
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('darkToggle');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      btn.classList.toggle('active');
+    });
+  });
+</script>
