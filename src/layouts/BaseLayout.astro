@@ -6,32 +6,23 @@ import '../styles/global.css';
 const { title, description, image, article } = Astro.props;
 const siteUrl = 'https://oumaystore-hub.github.io/ad-revenue-site';
 const ogImage = image || `${siteUrl}/og-default.jpg`;
+
+// ✅ تحديد الوضع من localStorage مباشرة في السيرفر
+const isDarkMode = localStorage?.getItem('darkMode') === 'enabled' ? 'dark-mode' : '';
 ---
 
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class={isDarkMode}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية للذكاء الاصطناعي والربح الرقمي'}</title>
-    <meta name="description" content={description || 'TH Tech | بوابتك التقنية الموثوقة.'} />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <title>{title ? `${title} | TH Tech` : 'TH Tech - بوابتك التقنية'}</title>
+    <meta name="description" content={description || 'TH Tech'} />
     <link rel="canonical" href={Astro.url.href} />
-    <meta property="og:type" content={article ? 'article' : 'website'} />
-    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={title || 'TH Tech'} />
     <meta property="og:description" content={description || 'TH Tech'} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="ar_AR" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title || 'TH Tech'} />
-    <meta name="twitter:description" content={description || 'TH Tech'} />
-    <meta name="twitter:image" content={ogImage} />
-    {article && (
-      <script type="application/ld+json">
-        { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "image": ogImage, "datePublished": article.publishedTime, "dateModified": article.modifiedTime || article.publishedTime, "author": { "@type": "Organization", "name": article.author || 'TH Tech' }, "publisher": { "@type": "Organization", "name": 'TH Tech' }, "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href } }
-      </script>
-    )}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
@@ -47,79 +38,111 @@ const ogImage = image || `${siteUrl}/og-default.jpg`;
   <body>
     <div class="reading-progress-bar" id="readingProgressBar"></div>
     <Header />
-    <main><slot /></main>    <Footer />
+    <main><slot /></main>
+    <Footer />
     <button id="backToTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
     
     <script>
-      window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById('readingProgressBar').style.width = scrolled + '%';
-      });
+      // ✅ سكريبت يعمل بعد التحميل فقط
       document.addEventListener('DOMContentLoaded', () => {
-        const content = document.querySelector('.article-content');
-        if (content) {
-          const words = content.innerText.split(/\s+/).length;
-          const time = Math.ceil(words / 200);
-          const meta = document.querySelector('.article-meta');
-          if (meta) {
-            const span = document.createElement('span');
-            span.innerHTML = `⏱️ ${time} دقيقة قراءة`;
-            span.style.opacity = "0.9";
-            meta.appendChild(span);
-          }
+        const toggle = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeIcon');
+        if (!toggle) return;
+        // 1. تحقق من الحالة المحفوظة
+        const saved = localStorage.getItem('darkMode');
+        if (saved === 'enabled') {
+          document.documentElement.classList.add('dark-mode');
         }
+
+        // 2. أضف مستمع الحدث
+        toggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark-mode');
+          localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+          
+          if (icon) {
+            icon.classList.toggle('fa-moon', !isDark);
+            icon.classList.toggle('fa-sun', isDark);
+          }
+        });
       });
-      const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
     <style>
-      /* 🌙 الوضع النهاري (الافتراضي) */
-      body { font-family: 'Cairo', sans-serif; margin: 0; font-size: 16px; line-height: 1.7; background: #f8fafc; color: #1e293b; transition: all 0.3s ease; }
+      /* 🌙 تنسيقات الوضع النهاري */
+      body, html { margin: 0; font-family: 'Cairo', sans-serif; font-size: 16px; line-height: 1.7; transition: all 0.3s ease; }
       
-      /* 🌙 الوضع الليلي - شامل لكل العناصر */
-      body.dark-mode { background: #0f172a; color: #f1f5f9; }
-      body.dark-mode .site-header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+      /* الوضع النهاري الافتراضي */
+      body { background: #f8fafc; color: #1e293b; }
+      .site-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
       
-      /* البطاقات والمحتوى */
-      body.dark-mode .article-container, body.dark-mode .article-card, body.dark-mode .cat-card, body.dark-mode .popular-posts, body.dark-mode .nav-item, body.dark-mode .features-card, body.dark-mode .intro {
-        background: #1e293b; color: #cbd5e1; border-color: #334155;
+      /* 🌙 الوضع الليلي - يتم تطبيقه عبر كلاس html.dark-mode */
+      html.dark-mode body {
+        background: #0f172a;
+        color: #f1f5f9;
+      }
+      html.dark-mode .site-header {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
       }
       
-      /* النصوص والعناوين */
-      body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode .article-header h1 { color: #f1f5f9; }
-      body.dark-mode p, body.dark-mode .article-meta, body.dark-mode .cat-name, body.dark-mode .section-title, body.dark-mode .article-content p { color: #cbd5e1; }
+      /* العناصر الأساسية */
+      html.dark-mode .article-container,
+      html.dark-mode .cat-card,
+      html.dark-mode .nav-item,
+      html.dark-mode .popular-posts,
+      html.dark-mode .intro {
+        background: #1e293b;
+        color: #cbd5e1;
+        border-color: #334155;
+      }
+      html.dark-mode h1, html.dark-mode h2, html.dark-mode h3 { color: #f1f5f9; }
+      html.dark-mode p, html.dark-mode .article-meta { color: #cbd5e1; }
+      html.dark-mode .ad-slot { background: #334155; border-color: #475569; }      html.dark-mode .article-content h2 { color: #60a5fa; border-right-color: #60a5fa; }
+      html.dark-mode .article-badge { background: #1e40af; color: #bfdbfe; }
+      html.dark-mode .back-btn { background: #334155; color: #cbd5e1; }
+      html.dark-mode .back-btn:hover { background: #475569; color: #f1f5f9; }
       
-      /* عناصر خاصة */
-      body.dark-mode .ad-slot { background: #334155; border-color: #475569; }
-      body.dark-mode .intro { border-right-color: #60a5fa; }
-      body.dark-mode .article-content h2 { color: #60a5fa; border-right-color: #60a5fa; }      body.dark-mode .article-badge { background: #1e40af; color: #bfdbfe; }
-      body.dark-mode .back-btn { background: #334155; color: #cbd5e1; }
-      body.dark-mode .back-btn:hover { background: #475569; color: #f1f5f9; }
-      body.dark-mode .article-header { border-bottom-color: #334155; }
-      body.dark-mode .article-footer-actions { border-top-color: #334155; }
+      /* زر التبديل */
+      .theme-toggle {
+        width: 52px; height: 28px;
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 50px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .theme-toggle:hover { box-shadow: 0 0 12px rgba(255,255,255,0.2); }
+      .toggle-thumb {
+        position: absolute; top: 2px; left: 2px;
+        width: 24px; height: 24px;
+        background: white;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      .toggle-thumb i { font-size: 0.85rem; color: #1e3a8a; }
       
-      /* القائمة الجانبية والأزرار */
-      body.dark-mode .main-nav { background: #1e293b; }
-      body.dark-mode .nav-item { background: #334155; color: #f1f5f9; border-color: #475569; }
-      body.dark-mode .nav-item i { color: #60a5fa; }
-      body.dark-mode .cat-card { background: #1e293b; border-color: #334155; }
-      body.dark-mode .cat-name { color: #cbd5e1; }
-      body.dark-mode .search-trigger, body.dark-mode .mobile-toggle { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
+      /* حالة الدارك مود */
+      html.dark-mode .theme-toggle {
+        background: #334155;
+        border-color: #475569;
+      }
+      html.dark-mode .toggle-thumb {
+        left: calc(100% - 26px);
+        background: #f59e0b;
+        box-shadow: 0 0 15px #f59e0b;
+      }
+      html.dark-mode .toggle-thumb i {
+        color: #1e293b;
+        transform: rotate(180deg);
+      }
       
-      /* العناصر الثابتة */
+      /* شريط التقدم والأزرار */
       .reading-progress-bar { position: fixed; top: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); width: 0%; z-index: 9999; transition: width 0.1s ease; }
       #backToTop { position: fixed; bottom: 2rem; left: 2rem; background: #3b82f6; color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); transition: 0.3s; z-index: 999; }
       #backToTop:hover { background: #1e3a8a; transform: translateY(-3px); }
       #backToTop.visible { display: flex; }
-      
-      .article-wrapper { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
-      .article-main { min-width: 0; }
-      .article-sidebar { position: relative; }
-      @media (max-width: 1024px) { .article-wrapper { grid-template-columns: 1fr; gap: 1.5rem; } .article-sidebar { order: -1; } }
     </style>
   </body>
 </html>
