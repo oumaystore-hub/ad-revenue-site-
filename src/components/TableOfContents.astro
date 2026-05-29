@@ -1,5 +1,4 @@
 ---
-// 📑 جدول المحتويات - الكود الكامل
 const { headings } = Astro.props;
 ---
 
@@ -66,20 +65,18 @@ const { headings } = Astro.props;
 
 <script>
   const wrapper = document.querySelector('.toc-wrapper');
-  if (!wrapper) return;
-
-  // فتح الجدول (يمكنك ربطه بزر إذا أردت)
-  // حالياً يعمل بشكل ثابت للعرض
-
-  // إغلاق تلقائي عند النقر
-  wrapper.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        wrapper.classList.remove('active');
-      }
+  
+  // ✅ تم الإصلاح: وضع الكود داخل if بدلاً من استخدام return
+  if (wrapper) {
+    wrapper.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          wrapper.classList.remove('active');
+        }
+      });
     });
-  });
+  }
 </script>
