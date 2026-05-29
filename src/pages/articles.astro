@@ -1,37 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// ✅ استخدام import.meta.glob لجلب الملفات بشكل موثوق
-const allPosts = import.meta.glob('./articles/*.astro', { eager: true });
-
-// تحويل الكائن إلى مصفوفة واستخراج البيانات
-const articles = Object.values(allPosts)
-  .map(module => {
-    const frontmatter = module.frontmatter || {};
-    const url = module.url || '';
-    return { frontmatter, url };
-  })
-  .filter(post => {
-    const isValid = post.frontmatter.pageTitle;
-    if (!isValid) {
-      console.warn('⚠️ مقال بدون عنوان:', post.url);
-    }
-    return isValid;
-  })
-  .sort((a, b) => {
-    const numA = parseInt(a.url.match(/post-(\d+)/)?.[1] || '0');
-    const numB = parseInt(b.url.match(/post-(\d+)/)?.[1] || '0');
-    return numB - numA; // ترتيب تنازلي: 10، 9، 8...
-  })
-  .map(post => ({
-    title: post.frontmatter.pageTitle,
-    description: post.frontmatter.description || '',
-    date: post.frontmatter.publishDate || '',
-    url: post.url,
-    category: post.frontmatter.category || 'غير مصنف'
-  }));
-
-// الأقسام
 const categories = [
   { name: 'الكل', slug: '/ad-revenue-site/articles' },
   { name: 'ذكاء اصطناعي', slug: '/ad-revenue-site/category/ai' },
@@ -40,14 +9,27 @@ const categories = [
   { name: 'أداء', slug: '/ad-revenue-site/category/performance' }
 ];
 
-console.log('✅ تم العثور على', articles.length, 'مقال');
+// ✅ قائمة المقالات الثابتة (ترتيب تنازلي: الأحدث أولاً)
+const articles = [
+  { title: "الأمن السيبراني الشخصي في 2026: حماية نفسك من تهديدات الذكاء الاصطناعي", url: "/ad-revenue-site/articles/post-10", date: "2026-06-01", category: "تقنية" },
+  { title: "هندسة الأوامر للمتقدمين: كيف تستخرج أقصى قدرات نماذج اللغة", url: "/ad-revenue-site/articles/post-9", date: "2026-05-31", category: "ذكاء اصطناعي" },
+  { title: "دليل شامل للربح من التسويق بالعمولة في 2026", url: "/ad-revenue-site/articles/post-8", date: "2026-05-30", category: "ربح رقمي" },
+  { title: "دليل تحسين محركات البحث (SEO) للمبتدئين", url: "/ad-revenue-site/articles/post-7", date: "2026-05-29", category: "أداء وتقنية" },
+  { title: "أفضل 5 تطبيقات للربح من الهاتف بجدية (بدون إعلانات مزعجة)", url: "/ad-revenue-site/articles/post-6", date: "2026-05-28", category: "ربح رقمي" },
+  { title: "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026", url: "/ad-revenue-site/articles/post-5", date: "2026-05-27", category: "ذكاء اصطناعي" },
+  { title: "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟", url: "/ad-revenue-site/articles/post-4", date: "2026-05-26", category: "ذكاء اصطناعي" },
+  { title: "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals", url: "/ad-revenue-site/articles/post-3", date: "2026-05-25", category: "أداء وتقنية" },
+  { title: "دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت", url: "/ad-revenue-site/articles/post-2", date: "2026-05-24", category: "ربح رقمي" },
+  { title: "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026", url: "/ad-revenue-site/articles/post-1", date: "2026-05-23", category: "تقنية" }
+];
 ---
 
 <BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل">
   <section class="categories-nav">
     <div class="container">
       {categories.map((cat) => (
-        <a href={cat.slug} class="category-link">{cat.name}</a>      ))}
+        <a href={cat.slug} class="category-link">{cat.name}</a>
+      ))}
     </div>
   </section>
 
@@ -55,7 +37,7 @@ console.log('✅ تم العثور على', articles.length, 'مقال');
     <div class="container">
       <h1>📚 المقالات</h1>
       <p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p>
-      <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
+      <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">
         إجمالي المقالات: {articles.length}
       </p>
     </div>
@@ -63,26 +45,17 @@ console.log('✅ تم العثور على', articles.length, 'مقال');
 
   <section class="articles-list">
     <div class="container">
-      {articles.length === 0 ? (
-        <div class="error-message">
-          <p>️ لم يتم العثور على مقالات.</p>
-          <p>تأكد من أن الملفات موجودة في: <code>src/pages/articles/</code></p>
-          <p>وتحتوي على <code>const pageTitle = "..."</code> في الـ frontmatter.</p>
-        </div>
-      ) : (
-        articles.map((article) => (
-          <article class="article-card">
-            <a href={article.url}>
-              <h2>{article.title}</h2>
-              <p>{article.description}</p>
-              <div class="article-meta">
-                <span class="category">{article.category}</span>
-                <time>{article.date}</time>
-              </div>
-            </a>
-          </article>
-        ))
-      )}
+      {articles.map((article) => (
+        <article class="article-card">
+          <a href={article.url}>
+            <h2>{article.title}</h2>
+            <div class="article-meta">
+              <span class="category">{article.category}</span>
+              <time>{article.date}</time>
+            </div>
+          </a>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>
@@ -96,18 +69,16 @@ console.log('✅ تم العثور على', articles.length, 'مقال');
   
   .articles-hero { text-align: center; padding: 3rem 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; }
   .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }  
+  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }
+  
   .articles-list { padding: 3rem 0; }
   .article-card { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: 0.3s; }
   .article-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
   .article-card a { text-decoration: none; color: inherit; display: block; }
-  .article-card h2 { font-size: 1.5rem; color: #1e293b; margin-bottom: 0.8rem; }
-  .article-card p { color: #64748b; line-height: 1.6; margin-bottom: 1rem; }
+  .article-card h2 { font-size: 1.4rem; color: #1e293b; margin-bottom: 0.8rem; line-height: 1.4; }
   .article-meta { display: flex; gap: 1.5rem; align-items: center; }
   .article-meta .category { background: #dbeafe; color: #1e40af; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
   .article-meta time { color: #94a3b8; font-size: 0.9rem; }
-  .error-message { text-align: center; color: #64748b; padding: 3rem; background: #f8fafc; border-radius: 12px; border: 2px dashed #e2e8f0; }
-  .error-message code { background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9rem; }
   
   @media (max-width: 768px) {
     .articles-hero h1 { font-size: 1.8rem; }
