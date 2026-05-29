@@ -1,5 +1,5 @@
 ---
-// 📑 جدول المحتويات مع إغلاق تلقائي عند النقر
+// 📑 جدول محتويات المقال — يُغلق تلقائياً عند النقر
 ---
 
 <div class="table-of-contents" id="tableOfContents">
@@ -91,13 +91,12 @@
 </style>
 
 <script>
-  // إنشاء جدول المحتويات ديناميكياً
   document.addEventListener('DOMContentLoaded', () => {
-    const articleContent = document.querySelector('.article-content');
-    if (!articleContent) return;
+    const article = document.querySelector('.article-content');
+    if (!article) return;
 
-    const headings = articleContent.querySelectorAll('h2, h3');    const tocList = document.querySelector('.toc-list ul');
-
+    const headings = article.querySelectorAll('h2, h3');
+    const tocList = document.querySelector('.toc-list ul');
     if (headings.length === 0) {
       document.getElementById('tableOfContents').style.display = 'none';
       return;
@@ -116,7 +115,7 @@
         e.preventDefault();
         heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        // إغلاق اللائحة تلقائياً
+        // ⚡ إغلاق اللائحة تلقائياً بعد النقر
         document.getElementById('tableOfContents').classList.remove('active');
       });
 
