@@ -1,49 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArticleCard from '../components/ArticleCard.astro';
 
-// 1. جلب جميع المقالات من مجلد articles
-// المسار يبدأ بـ ./articles لأننا داخل مجلد pages مباشرة
+// جلب جميع المقالات
 const allPosts = await Astro.glob('./articles/post-*.astro');
 
-// 2. دالة لاستخراج الرقم من اسم الملف (مثلاً post-10.astro -> 10)
+// دالة الترتيب الرقمي
 const getPostNumber = (url) => {
   const match = url.match(/post-(\d+)\.astro/);
   return match ? parseInt(match[1], 10) : 0;
 };
 
-// 3. ترتيب المقالات رقمياً تنازلياً (الأحدث أولاً: 10، 9، 8... 1)
+// ترتيب تنازلي: 10، 9، 8... 1
 const sortedPosts = allPosts.sort((a, b) => {
   return getPostNumber(b.url) - getPostNumber(a.url);
 });
-
-const pageTitle = "TH Tech - الرئيسية";
-const pageDescription = "بوابتك التقنية للذكاء الاصطناعي والربح الرقمي";
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
   <div class="home-container">
-    <!-- ✅ قسم الترحيب -->
     <header class="hero">
-      <h1>مرحباً بك في TH Tech</h1>
+      <h1>مرحباً بك في TH Tech 🚀</h1>
       <p>اكتشف أحدث التقنيات واستراتيجيات الربح الرقمي</p>
-      <a href="#latest-posts" class="cta-button">تصفح المقالات</a>
     </header>
 
-    <!-- ✅ قسم المقالات مرتبة رقمياً -->
-    <section id="latest-posts" class="posts-section">
-      <h2> أحدث المقالات</h2>
+    <section class="posts-section">
+      <h2>📚 أحدث المقالات</h2>
       <div class="posts-grid">
-        {sortedPosts.map((post) => (
-          <ArticleCard 
-            title={post.frontmatter.pageTitle}
-            description={post.frontmatter.description}
-            image={post.frontmatter.articleImage}
-            date={post.frontmatter.publishDate}
-            category={post.frontmatter.category}
-            url={post.url}
-          />
-        ))}
+        {sortedPosts.map((post) => {
+          const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
+          return (
+            <article class="post-card">
+              <a href={post.url}>
+                <div class="post-image">
+                  <img src={articleImage} alt={pageTitle} loading="lazy" />
+                </div>
+                <div class="post-content">
+                  <span class="post-category">{category}</span>
+                  <h3>{pageTitle}</h3>
+                  <p>{description}</p>
+                  <time>{publishDate}</time>
+                </div>
+              </a>
+            </article>
+          );
+        })}
       </div>
     </section>
   </div>
@@ -51,17 +51,20 @@ const pageDescription = "بوابتك التقنية للذكاء الاصطنا
 
 <style>
   .home-container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .hero { text-align: center; padding: 4rem 1rem; margin-bottom: 3rem; }
-  .hero h1 { font-size: 3rem; color: #1e293b; margin-bottom: 1rem; }
-  .hero p { font-size: 1.2rem; color: #64748b; margin-bottom: 2rem; }
-  .cta-button { display: inline-block; padding: 1rem 2rem; background: #3b82f6; color: white; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-  .cta-button:hover { background: #1e40af; transform: translateY(-2px); }
-  
-  .posts-section h2 { font-size: 2rem; margin-bottom: 2rem; border-right: 4px solid #3b82f6; padding-right: 1rem; color: #1e293b; }
+  .hero { text-align: center; padding: 4rem 1rem; margin-bottom: 3rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 16px; }
+  .hero h1 { font-size: 2.5rem; color: #1e293b; margin-bottom: 1rem; font-family: 'Tajawal', sans-serif; }
+  .hero p { font-size: 1.2rem; color: #64748b; font-family: 'Tajawal', sans-serif; }
+  .posts-section h2 { font-size: 2rem; margin-bottom: 2rem; color: #1e293b; font-family: 'Tajawal', sans-serif; border-right: 4px solid #3b82f6; padding-right: 1rem; }
   .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-  
-  @media (max-width: 768px) {
-    .posts-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 2rem; }
-  }
+  .post-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; border: 1px solid #e2e8f0; }
+  .post-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+  .post-card a { text-decoration: none; color: inherit; display: block; }
+  .post-image { height: 200px; overflow: hidden; }
+  .post-image img { width: 100%; height: 100%; object-fit: cover; }
+  .post-content { padding: 1.5rem; }
+  .post-category { display: inline-block; padding: 0.3rem 0.8rem; background: #dbeafe; color: #1e40af; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.8rem; font-family: 'Tajawal', sans-serif; }
+  .post-content h3 { font-size: 1.3rem; color: #1e293b; margin-bottom: 0.8rem; line-height: 1.4; font-family: 'Tajawal', sans-serif; }
+  .post-content p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; font-family: 'Tajawal', sans-serif; }
+  .post-content time { color: #94a3b8; font-size: 0.85rem; font-family: 'Tajawal', sans-serif; }
+  @media (max-width: 768px) { .posts-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
 </style>
