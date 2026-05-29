@@ -1,44 +1,98 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <h3>TH Tech</h3>
-        <p>بوابتك التقنية الموثوقة للذكاء الاصطناعي والربح الرقمي</p>
-      </div>
-      <div class="footer-links">
-        <h4>روابط سريعة</h4>
-        <ul>
-          <li><a href="/ad-revenue-site">الرئيسية</a></li>
-          <li><a href="/ad-revenue-site/articles">المقالات</a></li>
-          <li><a href="/ad-revenue-site/about">من نحن</a></li>
-          <li><a href="/ad-revenue-site/contact">اتصل بنا</a></li>
-        </ul>
-      </div>
-      <div class="footer-legal">
-        <h4>قانوني</h4>
-        <ul>
-          <li><a href="/ad-revenue-site/privacy-policy">سياسة الخصوصية</a></li>
-          <li><a href="/ad-revenue-site/terms">الشروط والأحكام</a></li>
-        </ul>
+  <div class="footer-content">
+    <!-- فريق TH Tech مدمج -->
+    <div class="team-section">
+      <h3>👥 فريق TH Tech</h3>
+      <p>فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي</p>
+      <div class="team-social">
+        <a href="https://twitter.com/thtech" target="_blank" rel="noopener noreferrer" class="team-link x" aria-label="X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://instagram.com/thtech" target="_blank" rel="noopener noreferrer" class="team-link instagram" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="mailto:contact@thtech.com" class="team-link email" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; 2026 TH Tech. جميع الحقوق محفوظة.</p>
+      <p>&copy; {currentYear} TH Tech. جميع الحقوق محفوظة.</p>
+      <p>بوابتك التقنية الموثوقة للذكاء الاصطناعي والربح الرقمي</p>
     </div>
   </div>
 </footer>
 
 <style>
-  .site-footer { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 3rem 0 1.5rem; margin-top: 4rem; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-  .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; margin-bottom: 2.5rem; }
-  .footer-brand h3 { font-family: 'Inter', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; color: #60a5fa; }
-  .footer-brand p { color: #94a3b8; line-height: 1.7; }
-  .footer-links h4, .footer-legal h4 { color: #f1f5f9; margin-bottom: 1.2rem; font-size: 1.1rem; }
-  .footer-links ul, .footer-legal ul { list-style: none; padding: 0; margin: 0; }
-  .footer-links li, .footer-legal li { margin-bottom: 0.8rem; }
-  .footer-links a, .footer-legal a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
-  .footer-links a:hover, .footer-legal a:hover { color: #60a5fa; }
-  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.9rem; }
-  @media (max-width: 768px) { .site-footer { padding: 2rem 0 1rem; } .footer-content { gap: 2rem; } }
+  .site-footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    margin-top: 5rem;
+    padding: 3rem 0 2rem;
+  }
+  .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  
+  .team-section {
+    text-align: center;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  .team-section h3 {
+    font-size: 1.6rem;
+    margin: 0 0 1rem 0;
+    color: #60a5fa;
+    font-weight: 800;
+  }
+  .team-section p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .team-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .team-link {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .team-link.x { background: #000; border: 2px solid #333; }
+  .team-link.x:hover { background: #333; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+  .team-link.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border: 2px solid transparent;
+  }
+  .team-link.instagram:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5); }
+  .team-link.email { background: #ea4335; border: 2px solid #d33426; }
+  .team-link.email:hover { background: #d33426; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(234, 67, 53, 0.5); }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-bottom p {
+    margin: 0.5rem 0;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
 </style>
