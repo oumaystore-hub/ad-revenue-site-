@@ -1,12 +1,12 @@
 ---
-const { headings } = Astro.props;
+const { headings = [] } = Astro.props;
 ---
 
-{headings && headings.length > 0 && (
+{headings.length > 0 && (
   <div class="toc-wrapper" id="tocWrapper">
     <div class="toc-header">
       <h3>📑 المحتويات</h3>
-      <button class="toc-toggle" id="tocToggle" aria-label="إخفاء/إظهار">📋</button>
+      <button class="toc-close" id="tocClose">✕</button>
     </div>
     <nav class="toc-nav">
       <ul>
@@ -20,36 +20,44 @@ const { headings } = Astro.props;
 
 <style>
   .toc-wrapper {
-    position: fixed; top: 100px; right: 24px; width: 280px;
+    position: fixed; top: 100px; right: 20px; width: 240px;
     background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 1rem;
-    z-index: 998; transition: all 0.3s ease; max-height: 80vh; overflow-y: auto;
-    /* ✅ ظاهر افتراضياً */
-    opacity: 1; pointer-events: auto; transform: translateX(0);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem;
+    z-index: 998; transition: all 0.3s ease;
+    max-height: 60vh; overflow-y: auto;
+    opacity: 1; pointer-events: auto;
   }
-  .toc-wrapper.hidden { opacity: 0; pointer-events: none; transform: translateX(20px); }
-  .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; }
-  .toc-header h3 { margin: 0; font-size: 1rem; color: #1e293b; font-weight: 700; }
-  .toc-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0.2rem; transition: 0.2s; }
-  .toc-toggle:hover { transform: scale(1.1); }
+  .toc-wrapper.closed { opacity: 0; pointer-events: none; transform: translateX(20px); }
+  .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; }
+  .toc-header h3 { margin: 0; font-size: 0.9rem; color: #1e293b; font-weight: 700; }
+  .toc-close { background: #f1f5f9; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; color: #64748b; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
   .toc-nav ul { list-style: none; padding: 0; margin: 0; }
-  .toc-nav li { margin-bottom: 0.4rem; }
-  .toc-nav a { display: block; padding: 0.4rem 0.6rem; color: #475569; text-decoration: none; border-radius: 6px; font-size: 0.85rem; transition: 0.2s; }
-  .toc-nav a:hover { background: #f8fafc; color: #3b82f6; }
-  @media (max-width: 1024px) { .toc-wrapper { display: none; } }
+  .toc-nav li { margin-bottom: 0.3rem; }
+  .toc-nav a { display: block; padding: 0.35rem 0.5rem; color: #475569; text-decoration: none; border-radius: 6px; font-size: 0.8rem; transition: 0.2s; border-right: 2px solid transparent; }
+  .toc-nav a:hover { background: #f8fafc; color: #3b82f6; border-right-color: #3b82f6; }
+
+  /* ✅ على الموبايل: يظهر أسفل العنوان مباشرة بدلاً من الطفو */
+  @media (max-width: 900px) {
+    .toc-wrapper {
+      position: relative; top: auto; right: auto; width: 100%;
+      max-height: none; margin: 0.5rem 0 1.5rem 0; border-radius: 10px;
+      transform: none; opacity: 1; box-shadow: none; border: 1px solid #e2e8f0;
+    }
+    .toc-wrapper.closed { display: none; }
+  }
 </style>
 
 <script>
   const wrapper = document.getElementById('tocWrapper');
-  const toggle = document.getElementById('tocToggle');
-  if (wrapper && toggle) {
-    toggle.addEventListener('click', () => wrapper.classList.toggle('hidden'));
+  const closeBtn = document.getElementById('tocClose');
+  if (wrapper && closeBtn) {
+    closeBtn.addEventListener('click', () => wrapper.classList.add('closed'));
     wrapper.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        wrapper.classList.add('hidden'); // ✅ تختفي عند النقر
+        wrapper.classList.add('closed');
       });
     });
   }
