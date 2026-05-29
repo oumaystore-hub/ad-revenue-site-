@@ -1,5 +1,5 @@
 ---
-const { headings = [] } = Astro.props;
+const headings = Astro.props.headings || [];
 ---
 
 {headings.length > 0 && (
@@ -9,11 +9,13 @@ const { headings = [] } = Astro.props;
     </div>
     <nav class="toc-nav">
       <ul>
-        {headings.map(h => (
-          <li class={h.depth === 3 ? 'h3' : ''}>
-            <a href={`#${h.slug}`}>{h.text}</a>
-          </li>
-        ))}
+        {headings.map(function(h) {
+          return (
+            <li class={h.depth === 3 ? 'h3' : ''}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   </div>
@@ -31,37 +33,25 @@ const { headings = [] } = Astro.props;
   @media (max-width: 768px) {
     .toc-wrapper { top: 80px; right: 16px; left: 16px; width: auto; max-height: 60vh; }
   }
-  .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid #e2e8f0; }
-  .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0; font-weight: 700; }
+  .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0 0 1rem 0; font-weight: 700; }
   .toc-nav ul { list-style: none; padding: 0; margin: 0; }
   .toc-nav li { margin-bottom: 0.5rem; }
-  .toc-nav a { display: block; padding: 0.6rem 0.9rem; color: #475569; text-decoration: none; border-radius: 8px; font-size: 0.9rem; transition: all 0.2s; border-right: 3px solid transparent; line-height: 1.5; }
-  .toc-nav a:hover { background: #f1f5f9; color: #3b82f6; border-right-color: #3b82f6; }
-  .toc-nav .h3 { padding-right: 1.8rem; font-size: 0.85rem; color: #64748b; }
+  .toc-nav a { display: block; padding: 0.6rem 0.9rem; color: #475569; text-decoration: none; border-radius: 8px; font-size: 0.9rem; transition: all 0.2s; }
+  .toc-nav a:hover { background: #f1f5f9; color: #3b82f6; }
 </style>
 
 <script>
   const wrapper = document.querySelector('.toc-wrapper');
   if (!wrapper) return;
 
-  wrapper.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', (e) => {
+  wrapper.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
+      var target = document.querySelector(link.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         wrapper.classList.remove('active');
       }
-    });
-  });
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    document.querySelectorAll('.article-content h2, .article-content h3').forEach(h => {
-      if (window.scrollY >= h.offsetTop - 150) current = h.id;
-    });
-    wrapper.querySelectorAll('a').forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
   });
 </script>
