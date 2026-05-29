@@ -5,6 +5,14 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
+const headings = [
+  { slug: 'heading-1', text: '1. التهديدات الجديدة', depth: 2 },
+  { slug: 'heading-2', text: '2. المصادقة متعددة العوامل', depth: 2 },
+  { slug: 'heading-3', text: '3. إدارة كلمات المرور', depth: 2 },
+  { slug: 'heading-4', text: '4. الخصوصية الرقمية', depth: 2 },
+  { slug: 'heading-5', text: '5. النسخ الاحتياطي', depth: 2 }
+];
+
 const pageTitle = "الأمن السيبراني الشخصي في 2026: حماية نفسك من تهديدات الذكاء الاصطناعي";
 const description = "الهجمات أصبحت أذكى وأسرع. تعلم كيف تحمي بياناتك، حساباتك، وهويتك الرقمية باستخدام أدوات واستراتيجيات حديثة.";
 const publishDate = "2026-06-01";
@@ -23,88 +31,56 @@ const categorySlug = "tech";
           <h1>{pageTitle}</h1>
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
+        
         <div class="article-content">
-          <p class="intro">في 2026، لم يعد الهاكرز شخصاً وحيداً في قبو مظلم. إنها أنظمة ذكاء اصطناعي تعمل تلقائياً، تصنع رسائل تصيد مثالية، وتستنسخ الأصوات والوجوه بدقة مرعبة. الحماية القديمة لم تعد كافية. أنت بحاجة إلى دفاع ذكي بنفس القدر.</p>
-
-          <h2>1. التهديدات الجديدة التي يجب أن تعرفها</h2>
-          <h3>التصيد الذكي (AI-Powered Phishing)</h3>
-          <p>رسائل البريد الإلكتروني والرسائل النصية لم تعد تحتوي على أخطاء إملائية أو صياغة ركيكة. الذكاء الاصطناعي يكتب رسائل مخصصة لك تماماً، يذكر تفاصيل من حياتك المهنية والشخصية، ويبدو وكأنه من مدير عملك أو بنكك. الهدف: سرقة بيانات الدخول أو تحويل الأموال.</p>
+          <p class="intro">في 2026، لم يعد الهاكرز شخصاً وحيداً. إنها أنظمة ذكاء اصطناعي تعمل تلقائياً. الحماية القديمة لم تعد كافية.</p>
           
-          <h3>استنساخ الصوت والفيديو (Deepfakes)</h3>
-          <p>مكالمة صوتية من "ابنك" يطلب مالاً طارئاً؟ فيديو لـ "رئيس شركتك" يطلب تحويل سري؟ هذه لم longer خيال علمي. الأدوات المتاحة للجميع تجعل التزييف سهلاً وسريعاً. القاعدة الذهبية: <strong>لا تثق بالصوت أو الفيديو وحده</strong>. تحقق عبر قناة ثانية (رسالة نصية، سؤال شخصي فقط هو يعرف إجابته).</p>
-
-          <h3>هجمات كلمات المرور الذكية</h3>
-          <p>بدلاً من تجربة ملايين التركيبات العشوائية، تستخدم الأنظمة الحديثة بياناتك المسربة سابقاً لإنشاء قائمة كلمات مرور "محتملة" مخصصة لك. إذا كنت تستخدم نفس الكلمة في أكثر من مكان، فأنت في خطر شديد.</p>
-
+          <h2 id="heading-1">1. التهديدات الجديدة التي يجب أن تعرفها</h2>
+          <p>التصيد الذكي، استنساخ الصوت والفيديو، وهجمات كلمات المرور الذكية أصبحت تهديدات يومية تتطلب وعياً تقنياً عالياً.</p>
+          
+          <h2 id="heading-2">2. خط الدفاع الأول: المصادقة متعددة العوامل (MFA)</h2>
+          <p>فعّل MFA على كل حساباتك. تجنب SMS واستخدم تطبيقات المصادقة أو مفاتيح الأمان الفيزيائية لحماية قصوى.</p>
+          
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
-          <h2>2. خط الدفاع الأول: المصادقة متعددة العوامل (MFA)</h2>
-          <p>كلمة المرور وحدها ميتة. فعّل MFA على <strong>كل</strong> حساباتك المهمة (البريد، البنك، السوشيال ميديا). لكن ليس أي MFA:</p>
-          <ul>
-            <li><strong>❌ تجنب SMS:</strong> يمكن اعتراضه عبر SIM Swapping.</li>
-            <li><strong>✅ استخدم تطبيقات المصادقة:</strong> مثل Authy أو Raivo OTP (أكثر أماناً).</li>
-            <li><strong>🏆 الأفضل: مفاتيح الأمان الفيزيائية:</strong> مثل YubiKey. حتى لو سُرق جهازك وكلمة مرورك، لا يمكن الدخول بدون المفتاح المادي.</li>
-          </ul>
-          <h2>3. إدارة كلمات المرور: توقف عن الحفظ</h2>
-          <p>عقلك ليس خزنة. استخدم مدير كلمات مرور موثوق مثل Bitwarden (مجاني ومفتوح المصدر) أو 1Password. سينشئ كلمات مرور فريدة ومعقدة لكل موقع، ويتذكرها نيابة عنك. تحتاج فقط لتذكر كلمة رئيسية واحدة قوية.</p>
-          <p>فعّل ميزة "مراقبة التسريبات" في المدير. سيخبرك فوراً إذا ظهرت بياناتك في تسريب جديد، لتغير كلمة المرور قبل أن يستغلها المهاجمون.</p>
-
-          <h2>4. الخصوصية الرقمية: قلل البصمة</h2>
-          <p>كل معلومة تنشرها هي وقود للهجمات المستقبلية:</p>
-          <ul>
-            <li><strong>راجع إعدادات الخصوصية:</strong> في LinkedIn، Facebook، Instagram. اجعل معلوماتك الشخصية مرئية للأصدقاء فقط.</li>
-            <li><strong>احذف الحسابات القديمة:</strong> كل حساب غير مستخدم هو نقطة اختراق محتملة.</li>
-            <li><strong>استخدم بريداً بديلاً:</strong> للتسجيل في المواقع غير المهمة. خدمات مثل SimpleLogin أو AnonAddy تعطيك عناوين بريد مؤقتة تعيد التوجيه لبريدك الحقيقي.</li>
-          </ul>
-
-          <h2>5. تحديثات البرامج: ليست مزعجة، بل درع واقٍ</h2>
-          <p>90% من الاختراقات تستغل ثغرات معروفة تم إصلاحها بالفعل. التحديثات الأمنية ليست رفاهية. فعّل التحديث التلقائي لنظام التشغيل، المتصفح، والتطبيقات. إذا كان جهازك قديماً ولا يحصل على تحديثات أمنية، فقد حان وقت استبداله.</p>
-
-          <h2>6. النسخ الاحتياطي: خط الدفاع الأخير</h2>
-          <p>حتى مع كل الاحتياطات، قد يحدث الاختراق. النسخ الاحتياطي هو ما يفصل بين "كارثة" و"إزعاج مؤقت". اتبع قاعدة 3-2-1:</p>
-          <ul>
-            <li><strong>3</strong> نسخ من بياناتك.</li>
-            <li><strong>2</strong> وسائط تخزين مختلفة (قرص خارجي + سحابة).</li>
-            <li><strong>1</strong> نسخة خارج الموقع (Offsite) لحمايتها من الكوارث الفيزيائية.</li>
-          </ul>
-          <p>شفّر النسخ الاحتياطي السحابية. وتأكد من اختبار الاستعادة دورياً؛ النسخ الذي لا يمكنك استعادته لا قيمة له.</p>
-
-          <h2>🚀 الخلاصة: الأمن عملية، ليس منتجاً</h2>
-          <p>لا يوجد حل سحري يحميك 100%. لكن بتطبيق هذه الطبقات من الدفاع، تجعل نفسك هدفاً صعباً. المهاجمون يبحثون عن الأهداف السهلة. كن صعباً، وكن يقظاً، وكن محدثاً. أمنك الرقمي مسؤوليتك الشخصية الأولى في العصر الرقمي.</p>
+          
+          <h2 id="heading-3">3. إدارة كلمات المرور</h2>
+          <p>استخدم مدير كلمات مرور موثوق لإنشاء كلمات فريدة ومعقدة لكل موقع. عقلك ليس خزنة آمنة.</p>
+          
+          <h2 id="heading-4">4. الخصوصية الرقمية وتقليل البصمة</h2>
+          <p>راجع إعدادات الخصوصية، احذف الحسابات القديمة، واستخدم بريداً بديلاً للتسجيل في المواقع غير المهمة.</p>
+          
+          <h2 id="heading-5">5. النسخ الاحتياطي: خط الدفاع الأخير</h2>
+          <p>اتبع قاعدة 3-2-1 للنسخ الاحتياطي. النسخ الذي لا يمكنك استعادته لا قيمة له في وقت الأزمات.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-10" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
-        
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
-    <aside class="article-sidebar"><TableOfContents /></aside>
+    <aside class="article-sidebar"><TableOfContents headings={headings} /></aside>
   </div>
 </BaseLayout>
 
 <style>
-  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.5; }
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
-  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }  .article-badge { display: inline-block; margin-bottom: 1rem; }
-  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
-  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #1e40af; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #1e40af; padding-right: 0.8rem; }
-  .article-content h3 { color: #1d4ed8; margin-top: 1.8rem; margin-bottom: 0.8rem; font-size: 1.3rem; }
-  .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #1e40af; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #1e40af; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #1e40af; padding-right: 0.8rem; }
+  .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #1e40af; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
   .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
   .back-btn:hover { background: #cbd5e1; color: #1e293b; }
-  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.6rem; } }
 </style>
