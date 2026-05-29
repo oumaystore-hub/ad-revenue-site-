@@ -11,6 +11,17 @@ const publishDate = "2026-05-23";
 const articleImage = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80";
 const category = "تقنية";
 const categorySlug = "tech";
+
+// ✅ استخراج العناوين
+const headings = (await Astro.glob('./post-*.astro'))
+  .filter(p => p.url.includes('post-1'))
+  .map(p => ({ slug: '1-الذكاء-الاصطناعي-التوليدي', text: '1. الذكاء الاصطناعي التوليدي', depth: 2 }))
+  .concat([
+    { slug: '2-التجارة-الإلكترونية-الذكية', text: '2. التجارة الإلكترونية الذكية', depth: 2 },
+    { slug: '3-الأمن-السيبراني-كضرورة', text: '3. الأمن السيبراني كضرورة', depth: 2 },
+    { slug: '4-الحوسبة-السحابية-الهجينة', text: '4. الحوسبة السحابية الهجينة', depth: 2 },
+    { slug: '5-الأجهزة-القابلة-للطي', text: '5. الأجهزة القابلة للطي', depth: 2 }
+  ]);
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
@@ -23,37 +34,32 @@ const categorySlug = "tech";
           <h1>{pageTitle}</h1>
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
         <div class="article-content">
           <p class="intro">يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل. ومع دخول سنة 2026، لم تعد التقنية رفاهية، بل أصبحت العمود الفقري للأعمال والتعليم.</p>
-          <h2>1. الذكاء الاصطناعي التوليدي (Generative AI)</h2>
+          <h2 id="1-الذكاء-الاصطناعي-التوليدي">1. الذكاء الاصطناعي التوليدي (Generative AI)</h2>
           <p>لم يعد مقتصرًا على الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد، التصميم، وتحليل البيانات الضخمة.</p>
-          <h2>2. التجارة الإلكترونية الذكية</h2>
+          <h2 id="2-التجارة-الإلكترونية-الذكية">2. التجارة الإلكترونية الذكية</h2>
           <p>المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة.</p>
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          <h2>3. الأمن السيبراني كضرورة</h2>
+          <h2 id="3-الأمن-السيبراني-كضرورة">3. الأمن السيبراني كضرورة</h2>
           <p>مع تزايد الهجمات الإلكترونية، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد.</p>
-          <h2>4. الحوسبة السحابية الهجينة</h2>
+          <h2 id="4-الحوسبة-السحابية-الهجينة">4. الحوسبة السحابية الهجينة</h2>
           <p>النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة، مما يضمن استمرارية العمل وتقليل التكاليف.</p>
-          <h2>5. الأجهزة القابلة للطي</h2>
+          <h2 id="5-الأجهزة-القابلة-للطي">5. الأجهزة القابلة للطي</h2>
           <p>أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين والمبرمجين.</p>
         </div>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
-        
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
-    <aside class="article-sidebar"><TableOfContents /></aside>
+    <aside class="article-sidebar"><TableOfContents headings={headings} /></aside>
   </div>
 </BaseLayout>
 
