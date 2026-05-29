@@ -1,16 +1,15 @@
 ---
-const { headings } = Astro.props;
+const { headings = [] } = Astro.props;
 ---
 
-{headings && headings.length > 0 && (
-  <div class="toc-wrapper" id="tocWrapper">
+{headings.length > 0 && (
+  <div class="toc-wrapper">
     <div class="toc-header">
       <h3>📑 محتويات المقال</h3>
-      <button class="toc-close-btn" aria-label="إغلاق">✕</button>
     </div>
     <nav class="toc-nav">
       <ul>
-        {headings.map((h) => (
+        {headings.map(h => (
           <li class={h.depth === 3 ? 'h3' : ''}>
             <a href={`#${h.slug}`}>{h.text}</a>
           </li>
@@ -34,8 +33,6 @@ const { headings } = Astro.props;
   }
   .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid #e2e8f0; }
   .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0; font-weight: 700; }
-  .toc-close-btn { background: #fee2e2; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #dc2626; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-  .toc-close-btn:hover { background: #fecaca; transform: rotate(90deg); }
   .toc-nav ul { list-style: none; padding: 0; margin: 0; }
   .toc-nav li { margin-bottom: 0.5rem; }
   .toc-nav a { display: block; padding: 0.6rem 0.9rem; color: #475569; text-decoration: none; border-radius: 8px; font-size: 0.9rem; transition: all 0.2s; border-right: 3px solid transparent; line-height: 1.5; }
@@ -44,25 +41,20 @@ const { headings } = Astro.props;
 </style>
 
 <script>
-  const wrapper = document.getElementById('tocWrapper');
+  const wrapper = document.querySelector('.toc-wrapper');
   if (!wrapper) return;
 
-  // زر الإغلاق
-  wrapper.querySelector('.toc-close-btn')?.addEventListener('click', () => {
-    wrapper.classList.remove('active');
-  });
-
-  // إغلاق تلقائي عند النقر + تمرير سلس
   wrapper.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      wrapper.classList.remove('active');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        wrapper.classList.remove('active');
+      }
     });
   });
 
-  // تتبع القسم النشط
   window.addEventListener('scroll', () => {
     let current = '';
     document.querySelectorAll('.article-content h2, .article-content h3').forEach(h => {
