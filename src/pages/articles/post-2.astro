@@ -5,8 +5,8 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
-// ✅ استخراج العناوين تلقائياً
-const headings = await getHeadings();
+// ✅ الصحيح: Astro.getHeadings()
+const headings = await Astro.getHeadings();
 
 const pageTitle = "دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت";
 const description = "خطوات عملية ومجربة لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل الأول عبر الإعلانات والتسويق بالعمولة.";
