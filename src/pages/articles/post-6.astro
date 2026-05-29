@@ -4,19 +4,16 @@ import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-import PopularPosts from '../../components/PopularPosts.astro';
 
 const pageTitle = "أفضل 5 تطبيقات للربح من الهاتف بجدية (بدون إعلانات مزعجة)";
 const description = "تطبيقات حقيقية تدفع فعلياً. تعرف على طرق الربح من المشي، المشاركة الآمنة للإنترنت، والاستبيانات الموثوقة.";
 const publishDate = "2026-05-28";
 const articleImage = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80";
-
 const category = "ربح رقمي";
 const categorySlug = "money";
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
-
   <div class="article-wrapper">
     <main class="article-main">
       <article class="article-container">
@@ -24,10 +21,10 @@ const categorySlug = "money";
         <header class="article-header">
           <span class="article-badge" style="background:#dcfce7; color:#166534; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
           <h1>{pageTitle}</h1>
-          <div class="article-meta"><span> {publishDate}</span></div>
+          <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <div class="article-content">
           <p class="intro">انتشرت تطبيقات وهمية كثيرة، لكننا رصدنا 5 تطبيقات فقط تعتمد على نماذج عمل حقيقية وتدفع فعلياً عبر PayPal أو بطاقات الهدايا.</p>
@@ -35,7 +32,7 @@ const categorySlug = "money";
           <p>يحول خطواتك اليومية إلى عملة رقمية يمكنك صرفها على منتجات، اشتراكات، أو حتى تبرعات. مثالي للمهتمين بالصحة.</p>
           <h2>2. Honeygain & Pawns (مشاركة الإنترنت الآمنة)</h2>
           <p>تستخدم الإنترنت غير المستغل لديك بشكل آمن ومشفر. الدخل سلبي ولا يتطلب أي مجهود بعد التثبيت.</p>
-          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           <h2>3. Toluna & Survey Junkie (الاستبيانات)</h2>
           <p>منصات معتمدة عالمياً تدفع مقابل آرائك. المفتاح هو الانتظام والإجابة بصدق لزيادة النقاط وسرعة السحب.</p>
           <h2>4. Freecash & Cash App (مهام مصغرة)</h2>
@@ -46,7 +43,7 @@ const categorySlug = "money";
           <p>ادمج بين تطبيقين أو ثلاثة لتعظيم الدخل، واستخدم حساب PayPal موحّد لتسهيل عملية السحب وتتبع الأرباح.</p>
         </div>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-6" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
@@ -54,14 +51,12 @@ const categorySlug = "money";
         
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;"> المزيد من قسم {category}</a>
+          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
-        <PopularPosts />
       </article>
     </main>
     <aside class="article-sidebar"><TableOfContents /></aside>
   </div>
-
 </BaseLayout>
 
 <style>
