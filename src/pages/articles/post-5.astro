@@ -4,19 +4,16 @@ import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-import PopularPosts from '../../components/PopularPosts.astro';
 
 const pageTitle = "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026";
 const description = "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام. وفّر ساعات من العمل بذكاء.";
 const publishDate = "2026-05-27";
 const articleImage = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80";
-
 const category = "ذكاء اصطناعي";
 const categorySlug = "ai";
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
-
   <div class="article-wrapper">
     <main class="article-main">
       <article class="article-container">
@@ -27,7 +24,7 @@ const categorySlug = "ai";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <div class="article-content">
           <p class="intro">الذكاء الاصطناعي لم يعد رفاهية، بل أصبح مساعدك الشخصي. في هذا المقال، نرصد أفضل أدوات AI المجانية التي ستضاعف إنتاجيتك فوراً.</p>
@@ -35,7 +32,7 @@ const categorySlug = "ai";
           <p>لا غنى عنهما لصياغة المقالات، كتابة الأكواد، وتلخيص الملفات الطويلة. النسخ المجانية كافية لمعظم المهام اليومية.</p>
           <h2>2. Leonardo AI & Bing Image Creator (توليد الصور)</h2>
           <p>حوّل أفكارك النصية إلى صور احترافية بدقة عالية. مثالية لمقالات المدونات ومنشورات السوشيال ميديا.</p>
-          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           <h2>3. Notion AI & Otter.ai (إدارة الملاحظات والاجتماعات)</h2>
           <p>Notion يلخص ملاحظاتك وينظم مشاريعك، بينما Otter يحول الاجتماعات الصوتية إلى نصوص مكتوبة بدقة مذهلة.</p>
           <h2>4. Grammarly & QuillBot (تحسين اللغة)</h2>
@@ -46,7 +43,7 @@ const categorySlug = "ai";
           <p>لا تعتمد على أداة واحدة. ادمج بين 3 أدوات (كتابة + تصميم + تنظيم) لتحقيق أقصى استفادة ممكنة.</p>
         </div>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-5" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
@@ -56,12 +53,10 @@ const categorySlug = "ai";
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
-         <PopularPosts />
       </article>
     </main>
     <aside class="article-sidebar"><TableOfContents /></aside>
   </div>
-
 </BaseLayout>
 
 <style>
