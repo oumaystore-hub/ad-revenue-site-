@@ -5,12 +5,20 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
-const pageTitle = "دليل تحسين محركات البحث (SEO) للمبتدئين: كيف تجعل موقعك يتصدر جوجل؟";
-const description = "خطوات عملية ومجربة لتحسين ظهور موقعك في نتائج البحث. تعلم الكلمات المفتاحية، الروابط، وتجربة المستخدم.";
-const publishDate = "2026-05-29";
-const articleImage = "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=1200&q=80";
-const category = "أداء وتقنية";
-const categorySlug = "performance";
+const headings = [
+  { slug: 'heading-1', text: '1. Sweatcoin (الربح من المشي)', depth: 2 },
+  { slug: 'heading-2', text: '2. Honeygain & Pawns', depth: 2 },
+  { slug: 'heading-3', text: '3. Toluna & Survey Junkie', depth: 2 },
+  { slug: 'heading-4', text: '4. Freecash & Cash App', depth: 2 },
+  { slug: 'heading-5', text: '5. تحذير مهم', depth: 2 }
+];
+
+const pageTitle = "أفضل 5 تطبيقات للربح من الهاتف بجدية (بدون إعلانات مزعجة)";
+const description = "تطبيقات حقيقية تدفع فعلياً. تعرف على طرق الربح من المشي، المشاركة الآمنة للإنترنت، والاستبيانات الموثوقة.";
+const publishDate = "2026-05-28";
+const articleImage = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80";
+const category = "ربح رقمي";
+const categorySlug = "money";
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
@@ -19,59 +27,60 @@ const categorySlug = "performance";
       <article class="article-container">
         <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
         <header class="article-header">
-          <span class="article-badge" style="background:#fef3c7; color:#92400e; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
+          <span class="article-badge" style="background:#dcfce7; color:#166534; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
           <h1>{pageTitle}</h1>
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
+        
         <div class="article-content">
-          <p class="intro">تحسين محركات البحث (SEO) ليس سحراً، بل هو هندسة ذكية للمحتوى. في هذا الدليل، نكشف لك الأساسيات التي تجعل جوجل يحب موقعك.</p>
-          <h2>1. بحث الكلمات المفتاحية (Keyword Research)</h2>
-          <p>ابدأ بأدوات مثل Google Keyword Planner أو Ubersuggest. ابحث عن كلمات ذات حجم بحث جيد ومنافسة متوسطة، وادمجها بشكل طبيعي في العناوين والنص.</p>
-          <h2>2. تحسين On-Page SEO</h2>
-          <ul><li>✅ عنوان الصفحة (Title Tag) يجب أن يكون جذاباً ويحتوي الكلمة المفتاحية.</li><li>✅ وصف الميتا (Meta Description) يحفز النقر ويوضح المحتوى.</li><li>✅ استخدام العناوين H1, H2, H3 بشكل هرمي ومنطقي لتسهيل القراءة والزحف.</li></ul>
+          <p class="intro">انتشرت تطبيقات وهمية كثيرة، لكننا رصدنا 5 تطبيقات فقط تعتمد على نماذج عمل حقيقية وتدفع فعلياً عبر PayPal أو بطاقات الهدايا.</p>
+          
+          <h2 id="heading-1">1. Sweatcoin (الربح من المشي)</h2>
+          <p>يحول خطواتك اليومية إلى عملة رقمية يمكنك صرفها على منتجات، اشتراكات، أو حتى تبرعات. مثالي للمهتمين بالصحة.</p>
+          
+          <h2 id="heading-2">2. Honeygain & Pawns (مشاركة الإنترنت الآمنة)</h2>
+          <p>تستخدم الإنترنت غير المستغل لديك بشكل آمن ومشفر. الدخل سلبي ولا يتطلب أي مجهود بعد التثبيت.</p>
+          
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          <h2>3. السرعة وتجربة المستخدم (Core Web Vitals)</h2>
-          <p>جوجل يعاقب المواقع البطيئة. اضغط الصور، فعّل التخزين المؤقت، واستخدم استضافة سريعة. الموقع الذي يعمل بسلاسة يبقى الزائر فيه أطول.</p>
-          <h2>4. الروابط الداخلية والخارجية</h2>
-          <p>اربط مقالاتك ببعضها البعض (Internal Links) لتقوية هيكل الموقع، وابحث عن مواقع موثوقة تضع روابط لمحتواك (Backlinks) لرفع المصداقية.</p>
-          <h2>5. المحتوى الطازج والمنتظم</h2>
-          <p>خوارزميات جوجل تفضل المواقع النشطة. انشر مقالاً واحداً أسبوعياً بجودة عالية، وحدث المقالات القديمة كل 6 أشهر لضمان دقتها.</p>
-          <h2>🛠️ أدوات مجانية ضرورية</h2>
-          <p>Google Search Console، Google Analytics، PageSpeed Insights، و Yoast SEO (إذا كنت تستخدم ووردبريس).</p>
+          
+          <h2 id="heading-3">3. Toluna & Survey Junkie (الاستبيانات)</h2>
+          <p>منصات معتمدة عالمياً تدفع مقابل آرائك. المفتاح هو الانتظام والإجابة بصدق لزيادة النقاط وسرعة السحب.</p>
+          
+          <h2 id="heading-4">4. Freecash & Cash App (مهام مصغرة)</h2>
+          <p>تتيح إكمال عروض، تحميل تطبيقات، أو مشاهدة فيديوهات قصيرة مقابل مكافآت سريعة وقابلة للتحويل.</p>
+          
+          <h2 id="heading-5">5. تحذير مهم</h2>
+          <p>تجنب أي تطبيق يطلب دفع مبلغ مبدئي أو يعدك بـ "آلاف الدولارات يومياً". الربح الحقيقي بطيء، مستمر، ولا يحتاج استثماراً.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
-        <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-7" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
+        <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-6" />
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
-        
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
-    <aside class="article-sidebar"><TableOfContents /></aside>
+    <aside class="article-sidebar"><TableOfContents headings={headings} /></aside>
   </div>
 </BaseLayout>
 
 <style>
-  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.5; }
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
   .article-badge { display: inline-block; margin-bottom: 1rem; }
-  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
-  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #92400e; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #92400e; padding-right: 0.8rem; }
-  .intro { background: #fffbeb; padding: 1.2rem; border-right: 4px solid #92400e; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #166534; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #166534; padding-right: 0.8rem; }
+  .intro { background: #f0fdf4; padding: 1.2rem; border-right: 4px solid #166534; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
   .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
   .back-btn:hover { background: #cbd5e1; color: #1e293b; }
-  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.6rem; } }
 </style>
