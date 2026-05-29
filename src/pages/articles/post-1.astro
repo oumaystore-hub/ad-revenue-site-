@@ -5,8 +5,8 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
-// ✅ استخراج العناوين تلقائياً
-const headings = await getHeadings();
+// ✅ الصحيح: Astro.getHeadings()
+const headings = await Astro.getHeadings();
 
 const pageTitle = "أفضل 5 اتجاهات تقنية ستغيّر العالم في 2026";
 const description = "اكتشف أهم 5 تقنيات ستغير المستقبل: الذكاء الاصطناعي التوليدي، التجارة الذكية، الأمن السيبراني، والحوسبة السحابية.";
