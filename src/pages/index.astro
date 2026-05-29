@@ -1,24 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// جلب جميع المقالات
+// جلب المقالات
 const allPosts = await Astro.glob('./articles/post-*.astro');
 
-// دالة الترتيب الرقمي
-const getPostNumber = (url) => {
-  const match = url.match(/post-(\d+)\.astro/);
-  return match ? parseInt(match[1], 10) : 0;
-};
-
-// ترتيب وتنقية المقالات (تخطي أي ملف بدون frontmatter)
-const sortedPosts = allPosts
-  .filter(post => post.frontmatter && post.frontmatter.pageTitle)
-  .sort((a, b) => {
-    return getPostNumber(b.url) - getPostNumber(a.url);
-  });
+// ترتيبها (سيكون أبجدياً: 1, 10, 2, 3...)
+const sortedPosts = allPosts.sort((a, b) => {
+  const urlA = a.url;
+  const urlB = b.url;
+  return urlB.localeCompare(urlA);
+});
 ---
 
-<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية للذكاء الاصطناعي والربح الرقمي">
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
   <div class="home-container">
     <header class="hero">
       <h1>مرحباً بك في TH Tech 🚀</h1>
@@ -26,10 +20,12 @@ const sortedPosts = allPosts
     </header>
 
     <section class="posts-section">
-      <h2>📚 أحدث المقالات</h2>
+      <h2>📚 المقالات</h2>
       <div class="posts-grid">
         {sortedPosts.map((post) => {
-          const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
+          const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter || {};
+          if (!pageTitle) return null; // تخطي أي مقال بدون عنوان
+          
           return (
             <article class="post-card">
               <a href={post.url}>
