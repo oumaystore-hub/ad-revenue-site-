@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// ✅ جلب جميع المقالات تلقائياً
+// ✅ جلب جميع المقالات - المسار الصحيح
 const allPosts = await Astro.glob('./articles/post-*.astro');
+
+console.log('📄 Total posts found:', allPosts.length);
 
 // دالة الترتيب الرقمي
 const getPostNumber = (url) => {
@@ -10,17 +12,29 @@ const getPostNumber = (url) => {
   return match ? parseInt(match[1], 10) : 0;
 };
 
-// ترتيب وتنقية المقالات
+// ترتيب وتنقية المقالات مع طباعة الأخطاء
 const articles = allPosts
-  .filter(post => post.frontmatter && post.frontmatter.pageTitle)
+  .map(post => {
+    console.log('📝 Processing:', post.url, 'Frontmatter:', post.frontmatter);
+    return post;
+  })
+  .filter(post => {
+    const isValid = post.frontmatter && post.frontmatter.pageTitle;
+    if (!isValid) {
+      console.warn('⚠️ Invalid post:', post.url);
+    }
+    return isValid;
+  })
   .sort((a, b) => getPostNumber(b.url) - getPostNumber(a.url))
   .map(post => ({
     title: post.frontmatter.pageTitle,
-    description: post.frontmatter.description,
-    date: post.frontmatter.publishDate,
+    description: post.frontmatter.description || '',
+    date: post.frontmatter.publishDate || '',
     url: post.url,
-    category: post.frontmatter.category
+    category: post.frontmatter.category || 'غير مصنف'
   }));
+
+console.log('✅ Valid articles:', articles.length);
 
 // الأقسام
 const categories = [
@@ -33,8 +47,7 @@ const categories = [
 ---
 
 <BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل">
-  <section class="categories-nav">
-    <div class="container">
+  <section class="categories-nav">    <div class="container">
       {categories.map((cat) => (
         <a href={cat.slug} class="category-link">{cat.name}</a>
       ))}
@@ -45,23 +58,32 @@ const categories = [
     <div class="container">
       <h1>📚 المقالات</h1>
       <p>محتوى تقني عملي لمساعدتك على النجاح في العالم الرقمي</p>
+      <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
+        إجمالي المقالات: {articles.length}
+      </p>
     </div>
   </section>
 
   <section class="articles-list">
     <div class="container">
-      {articles.map((article) => (
-        <article class="article-card">
-          <a href={article.url}>
-            <h2>{article.title}</h2>
-            <p>{article.description}</p>
-            <div class="article-meta">
-              <span class="category">{article.category}</span>
-              <time>{article.date}</time>
-            </div>
-          </a>
-        </article>
-      ))}
+      {articles.length === 0 ? (
+        <p style="text-align: center; color: #64748b; padding: 3rem;">
+          ⚠️ لم يتم العثور على مقالات. تحقق من الـ Console في الـ Build Logs.
+        </p>
+      ) : (
+        articles.map((article) => (
+          <article class="article-card">
+            <a href={article.url}>
+              <h2>{article.title}</h2>
+              <p>{article.description}</p>
+              <div class="article-meta">
+                <span class="category">{article.category}</span>
+                <time>{article.date}</time>
+              </div>
+            </a>
+          </article>
+        ))
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -74,8 +96,7 @@ const categories = [
   .category-link:hover { background: #3b82f6; color: white; border-color: #3b82f6; transform: translateY(-2px); }
   
   .articles-hero { text-align: center; padding: 3rem 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; }
-  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }
+  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }
   
   .articles-list { padding: 3rem 0; }
   .article-card { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: 0.3s; }
