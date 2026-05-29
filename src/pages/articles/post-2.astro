@@ -4,19 +4,16 @@ import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-import PopularPosts from '../../components/PopularPosts.astro';
 
 const pageTitle = "دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت";
 const description = "خطوات عملية ومجربة لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل الأول عبر الإعلانات والتسويق بالعمولة.";
 const publishDate = "2026-05-24";
 const articleImage = "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80";
-
 const category = "ربح رقمي";
 const categorySlug = "money";
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
-
   <div class="article-wrapper">
     <main class="article-main">
       <article class="article-container">
@@ -27,7 +24,7 @@ const categorySlug = "money";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <div class="article-content">
           <p class="intro">الربح من الإنترنت لم يعد حلمًا بعيدًا. الفرق بين من ينجح ومن يفشل يكمن في <strong>المنهجية الصحيحة</strong>. في هذا الدليل، سنأخذك خطوة بخطوة من الصفر حتى تحقيق أول دخل رقمي.</p>
@@ -35,16 +32,16 @@ const categorySlug = "money";
           <p>لا تختر مجالًا لمجرد أنه رائجة، بل اختر ما تعرفه أو ترغب في تعلمه. مجالات عالية الربح تشمل: التقنية، التمويل الشخصي، الصحة، والتعليم.</p>
           <h2>2. ابنِ أساسك التقني بشكل صحيح</h2>
           <p>نطاق خاص يعطي مصداقية فورية، واستضافة سريعة عامل ترتيب أساسي في خوارزميات 2026. استخدم أنظمة إدارة محتوى مرنة مثل Astro أو WordPress.</p>
-          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           <h2>3. المحتوى هو الملك (ولكن التوزيع هو الملكة)</h2>
           <p>المحتوى المفيد والمهيكّل لمحركات البحث هو مفتاح الجذب المستمر. انشر بانتظام، وحسّن عناوينك وأوصافك الميتا.</p>
           <h2>4. فعّل قنوات الربح مبكرًا</h2>
-          <ul><li>📺 <strong>إعلانات AdSense:</strong> ممتازة للمبتدئين وتحتاج محتوى أصيلًا.</li><li> <strong>التسويق بالعمولة:</strong> ربح أعلى، يناسب المراجعات والأدلة الشرائية.</li><li>📘 <strong>المنتجات الرقمية:</strong> كتب إلكترونية، قوالب، أو دورات مصغرة.</li></ul>
+          <ul><li>📺 <strong>إعلانات AdSense:</strong> ممتازة للمبتدئين وتحتاج محتوى أصيلًا.</li><li>🤝 <strong>التسويق بالعمولة:</strong> ربح أعلى، يناسب المراجعات والأدلة الشرائية.</li><li>📘 <strong>المنتجات الرقمية:</strong> كتب إلكترونية، قوالب، أو دورات مصغرة.</li></ul>
           <h2>🚀 الخلاصة</h2>
           <p>ابدأ اليوم بمقال واحد، حسّنه، انشره، وكرر العملية. خلال 3-6 أشهر من العمل المنتظم، ستلاحظ تدفق الزيارات ثم الدخل.</p>
         </div>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-2" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
@@ -54,12 +51,10 @@ const categorySlug = "money";
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
-         <PopularPosts />
       </article>
     </main>
     <aside class="article-sidebar"><TableOfContents /></aside>
   </div>
-
 </BaseLayout>
 
 <style>
