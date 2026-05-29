@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialShare from '../../components/SocialShare.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const pageTitle = "دليل شامل للربح من التسويق بالعمولة في 2026: من الصفر إلى الاحتراف";
+const description = "تعلم كيف تبني دخلًا شهريًا مستدامًا من التسويق بالعمولة. استراتيجيات متقدمة، اختيار المنتجات، وأسرار زيادة التحويلات.";
+const publishDate = "2026-05-30";
+const articleImage = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80";
+const category = "ربح رقمي";
+const categorySlug = "money";
+---
+
+<BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
+  <div class="article-wrapper">
+    <main class="article-main">
+      <article class="article-container">
+        <div class="article-hero-image"><img src={articleImage} alt={pageTitle} loading="lazy" /></div>
+        <header class="article-header">
+          <span class="article-badge" style="background:#dcfce7; color:#166534; padding:0.3rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">{category}</span>
+          <h1>{pageTitle}</h1>
+          <div class="article-meta"><span>📅 {publishDate}</span></div>
+        </header>
+
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+
+        <div class="article-content">
+          <p class="intro">التسويق بالعمولة لم يعد مجرد وضع روابط عشوائية في المقالات. في 2026، أصبح علمًا قائمًا بذاته يجمع بين تحليل البيانات، بناء الثقة، واستراتيجيات المحتوى الذكية. إذا كنت تبحث عن دخل سلبي حقيقي وليس مجرد بضعة دولارات، فهذا الدليل هو خارطة طريقك الكاملة.</p>
+
+          <h2>1. فهم النموذج الجديد للتسويق بالعمولة</h2>
+          <p>في الماضي، كان النجاح يعتمد على كمية الزيارات. اليوم، الجودة هي المعيار. المنصات الكبرى مثل Amazon Associates و ShareASale أصبحت تفضل المسوقين الذين يقدمون قيمة حقيقية ومراجعات مفصلة بدلاً من مجرد النقرات. الخوارزميات تتعقب سلوك المستخدم بعد النقر، وإذا كان الزائر يغلق الصفحة فوراً، قد يتم تخفيض عمولتك أو حظر حسابك.</p>
+          <p>لذلك، ركز على بناء "سلطة" في مجالك. كن المصدر الذي يثق به الناس قبل الشراء. هذا يعني محتوى أطول، أكثر تفصيلاً، وصادقاً حتى لو كان ذلك يعني نقد منتج ما بوضوح.</p>
+
+          <h2>2. اختيار المجال (Niche) المربح والمستدام</h2>
+          <p>الخطأ الأكبر هو اختيار مجال عام جداً مثل "التكنولوجيا" أو "الصحة". المنافسة هنا شرسة والربح صعب للمبتدئين. بدلاً من ذلك، تخصص أكثر:</p>
+          <ul>
+            <li><strong>بدلاً من "التكنولوجيا":</strong> اختر "أدوات الذكاء الاصطناعي للمصممين" أو "إعدادات الكاميرات للمبتدئين".</li>
+            <li><strong>بدلاً من "الصحة":</strong> اختر "تمارين اليوغا لكبار السن" أو "مكملات غذائية للرياضيين النباتيين".</li>
+          </ul>
+          <p>استخدم أدوات مثل Ahrefs أو Ubersuggest للتحقق من حجم البحث والمنافسة. ابحث عن كلمات مفتاحية ذات نية شرائية عالية (مثل "أفضل"، "مقارنة"، "سعر") ومنافسة منخفضة إلى متوسطة.</p>
+
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+
+          <h2>3. بناء استراتيجية المحتوى التي تبيع</h2>
+          <p>لا تكتب مقالات عامة. ركز على أنواع المحتوى التي تحقق تحويلات:</p>
+          <h3>مقالات المقارنة (Versus Posts)</h3>
+          <p>مثل "ChatGPT vs Claude للمبرمجين". هذه المقالات تجذب زواراً جاهزين للشراء أو الاشتراك. قدم جدول مقارنة واضح، إيجابيات وسلبيات كل منتج، وتوصية نهائية محددة.</p>
+          <h3>الدروس التعليمية (Tutorials)</h3>          <p>"كيف تستخدم أداة X لتحقيق Y". عندما تعلم شخصاً كيفية استخدام منتج، فأنت تبني ثقة هائلة. ضع رابط الإحالة في سياق طبيعي داخل الخطوات.</p>
+          <h3>قوائم "الأفضل" (Best-of Lists)</h3>
+          <p>"أفضل 7 أدوات SEO في 2026". تأكد من تحديث هذه القوائم بانتظام، لأن المعلومات القديمة تقتل المصداقية والتحويلات.</p>
+
+          <h2>4. تحسين معدل التحويل (CRO)</h2>
+          <p>جلب الزيارات هو نصف المعركة فقط. النصف الآخر هو تحويلهم إلى مشترين:</p>
+          <ul>
+            <li><strong>ضع الروابط في أماكن استراتيجية:</strong> في المقدمة، بعد كل قسم مهم، وفي الخلاصة.</li>
+            <li><strong>استخدم أزرار CTA واضحة:</strong> بدلاً من نص عادي، استخدم أزراراً ملونة تقول "تحقق من السعر الحالي" أو "جرب مجاناً لمدة 14 يوم".</li>
+            <li><strong>أضف شهادات وتجارب شخصية:</strong> صور حقيقية لاستخدامك المنتج تزيد المصداقية بنسبة كبيرة.</li>
+            <li><strong>كن شفافاً:</strong> اذكر بوضوح أنك تستخدم روابط إحالة. الصدق يبني ثقة طويلة الأمد.</li>
+          </ul>
+
+          <h2>5. تنويع مصادر الدخل والحماية من المخاطر</h2>
+          <p>لا تعتمد على برنامج واحد أو منصة واحدة. سياسات الشركات تتغير، وقد ينخفض معدل العمولة فجأة. انضم إلى 3-5 برامج مختلفة في مجالك. ابنِ قائمة بريدية خاصة بك؛ فهي الأصل الوحيد الذي لا يمكن لأحد سلبه منك. أرسل نشرات أسبوعية تحتوي على قيمة حقيقية، وليس فقط عروض ترويجية.</p>
+
+          <h2>6. التحليل والتحسين المستمر</h2>
+          <p>استخدم Google Analytics 4 لتتبع أي المقالات تجلب زيارات، وأي الروابط تحقق نقرات وتحويلات. إذا كانت مقالة تجلب زيارات كثيرة لكن تحويلات قليلة، حسّن الـ CTA أو غيّر المنتج المروج. إذا كانت مقالة تحقق تحويلات عالية لكن زيارات قليلة، ركز على تحسين SEO الخاص بها أو روج لها على السوشيال ميديا.</p>
+
+          <h2>🚀 الخلاصة: الصبر والاستمرارية</h2>
+          <p>التسويق بالعمولة ليس طريقاً للثراء السريع. إنه بناء أصل رقمي يحتاج 6-12 شهراً ليبدأ في تحقيق دخل ملموس. لكن بمجرد أن يصل إلى نقطة الانطلاق، يمكن أن يصبح مصدراً للدخل السلبي الحقيقي الذي يمنحك الحرية المالية والزمنية. ابدأ اليوم، كن صبوراً، وركز دائماً على تقديم القيمة أولاً.</p>
+        </div>
+
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+
+        <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-8" />
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
+        <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
+        
+        <div class="article-footer-actions">
+          <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
+          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+        </div>
+      </article>
+    </main>
+    <aside class="article-sidebar"><TableOfContents /></aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
+  .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .article-badge { display: inline-block; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #166534; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #166534; padding-right: 0.8rem; }
+  .article-content h3 { color: #15803d; margin-top: 1.8rem; margin-bottom: 0.8rem; font-size: 1.3rem; }
+  .intro { background: #f0fdf4; padding: 1.2rem; border-right: 4px solid #166534; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }  .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
+  .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
+  .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
+  .back-btn:hover { background: #cbd5e1; color: #1e293b; }
+  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+</style>
