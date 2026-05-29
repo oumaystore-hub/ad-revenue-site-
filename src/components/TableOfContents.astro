@@ -1,5 +1,4 @@
 ---
-// 📑 جدول المحتويات - النسخة المستقرة
 const { headings } = Astro.props;
 ---
 
@@ -7,15 +6,13 @@ const { headings } = Astro.props;
   <div class="toc-wrapper" id="tocWrapper">
     <div class="toc-header">
       <h3>📑 محتويات المقال</h3>
-      <button class="toc-close-btn" onclick="document.getElementById('tocWrapper').classList.remove('active')" aria-label="إغلاق">✕</button>
+      <button class="toc-close-btn" aria-label="إغلاق">✕</button>
     </div>
     <nav class="toc-nav">
       <ul>
-        {headings.map((heading) => (
-          <li class={heading.depth === 3 ? 'h3' : ''}>
-            <a href={`#${heading.slug}`} onclick="event.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); document.getElementById('tocWrapper').classList.remove('active');">
-              {heading.text}
-            </a>
+        {headings.map((h) => (
+          <li class={h.depth === 3 ? 'h3' : ''}>
+            <a href={`#${h.slug}`}>{h.text}</a>
           </li>
         ))}
       </ul>
@@ -45,3 +42,34 @@ const { headings } = Astro.props;
   .toc-nav a:hover { background: #f1f5f9; color: #3b82f6; border-right-color: #3b82f6; }
   .toc-nav .h3 { padding-right: 1.8rem; font-size: 0.85rem; color: #64748b; }
 </style>
+
+<script>
+  const wrapper = document.getElementById('tocWrapper');
+  if (!wrapper) return;
+
+  // زر الإغلاق
+  wrapper.querySelector('.toc-close-btn')?.addEventListener('click', () => {
+    wrapper.classList.remove('active');
+  });
+
+  // إغلاق تلقائي عند النقر + تمرير سلس
+  wrapper.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      wrapper.classList.remove('active');
+    });
+  });
+
+  // تتبع القسم النشط
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('.article-content h2, .article-content h3').forEach(h => {
+      if (window.scrollY >= h.offsetTop - 150) current = h.id;
+    });
+    wrapper.querySelectorAll('a').forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  });
+</script>
