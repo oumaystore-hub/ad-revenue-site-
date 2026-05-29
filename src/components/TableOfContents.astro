@@ -3,15 +3,23 @@ const { headings = [] } = Astro.props;
 ---
 
 {headings.length > 0 && (
-  <div class="toc-wrapper" id="tocWrapper">
-    <div class="toc-header">
-      <h3>📑 المحتويات</h3>
-      <button class="toc-close" id="tocClose">✕</button>
-    </div>
-    <nav class="toc-nav">
+  <div class="toc-wrapper">
+    <!-- 🔵 الزر العائم -->
+    <button class="toc-fab" id="tocFab" aria-label="عرض المحتويات">
+      <i class="fa-solid fa-list-ul"></i>
+    </button>
+
+    <!-- 📑 القائمة المنبثقة المضيئة -->
+    <nav class="toc-popup" id="tocPopup">
+      <div class="toc-header">
+        <h3>📑 المحتويات</h3>
+        <button class="toc-close" id="tocClose">✕</button>
+      </div>
       <ul>
         {headings.map(h => (
-          <li><a href={`#${h.slug}`}>{h.text}</a></li>
+          <li>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
         ))}
       </ul>
     </nav>
@@ -19,45 +27,135 @@ const { headings = [] } = Astro.props;
 )}
 
 <style>
-  .toc-wrapper {
-    position: fixed; top: 100px; right: 20px; width: 240px;
-    background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem;
-    z-index: 998; transition: all 0.3s ease;
-    max-height: 60vh; overflow-y: auto;
-    opacity: 1; pointer-events: auto;
+  /* ✅ تنسيق الزر العائم */
+  .toc-fab {
+    position: fixed;
+    bottom: 90px; /* فوق زر العودة للأعلى */
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    /* ✅ تأثير مضيء (Glowing) */
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }  .toc-fab:hover { transform: scale(1.1) rotate(5deg); }
+  
+  /* تغيير لون الزر عند فتح القائمة */
+  .toc-fab.active { 
+    background: #ef4444; 
+    transform: rotate(45deg); 
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); 
   }
-  .toc-wrapper.closed { opacity: 0; pointer-events: none; transform: translateX(20px); }
-  .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; }
-  .toc-header h3 { margin: 0; font-size: 0.9rem; color: #1e293b; font-weight: 700; }
-  .toc-close { background: #f1f5f9; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; color: #64748b; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-  .toc-nav ul { list-style: none; padding: 0; margin: 0; }
-  .toc-nav li { margin-bottom: 0.3rem; }
-  .toc-nav a { display: block; padding: 0.35rem 0.5rem; color: #475569; text-decoration: none; border-radius: 6px; font-size: 0.8rem; transition: 0.2s; border-right: 2px solid transparent; }
-  .toc-nav a:hover { background: #f8fafc; color: #3b82f6; border-right-color: #3b82f6; }
 
-  /* ✅ على الموبايل: يظهر أسفل العنوان مباشرة بدلاً من الطفو */
-  @media (max-width: 900px) {
-    .toc-wrapper {
-      position: relative; top: auto; right: auto; width: 100%;
-      max-height: none; margin: 0.5rem 0 1.5rem 0; border-radius: 10px;
-      transform: none; opacity: 1; box-shadow: none; border: 1px solid #e2e8f0;
-    }
-    .toc-wrapper.closed { display: none; }
+  /* ✅ تنسيق القائمة المنبثقة (Glassmorphism) */
+  .toc-popup {
+    position: fixed;
+    bottom: 155px;
+    left: 20px;
+    width: 260px;
+    max-height: 60vh;
+    /* ✅ خلفية زجاجية */
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    /* ✅ ظل مضيء */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 15px rgba(59, 130, 246, 0.2);
+    z-index: 1000;
+    padding: 0;
+    overflow: hidden;
+    /* مخفي افتراضياً */
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* ظهور القائمة */
+  .toc-popup.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .toc-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    background: rgba(255,255,255,0.5);
+  }
+  .toc-header h3 { margin: 0; font-size: 1rem; color: #1e293b; font-weight: 800; }
+  .toc-close { background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; padding: 5px; transition: 0.2s; }  .toc-close:hover { color: #ef4444; transform: rotate(90deg); }
+
+  .toc-popup ul { list-style: none; padding: 0.5rem 0; margin: 0; overflow-y: auto; max-height: 50vh; }
+  .toc-popup li { margin: 0; }
+  
+  .toc-popup a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    border-right: 3px solid transparent;
+  }
+  .toc-popup a:hover {
+    background: #eff6ff;
+    color: #2563eb;
+    border-right-color: #3b82f6;
+  }
+
+  /* إخفاء في الشاشات الكبيرة جداً (اختياري) */
+  @media (min-width: 1200px) {
+    .toc-fab, .toc-popup { display: none; }
   }
 </style>
 
 <script>
-  const wrapper = document.getElementById('tocWrapper');
+  const fab = document.getElementById('tocFab');
+  const popup = document.getElementById('tocPopup');
   const closeBtn = document.getElementById('tocClose');
-  if (wrapper && closeBtn) {
-    closeBtn.addEventListener('click', () => wrapper.classList.add('closed'));
-    wrapper.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        wrapper.classList.add('closed');
+  
+  if (fab && popup) {
+    // ✅ فتح/إغلاق القائمة عند الضغط على الزر
+    fab.addEventListener('click', () => {
+      popup.classList.toggle('open');
+      fab.classList.toggle('active');
+    });
+    
+    // ✅ إغلاق القائمة بزر X
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('open');
+        fab.classList.remove('active');
+      });
+    }
+    
+    // ✅ إغلاق القائمة + تمرير سلس عند اختيار عنوان
+    popup.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {        e.preventDefault(); // منع القفز المفاجئ
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // إغلاق القائمة بعد الاختيار
+        popup.classList.remove('open');
+        fab.classList.remove('active');
       });
     });
   }
