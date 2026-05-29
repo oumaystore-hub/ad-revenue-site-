@@ -1,31 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// ✅ جلب جميع المقالات - المسار الصحيح
-const allPosts = await Astro.glob('./articles/post-*.astro');
+// ✅ استخدام import.meta.glob لجلب الملفات بشكل موثوق
+const allPosts = import.meta.glob('./articles/*.astro', { eager: true });
 
-console.log('📄 Total posts found:', allPosts.length);
-
-// دالة الترتيب الرقمي
-const getPostNumber = (url) => {
-  const match = url.match(/post-(\d+)\.astro/);
-  return match ? parseInt(match[1], 10) : 0;
-};
-
-// ترتيب وتنقية المقالات مع طباعة الأخطاء
-const articles = allPosts
-  .map(post => {
-    console.log('📝 Processing:', post.url, 'Frontmatter:', post.frontmatter);
-    return post;
+// تحويل الكائن إلى مصفوفة واستخراج البيانات
+const articles = Object.values(allPosts)
+  .map(module => {
+    const frontmatter = module.frontmatter || {};
+    const url = module.url || '';
+    return { frontmatter, url };
   })
   .filter(post => {
-    const isValid = post.frontmatter && post.frontmatter.pageTitle;
+    const isValid = post.frontmatter.pageTitle;
     if (!isValid) {
-      console.warn('⚠️ Invalid post:', post.url);
+      console.warn('⚠️ مقال بدون عنوان:', post.url);
     }
     return isValid;
   })
-  .sort((a, b) => getPostNumber(b.url) - getPostNumber(a.url))
+  .sort((a, b) => {
+    const numA = parseInt(a.url.match(/post-(\d+)/)?.[1] || '0');
+    const numB = parseInt(b.url.match(/post-(\d+)/)?.[1] || '0');
+    return numB - numA; // ترتيب تنازلي: 10، 9، 8...
+  })
   .map(post => ({
     title: post.frontmatter.pageTitle,
     description: post.frontmatter.description || '',
@@ -33,8 +30,6 @@ const articles = allPosts
     url: post.url,
     category: post.frontmatter.category || 'غير مصنف'
   }));
-
-console.log('✅ Valid articles:', articles.length);
 
 // الأقسام
 const categories = [
@@ -44,13 +39,15 @@ const categories = [
   { name: 'تقنية', slug: '/ad-revenue-site/category/tech' },
   { name: 'أداء', slug: '/ad-revenue-site/category/performance' }
 ];
+
+console.log('✅ تم العثور على', articles.length, 'مقال');
 ---
 
 <BaseLayout title="المقالات - TH Tech" description="أرشيف مقالات TH Tech الشامل">
-  <section class="categories-nav">    <div class="container">
+  <section class="categories-nav">
+    <div class="container">
       {categories.map((cat) => (
-        <a href={cat.slug} class="category-link">{cat.name}</a>
-      ))}
+        <a href={cat.slug} class="category-link">{cat.name}</a>      ))}
     </div>
   </section>
 
@@ -67,9 +64,11 @@ const categories = [
   <section class="articles-list">
     <div class="container">
       {articles.length === 0 ? (
-        <p style="text-align: center; color: #64748b; padding: 3rem;">
-          ⚠️ لم يتم العثور على مقالات. تحقق من الـ Console في الـ Build Logs.
-        </p>
+        <div class="error-message">
+          <p>️ لم يتم العثور على مقالات.</p>
+          <p>تأكد من أن الملفات موجودة في: <code>src/pages/articles/</code></p>
+          <p>وتحتوي على <code>const pageTitle = "..."</code> في الـ frontmatter.</p>
+        </div>
       ) : (
         articles.map((article) => (
           <article class="article-card">
@@ -96,8 +95,8 @@ const categories = [
   .category-link:hover { background: #3b82f6; color: white; border-color: #3b82f6; transform: translateY(-2px); }
   
   .articles-hero { text-align: center; padding: 3rem 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; }
-  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }
-  
+  .articles-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .articles-hero p { font-size: 1.2rem; opacity: 0.9; }  
   .articles-list { padding: 3rem 0; }
   .article-card { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: 0.3s; }
   .article-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
@@ -107,6 +106,8 @@ const categories = [
   .article-meta { display: flex; gap: 1.5rem; align-items: center; }
   .article-meta .category { background: #dbeafe; color: #1e40af; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
   .article-meta time { color: #94a3b8; font-size: 0.9rem; }
+  .error-message { text-align: center; color: #64748b; padding: 3rem; background: #f8fafc; border-radius: 12px; border: 2px dashed #e2e8f0; }
+  .error-message code { background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9rem; }
   
   @media (max-width: 768px) {
     .articles-hero h1 { font-size: 1.8rem; }
