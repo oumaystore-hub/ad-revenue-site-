@@ -1,25 +1,81 @@
 ---
 const { title, url } = Astro.props;
-const encUrl = encodeURIComponent(url);
-const encTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
 ---
 
 <div class="social-share">
-  <h3>شارك المقال 📢</h3>
+  <h3>📢 شارك المقال</h3>
   <div class="share-buttons">
-    <a href={`https://twitter.com/intent/tweet?text=${encTitle}&url=${encUrl}`} target="_blank" rel="noopener" class="share-btn twitter"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encUrl}`} target="_blank" rel="noopener" class="share-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encUrl}&title=${encTitle}`} target="_blank" rel="noopener" class="share-btn linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href={`https://wa.me/?text=${encTitle}%20${encUrl}`} target="_blank" rel="noopener" class="share-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-    <button onclick="navigator.clipboard.writeText('${url}').then(()=>alert('تم نسخ الرابط!'))" class="share-btn copy"><i class="fa-solid fa-link"></i></button>
+    <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" class="share-btn x" aria-label="X (Twitter)">
+      <i class="fa-brands fa-x-twitter"></i>
+      <span>X</span>
+    </a>
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener noreferrer" class="share-btn facebook" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+      <span>Facebook</span>
+    </a>
+    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" class="share-btn linkedin" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+      <span>LinkedIn</span>
+    </a>
+    <a href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`} target="_blank" rel="noopener noreferrer" class="share-btn whatsapp" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button class="share-btn copy" onclick="navigator.clipboard.writeText('${url}'); this.innerHTML='<i class=\'fa-solid fa-check\'></i><span>تم النسخ</span>';" aria-label="Copy Link">
+      <i class="fa-solid fa-link"></i>
+      <span>نسخ الرابط</span>
+    </button>
   </div>
 </div>
 
 <style>
-  .social-share { margin: 2.5rem 0; padding: 2rem; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 12px; text-align: center; border: 2px solid #bae6fd; }
-  .social-share h3 { color: #1e3a8a; margin-bottom: 1.5rem; }
-  .share-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-  .share-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-decoration: none; }
-  .share-btn:hover { transform: translateY(-5px) scale(1.1); }
-  .twitter { background: #000; } .facebook { background: #1877f2; } .linkedin { background: #0077b5; } .whatsapp { background: #25d366; } .copy { background: #64748b; }
+  .social-share {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 16px;
+    margin: 2rem 0;
+    border: 2px solid #e2e8f0;
+  }
+  .social-share h3 { margin: 0 0 1.2rem 0; font-size: 1.2rem; color: #1e293b; font-weight: 800; }
+  
+  .share-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  .share-btn i { font-size: 1.2rem; }
+  .share-btn.x { background: #000; }
+  .share-btn.x:hover { background: #333; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+  .share-btn.facebook { background: #1877f2; }
+  .share-btn.facebook:hover { background: #0d5ecb; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4); }
+  .share-btn.linkedin { background: #0077b5; }
+  .share-btn.linkedin:hover { background: #005885; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 119, 181, 0.4); }
+  .share-btn.whatsapp { background: #25d366; }
+  .share-btn.whatsapp:hover { background: #128c7e; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+  .share-btn.copy { background: #64748b; }
+  .share-btn.copy:hover { background: #475569; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4); }
+
+  @media (max-width: 768px) {
+    .share-buttons { flex-direction: column; }
+    .share-btn { width: 100%; }
+  }
 </style>
