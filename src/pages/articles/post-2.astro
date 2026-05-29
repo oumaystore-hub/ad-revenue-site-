@@ -5,7 +5,6 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
-// ✅ تعريف العناوين يدوياً
 const headings = [
   { slug: 'heading-1', text: '1. اختر مجالًا يجمع بين الشغف والربحية', depth: 2 },
   { slug: 'heading-2', text: '2. ابنِ أساسك التقني بشكل صحيح', depth: 2 },
@@ -15,7 +14,7 @@ const headings = [
 ];
 
 const pageTitle = "دليل المبتدئين الشامل: كيف تبدأ ربحًا حقيقيًا من الإنترنت";
-const description = "خطوات عملية ومجربة لبدء مشروعك الرقمي الأول.";
+const description = "خطوات عملية ومجربة لبدء مشروعك الرقمي الأول، من اختيار المجال إلى تحقيق الدخل الأول عبر الإعلانات والتسويق بالعمولة.";
 const publishDate = "2026-05-24";
 const articleImage = "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80";
 const category = "ربح رقمي";
@@ -35,27 +34,33 @@ const categorySlug = "money";
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         
         <div class="article-content">
-          <p class="intro">الربح من الإنترنت لم يعد حلمًا بعيدًا.</p>
+          <p class="intro">الربح من الإنترنت لم يعد حلمًا بعيدًا. الفرق بين من ينجح ومن يفشل يكمن في <strong>المنهجية الصحيحة</strong>. في هذا الدليل، سنأخذك خطوة بخطوة من الصفر حتى تحقيق أول دخل رقمي.</p>
+          
           <h2 id="heading-1">1. اختر مجالًا يجمع بين الشغف والربحية</h2>
-          <p>لا تختر مجالًا لمجرد أنه رائجة.</p>
+          <p>لا تختر مجالًا لمجرد أنه رائجة، بل اختر ما تعرفه أو ترغب في تعلمه. مجالات عالية الربح تشمل: التقنية، التمويل الشخصي، الصحة، والتعليم. تذكر أن الاستمرارية أهم من الربح السريع.</p>
+          
           <h2 id="heading-2">2. ابنِ أساسك التقني بشكل صحيح</h2>
-          <p>نطاق خاص يعطي مصداقية فورية.</p>
+          <p>نطاق خاص يعطي مصداقية فورية، واستضافة سريعة عامل ترتيب أساسي في خوارزميات 2026. استخدم أنظمة إدارة محتوى مرنة مثل Astro أو WordPress. لا تبخل على الجودة التقنية.</p>
+          
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+          
           <h2 id="heading-3">3. المحتوى هو الملك (ولكن التوزيع هو الملكة)</h2>
-          <p>المحتوى المفيد هو مفتاح الجذب المستمر.</p>
+          <p>المحتوى المفيد والمهيكّل لمحركات البحث هو مفتاح الجذب المستمر. انشر بانتظام، وحسّن عناوينك وأوصافك الميتا. لكن لا تنسَ الترويج لمحتواك على وسائل التواصل الاجتماعي.</p>
+          
           <h2 id="heading-4">4. فعّل قنوات الربح مبكرًا</h2>
-          <p>ابدأ بتحقيق الدخل من أول يوم.</p>
+          <p>ابدأ بتحقيق الدخل من أول يوم عبر الإعلانات (Google AdSense) والتسويق بالعمولة (Affiliate Marketing). لا تنتظر حتى تحصل على آلاف الزوار. ابدأ صغيرًا وكبّر تدريجيًا.</p>
+          
           <h2 id="heading-5">5. الخلاصة</h2>
-          <p>الصبر والاستمرارية هما المفتاح.</p>
+          <p>الصبر والاستمرارية هما مفتاح النجاح في العمل الحر على الإنترنت. لا تتوقع نتائج فورية، لكن مع العمل المنتظم، ستحقق نتائج مذهلة خلال 6-12 شهرًا.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-2" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد</a>
+          <a href="/ad-revenue-site/category/money" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
