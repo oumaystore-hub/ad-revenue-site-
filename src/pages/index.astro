@@ -10,13 +10,15 @@ const getPostNumber = (url) => {
   return match ? parseInt(match[1], 10) : 0;
 };
 
-// ترتيب تنازلي: 10، 9، 8... 1
-const sortedPosts = allPosts.sort((a, b) => {
-  return getPostNumber(b.url) - getPostNumber(a.url);
-});
+// ترتيب وتنقية المقالات (تخطي أي ملف بدون frontmatter)
+const sortedPosts = allPosts
+  .filter(post => post.frontmatter && post.frontmatter.pageTitle)
+  .sort((a, b) => {
+    return getPostNumber(b.url) - getPostNumber(a.url);
+  });
 ---
 
-<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية للذكاء الاصطناعي والربح الرقمي">
   <div class="home-container">
     <header class="hero">
       <h1>مرحباً بك في TH Tech 🚀</h1>
