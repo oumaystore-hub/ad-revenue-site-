@@ -1,126 +1,47 @@
 ---
-// 📑 جدول محتويات ذكي - يعمل فوراً بدون تعقيد
+// 📑 جدول المحتويات - النسخة المستقرة
+const { headings } = Astro.props;
 ---
 
-<div class="toc-wrapper" id="tocWrapper">
-  <div class="toc-header">
-    <h3>📑 محتويات المقال</h3>
-    <button class="toc-close-btn" onclick="this.closest('.toc-wrapper').classList.remove('active')" aria-label="إغلاق">✕</button>
+{headings && headings.length > 0 && (
+  <div class="toc-wrapper" id="tocWrapper">
+    <div class="toc-header">
+      <h3>📑 محتويات المقال</h3>
+      <button class="toc-close-btn" onclick="document.getElementById('tocWrapper').classList.remove('active')" aria-label="إغلاق">✕</button>
+    </div>
+    <nav class="toc-nav">
+      <ul>
+        {headings.map((heading) => (
+          <li class={heading.depth === 3 ? 'h3' : ''}>
+            <a href={`#${heading.slug}`} onclick="event.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); document.getElementById('tocWrapper').classList.remove('active');">
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
-  <nav class="toc-nav" id="tocNav">
-    <!-- سيتم ملؤه تلقائياً -->
-    <p class="toc-loading">جاري تحميل المحتويات...</p>
-  </nav>
-</div>
+)}
 
 <style>
   .toc-wrapper {
-    position: fixed;
-    top: 100px;
-    right: 24px;
-    width: 300px;
-    max-height: calc(100vh - 120px);
-    background: white;
-    border-radius: 16px;
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-    padding: 1.5rem;
-    z-index: 998;
-    opacity: 0;
-    transform: translateX(20px) scale(0.95);
-    pointer-events: none;
-    transition: all 0.3s ease;
-    overflow-y: auto;
+    position: fixed; top: 100px; right: 24px; width: 300px;
+    max-height: calc(100vh - 120px); background: white; border-radius: 16px;
+    border: 2px solid #e2e8f0; box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    padding: 1.5rem; z-index: 998; opacity: 0; transform: translateX(20px) scale(0.95);
+    pointer-events: none; transition: all 0.3s ease; overflow-y: auto;
   }
-  .toc-wrapper.active {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    pointer-events: auto;
-  }
+  .toc-wrapper.active { opacity: 1; transform: translateX(0) scale(1); pointer-events: auto; }
   @media (max-width: 768px) {
-    .toc-wrapper {
-      top: 80px; right: 16px; left: 16px;
-      width: auto; max-height: 60vh;
-    }
+    .toc-wrapper { top: 80px; right: 16px; left: 16px; width: auto; max-height: 60vh; }
   }
-  .toc-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1rem; padding-bottom: 0.8rem;
-    border-bottom: 2px solid #e2e8f0;
-  }  .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0; font-weight: 700; }
-  .toc-close-btn {
-    background: #fee2e2; border: none; width: 32px; height: 32px;
-    border-radius: 50%; cursor: pointer; color: #dc2626; font-size: 1.1rem;
-    display: flex; align-items: center; justify-content: center; transition: 0.2s;
-  }
+  .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid #e2e8f0; }
+  .toc-header h3 { font-size: 1rem; color: #1e293b; margin: 0; font-weight: 700; }
+  .toc-close-btn { background: #fee2e2; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #dc2626; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
   .toc-close-btn:hover { background: #fecaca; transform: rotate(90deg); }
   .toc-nav ul { list-style: none; padding: 0; margin: 0; }
   .toc-nav li { margin-bottom: 0.5rem; }
-  .toc-nav a {
-    display: block; padding: 0.6rem 0.9rem; color: #475569;
-    text-decoration: none; border-radius: 8px; font-size: 0.9rem;
-    transition: all 0.2s; border-right: 3px solid transparent; line-height: 1.5;
-  }
+  .toc-nav a { display: block; padding: 0.6rem 0.9rem; color: #475569; text-decoration: none; border-radius: 8px; font-size: 0.9rem; transition: all 0.2s; border-right: 3px solid transparent; line-height: 1.5; }
   .toc-nav a:hover { background: #f1f5f9; color: #3b82f6; border-right-color: #3b82f6; }
-  .toc-nav a.active { background: #dbeafe; color: #1e40af; border-right-color: #3b82f6; font-weight: 600; }
   .toc-nav .h3 { padding-right: 1.8rem; font-size: 0.85rem; color: #64748b; }
-  .toc-loading { color: #94a3b8; font-size: 0.9rem; text-align: center; padding: 1rem; }
 </style>
-
-<script client:load>
-  // ✅ client:load يضمن تنفيذ السكريبت في المتصفح دائماً
-  const initTOC = () => {
-    const article = document.querySelector('.article-content');
-    const tocNav = document.getElementById('tocNav');
-    const wrapper = document.getElementById('tocWrapper');
-    
-    if (!article || !tocNav || !wrapper) return;
-
-    const headings = article.querySelectorAll('h2, h3');
-    if (headings.length === 0) {
-      wrapper.style.display = 'none';
-      return;
-    }
-
-    // بناء القائمة
-    const ul = document.createElement('ul');
-    headings.forEach((heading, index) => {
-      if (!heading.id) heading.id = `heading-${index}`;
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = `#${heading.id}`;
-      a.textContent = heading.textContent;
-      a.classList.add(heading.tagName.toLowerCase());
-      
-      // ✅ إغلاق تلقائي عند النقر + تمرير سلس
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        wrapper.classList.remove('active');      });
-      
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-
-    tocNav.innerHTML = '';
-    tocNav.appendChild(ul);
-
-    // تتبع القسم النشط
-    window.addEventListener('scroll', () => {
-      let current = '';
-      headings.forEach(h => {
-        if (window.scrollY >= h.offsetTop - 150) current = h.id;
-      });
-      tocNav.querySelectorAll('a').forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    });
-  };
-
-  // تشغيل عند اكتمال التحميل
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTOC);
-  } else {
-    initTOC();
-  }
-</script>
