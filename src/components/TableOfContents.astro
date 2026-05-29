@@ -4,12 +4,12 @@ const { headings = [] } = Astro.props;
 
 {headings.length > 0 && (
   <div class="toc-wrapper">
-    <!-- 🔵 الزر العائم -->
+    <!-- 🔵 الزر العائم - الجهة اليسرى -->
     <button class="toc-fab" id="tocFab" aria-label="عرض المحتويات">
       <i class="fa-solid fa-list-ul"></i>
     </button>
 
-    <!-- 📑 القائمة المنبثقة المضيئة -->
+    <!-- 📑 القائمة المنبثقة -->
     <nav class="toc-popup" id="tocPopup">
       <div class="toc-header">
         <h3>📑 المحتويات</h3>
@@ -17,9 +17,7 @@ const { headings = [] } = Astro.props;
       </div>
       <ul>
         {headings.map(h => (
-          <li>
-            <a href={`#${h.slug}`}>{h.text}</a>
-          </li>
+          <li><a href={`#${h.slug}`}>{h.text}</a></li>
         ))}
       </ul>
     </nav>
@@ -27,60 +25,56 @@ const { headings = [] } = Astro.props;
 )}
 
 <style>
-  /* ✅ تنسيق الزر العائم */
   .toc-fab {
     position: fixed;
-    bottom: 90px; /* فوق زر العودة للأعلى */
-    left: 20px;
-    width: 55px;
-    height: 55px;
+    bottom: 90px;
+    right: 20px; /* ✅ الجهة اليسرى */
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
+    background: linear-gradient(135deg, #39ff14 0%, #00ff00 100%);
+    color: #000;
     border: none;
-    /* ✅ تأثير مضيء (Glowing) */
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+    /* ✅ توهج Fluorescent أخضر */
+    box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 60px #39ff14;
     cursor: pointer;
     z-index: 1001;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }  .toc-fab:hover { transform: scale(1.1) rotate(5deg); }
+  }
+  .toc-fab:hover { 
+    transform: scale(1.15);
+    box-shadow: 0 0 30px #39ff14, 0 0 60px #39ff14, 0 0 90px #39ff14;  }
   
-  /* تغيير لون الزر عند فتح القائمة */
   .toc-fab.active { 
-    background: #ef4444; 
-    transform: rotate(45deg); 
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); 
+    background: #ff006e;
+    box-shadow: 0 0 20px #ff006e, 0 0 40px #ff006e;
+    transform: rotate(45deg);
   }
 
-  /* ✅ تنسيق القائمة المنبثقة (Glassmorphism) */
   .toc-popup {
     position: fixed;
-    bottom: 155px;
-    left: 20px;
-    width: 260px;
+    bottom: 150px;
+    right: 20px; /* ✅ الجهة اليسرى */
+    width: 250px;
     max-height: 60vh;
-    /* ✅ خلفية زجاجية */
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
-    /* ✅ ظل مضيء */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 15px rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(57, 255, 20, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(57, 255, 20, 0.3), 0 0 20px rgba(57, 255, 20, 0.2);
     z-index: 1000;
     padding: 0;
     overflow: hidden;
-    /* مخفي افتراضياً */
     opacity: 0;
     transform: translateY(20px) scale(0.9);
     pointer-events: none;
     transition: all 0.3s ease;
   }
   
-  /* ظهور القائمة */
   .toc-popup.open {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -88,36 +82,35 @@ const { headings = [] } = Astro.props;
   }
 
   .toc-header {
-    padding: 1rem;
+    padding: 0.9rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #f1f5f9;
-    background: rgba(255,255,255,0.5);
+    background: rgba(57, 255, 20, 0.05);
   }
-  .toc-header h3 { margin: 0; font-size: 1rem; color: #1e293b; font-weight: 800; }
-  .toc-close { background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; padding: 5px; transition: 0.2s; }  .toc-close:hover { color: #ef4444; transform: rotate(90deg); }
+  .toc-header h3 { margin: 0; font-size: 0.95rem; color: #1e293b; font-weight: 800; }
+  .toc-close { background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; padding: 5px; transition: 0.2s; }
+  .toc-close:hover { color: #ff006e; transform: rotate(90deg); }
 
   .toc-popup ul { list-style: none; padding: 0.5rem 0; margin: 0; overflow-y: auto; max-height: 50vh; }
   .toc-popup li { margin: 0; }
   
-  .toc-popup a {
-    display: block;
-    padding: 0.6rem 1.2rem;
+  .toc-popup a {    display: block;
+    padding: 0.5rem 1rem;
     color: #475569;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.2s;
     border-right: 3px solid transparent;
   }
   .toc-popup a:hover {
-    background: #eff6ff;
-    color: #2563eb;
-    border-right-color: #3b82f6;
+    background: rgba(57, 255, 20, 0.1);
+    color: #39ff14;
+    border-right-color: #39ff14;
   }
 
-  /* إخفاء في الشاشات الكبيرة جداً (اختياري) */
   @media (min-width: 1200px) {
     .toc-fab, .toc-popup { display: none; }
   }
@@ -129,13 +122,11 @@ const { headings = [] } = Astro.props;
   const closeBtn = document.getElementById('tocClose');
   
   if (fab && popup) {
-    // ✅ فتح/إغلاق القائمة عند الضغط على الزر
     fab.addEventListener('click', () => {
       popup.classList.toggle('open');
       fab.classList.toggle('active');
     });
     
-    // ✅ إغلاق القائمة بزر X
     if (closeBtn) {
       closeBtn.addEventListener('click', () => {
         popup.classList.remove('open');
@@ -143,9 +134,9 @@ const { headings = [] } = Astro.props;
       });
     }
     
-    // ✅ إغلاق القائمة + تمرير سلس عند اختيار عنوان
     popup.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {        e.preventDefault(); // منع القفز المفاجئ
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         
@@ -153,10 +144,8 @@ const { headings = [] } = Astro.props;
           targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
-        // إغلاق القائمة بعد الاختيار
         popup.classList.remove('open');
-        fab.classList.remove('active');
-      });
+        fab.classList.remove('active');      });
     });
   }
 </script>
