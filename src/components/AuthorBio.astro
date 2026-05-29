@@ -1,132 +1,86 @@
 ---
-// 👤 صندوق معلومات الكاتب
 const { author } = Astro.props;
-
-// البيانات الافتراضية للكاتب
-const defaultAuthor = {
-  name: "TH Tech Team",
-  role: "فريق TH Tech",
-  bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي. نهدف إلى تقديم محتوى عملي وموثوق لمساعدتك على النجاح في العالم الرقمي.",
-  avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128",
-  social: {
-    twitter: "https://twitter.com/thtech",
-    linkedin: "https://linkedin.com/company/thtech",
-    email: "contact@thtech.com"
-  }
-};
-
-const authorData = author || defaultAuthor;
 ---
 
 <div class="author-bio">
-  <div class="author-header">
-    <div class="author-avatar">
-      <img src={authorData.avatar} alt={authorData.name} loading="lazy" />
-    </div>
-    <div class="author-info">
-      <h3 class="author-name">{authorData.name}</h3>
-      <p class="author-role">{authorData.role}</p>
-      <div class="author-social">
-        {authorData.social.twitter && (
-          <a href={authorData.social.twitter} target="_blank" rel="noopener" aria-label="تويتر">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        )}
-        {authorData.social.linkedin && (
-          <a href={authorData.social.linkedin} target="_blank" rel="noopener" aria-label="لينكدإن">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </a>
-        )}
-        {authorData.social.email && (
-          <a href={`mailto:${authorData.social.email}`} aria-label="البريد الإلكتروني">
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-        )}
-      </div>
+  <div class="author-avatar">
+    <img src={author.avatar} alt={author.name} loading="lazy" />
+  </div>
+  <div class="author-info">
+    <h3>{author.name}</h3>
+    <p class="author-role">{author.role}</p>
+    <p class="author-description">{author.bio}</p>
+    <div class="author-social">
+      {author.social?.twitter && (
+        <a href={author.social.twitter} target="_blank" rel="noopener noreferrer" class="social-link x" aria-label="X (Twitter)">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      )}
+      {author.social?.instagram && (
+        <a href={author.social.instagram} target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      )}
+      {author.social?.email && (
+        <a href={`mailto:${author.social.email}`} class="social-link email" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      )}
     </div>
   </div>
-  <p class="author-description">{authorData.bio}</p>
 </div>
+
 <style>
   .author-bio {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border-radius: 16px;
-    border: 2px solid #e2e8f0;
-  }
-  .author-header {
     display: flex;
-    align-items: center;
     gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 16px;
+    margin: 3rem 0;
+    border: 2px solid #e2e8f0;
+    align-items: center;
   }
   .author-avatar {
-    flex-shrink: 0;
-  }
-  .author-avatar img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
-  .author-info {
-    flex: 1;
-  }
-  .author-name {
-    font-size: 1.4rem;
-    color: #1e293b;
-    margin: 0 0 0.3rem 0;
-    font-weight: 700;
-  }
-  .author-role {
-    font-size: 0.95rem;
-    color: #3b82f6;
-    margin: 0 0 0.8rem 0;
-    font-weight: 600;
-  }
+  .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .author-info { flex: 1; }
+  .author-info h3 { margin: 0 0 0.3rem 0; font-size: 1.3rem; color: #1e293b; font-weight: 800; }
+  .author-role { margin: 0 0 0.6rem 0; color: #3b82f6; font-size: 0.9rem; font-weight: 600; }
+  .author-description { margin: 0 0 1rem 0; color: #64748b; font-size: 0.9rem; line-height: 1.5; }
+  
   .author-social {
     display: flex;
-    gap: 0.8rem;
+    gap: 0.7rem;
   }
-  .author-social a {
+  .social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;    background: white;
-    border-radius: 50%;
-    color: #64748b;
     text-decoration: none;
-    transition: all 0.3s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  }
-  .author-social a:hover {
-    background: #3b82f6;
     color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    font-size: 1.1rem;
+    transition: all 0.3s;
   }
-  .author-description {
-    color: #475569;
-    line-height: 1.7;
-    margin: 0;
-    font-size: 1rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid #e2e8f0;
-  }
+  .social-link.x { background: #000; }
+  .social-link.x:hover { background: #333; transform: translateY(-3px); }
+  .social-link.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .social-link.instagram:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(220, 39, 67, 0.4); }
+  .social-link.email { background: #ea4335; }
+  .social-link.email:hover { background: #d33426; transform: translateY(-3px); }
+
   @media (max-width: 768px) {
-    .author-header {
-      flex-direction: column;
-      text-align: center;
-    }
-    .author-social {
-      justify-content: center;
-    }
-    .author-bio { padding: 1.5rem; }
-    .author-avatar img { width: 80px; height: 80px; }
-    .author-name { font-size: 1.2rem; }
+    .author-bio { flex-direction: column; text-align: center; padding: 1.5rem; }
+    .author-social { justify-content: center; }
   }
 </style>
