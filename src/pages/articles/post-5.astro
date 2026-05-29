@@ -5,6 +5,14 @@ import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 
+const headings = [
+  { slug: 'heading-1', text: '1. ChatGPT & Claude', depth: 2 },
+  { slug: 'heading-2', text: '2. Leonardo AI & Bing Image Creator', depth: 2 },
+  { slug: 'heading-3', text: '3. Notion AI & Otter.ai', depth: 2 },
+  { slug: 'heading-4', text: '4. Grammarly & QuillBot', depth: 2 },
+  { slug: 'heading-5', text: '5. Remove.bg & Canva Magic Edit', depth: 2 }
+];
+
 const pageTitle = "أفضل 10 أدوات ذكاء اصطناعي مجانية ستغير طريقة عملك في 2026";
 const description = "اكتشف أقوى أدوات AI المجانية للكتابة، التصميم، البرمجة، وإدارة المهام. وفّر ساعات من العمل بذكاء.";
 const publishDate = "2026-05-27";
@@ -23,55 +31,56 @@ const categorySlug = "ai";
           <h1>{pageTitle}</h1>
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
+        
         <div class="article-content">
           <p class="intro">الذكاء الاصطناعي لم يعد رفاهية، بل أصبح مساعدك الشخصي. في هذا المقال، نرصد أفضل أدوات AI المجانية التي ستضاعف إنتاجيتك فوراً.</p>
-          <h2>1. ChatGPT & Claude (مساعدا الكتابة والبرمجة)</h2>
+          
+          <h2 id="heading-1">1. ChatGPT & Claude (مساعدا الكتابة والبرمجة)</h2>
           <p>لا غنى عنهما لصياغة المقالات، كتابة الأكواد، وتلخيص الملفات الطويلة. النسخ المجانية كافية لمعظم المهام اليومية.</p>
-          <h2>2. Leonardo AI & Bing Image Creator (توليد الصور)</h2>
+          
+          <h2 id="heading-2">2. Leonardo AI & Bing Image Creator (توليد الصور)</h2>
           <p>حوّل أفكارك النصية إلى صور احترافية بدقة عالية. مثالية لمقالات المدونات ومنشورات السوشيال ميديا.</p>
+          
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          <h2>3. Notion AI & Otter.ai (إدارة الملاحظات والاجتماعات)</h2>
+          
+          <h2 id="heading-3">3. Notion AI & Otter.ai (إدارة الملاحظات والاجتماعات)</h2>
           <p>Notion يلخص ملاحظاتك وينظم مشاريعك، بينما Otter يحول الاجتماعات الصوتية إلى نصوص مكتوبة بدقة مذهلة.</p>
-          <h2>4. Grammarly & QuillBot (تحسين اللغة)</h2>
+          
+          <h2 id="heading-4">4. Grammarly & QuillBot (تحسين اللغة)</h2>
           <p>يصححان الأخطاء النحوية، يعيدان صياغة الجمل، ويضبطان نبرة الكتابة لتناسب جمهورك المستهدف.</p>
-          <h2>5. Remove.bg & Canva Magic Edit (تحرير الصور)</h2>
+          
+          <h2 id="heading-5">5. Remove.bg & Canva Magic Edit (تحرير الصور)</h2>
           <p>أزل الخلفيات بنقرة واحدة، أو عدّل عناصر الصور باستخدام الذكاء الاصطناعي مباشرة داخل المتصفح.</p>
-          <h2>💡 نصيحة ذهبية</h2>
-          <p>لا تعتمد على أداة واحدة. ادمج بين 3 أدوات (كتابة + تصميم + تنظيم) لتحقيق أقصى استفادة ممكنة.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-5" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
+        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
-        
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
       </article>
     </main>
-    <aside class="article-sidebar"><TableOfContents /></aside>
+    <aside class="article-sidebar"><TableOfContents headings={headings} /></aside>
   </div>
 </BaseLayout>
 
 <style>
-  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.85; }
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.5; }
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
   .article-badge { display: inline-block; margin-bottom: 1rem; }
-  .article-header h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 1rem; }
-  .article-meta { color: #64748b; font-size: 0.9rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.6rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
-  .intro { background: #e0e7ff; padding: 1.2rem; border-right: 4px solid #3730a3; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.2rem; color: #475569; }
+  .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
+  .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
+  .intro { background: #e0e7ff; padding: 1.2rem; border-right: 4px solid #3730a3; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
   .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: #e2e8f0; color: #475569; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; margin: 0.5rem; }
   .back-btn:hover { background: #cbd5e1; color: #1e293b; }
-  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.7rem; } }
+  @media (max-width: 1024px) { .article-container { padding: 1.5rem; } .article-hero-image { margin: -1.5rem -1.5rem 1.5rem -1.5rem; height: 220px; } .article-header h1 { font-size: 1.6rem; } }
 </style>
