@@ -4,19 +4,16 @@ import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-import PopularPosts from '../../components/PopularPosts.astro';
 
 const pageTitle = "ChatGPT vs Claude AI: أيهما أفضل للمطورين في 2026؟";
 const description = "مقارنة شاملة بين ChatGPT و Claude AI من حيث البرمجة، الكتابة، والأسعار. اكتشف الأداة الأنسب لمشروعك.";
 const publishDate = "2026-05-26";
 const articleImage = "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80";
-
 const category = "ذكاء اصطناعي";
 const categorySlug = "ai";
 ---
 
 <BaseLayout title={pageTitle} description={description} image={articleImage} article={{ publishedTime: publishDate, modifiedTime: publishDate, author: "TH Tech", category, categorySlug }}>
-
   <div class="article-wrapper">
     <main class="article-main">
       <article class="article-container">
@@ -27,7 +24,7 @@ const categorySlug = "ai";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Top)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <div class="article-content">
           <p class="intro">مع تطور الذكاء الاصطناعي التوليدي، أصبح المطورون أمام خيارين رئيسيين: <strong>ChatGPT</strong> من OpenAI و <strong>Claude</strong> من Anthropic. لكن أيهما الأفضل للبرمجة؟</p>
@@ -36,16 +33,16 @@ const categorySlug = "ai";
           <p>💡 <strong>الخلاصة:</strong> إذا كنت تريد سرعة، اختر ChatGPT. إذا كنت تريد دقة، اختر Claude.</p>
           <h2>2. فهم السياق والمشاريع الكبيرة</h2>
           <p>هنا يتفوق <strong>Claude</strong> بشكل واضح. نافذة سياق تصل إلى 200,000 توكن تسمح له بقراءة ملفات كاملة من الكود دفعة واحدة وفهم المشروع ككل.</p>
-          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Middle)</p></div>
+          <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           <h2>3. الأسعار والخطط</h2>
           <p>كلاهما يوفر خطة مجانية ممتازة. الخطة المدفوعة (Pro) تكلف 20 دولار شهرياً لكليهما. لكن في استخدام الـ API للمطورين، يعتبر Claude أرخص قليلاً في بعض النماذج المتقدمة.</p>
           <h2>4. الأمان والخصوصية</h2>
           <p>إذا كنت تعمل على مشاريع حساسة، فإن <strong>Claude</strong> يعد خيارًا أكثر أمانًا لأنه لا يستخدم بيانات مدخلاتك لتدريب النموذج بشكل افتراضي.</p>
-          <h2> التوصية النهائية</h2>
+          <h2>✅ التوصية النهائية</h2>
           <p><strong>استخدم ChatGPT إذا:</strong> تريد سرعة في التنفيذ ومساعد في مهام متنوعة.<br><strong>استخدم Claude إذا:</strong> تعمل على مشاريع برمجية كبيرة، تحتاج دقة عالية، والخصوصية مهمة لك.</p>
         </div>
 
-        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية (Bottom)</p></div>
+        <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
 
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-4" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", email: "contact@thtech.com" } }} />
@@ -55,12 +52,10 @@ const categorySlug = "ai";
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
           <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
         </div>
-        <PopularPosts />
       </article>
     </main>
     <aside class="article-sidebar"><TableOfContents /></aside>
   </div>
-
 </BaseLayout>
 
 <style>
