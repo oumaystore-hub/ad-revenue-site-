@@ -13,8 +13,8 @@ const headings = [
   { slug: 'heading-5', text: '5. التحكم في المخرجات', depth: 2 }
 ];
 
-const pageTitle = "هندسة الأوامر للمتقدمين: كيف تستخرج أقصى قدرات نماذج اللغة الكبيرة";
-const description = "تجاوز الأساسيات. تعلم تقنيات Chain-of-Thought، Few-Shot Prompting، وكيفية بناء أنظمة معقدة باستخدام LLMs في 2026.";
+const pageTitle = "هندسة الأوامر للمتقدمين: كيف تستخرج أقصى قدرات نماذج اللغة";
+const description = "تعلم تقنيات Chain-of-Thought وFew-Shot Prompting لتحقيق نتائج احترافية.";
 const publishDate = "2026-05-31";
 const articleImage = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80";
 const category = "ذكاء اصطناعي";
@@ -32,35 +32,27 @@ const categorySlug = "ai";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-        
         <div class="article-content">
-          <p class="intro">معظم المستخدمين يتوقفون عند الأوامر البسيطة. لكن المحترفين يعرفون أن الفرق بين نتيجة عادية ونتيجة استثنائية يكمن في هندسة الأوامر.</p>
-          
+          <p class="intro">معظم المستخدمين يتوقفون عند الأوامر البسيطة. المحترفون يستخدمون هندسة أوامر دقيقة.</p>
           <h2 id="heading-1">1. لماذا تفشل معظم الأوامر؟</h2>
-          <p>النماذج اللغوية ليست بشرًا. عندما تعطي أمراً غامضاً، فإنها تخمن نيتك. الحل هو السياق المحدد والقيود الواضحة.</p>
-          
+          <p>النماذج اللغوية تحتاج سياقاً محدداً وقيوداً واضحة وليس أوامر عامة.</p>
           <h2 id="heading-2">2. تقنية Chain-of-Thought (CoT)</h2>
-          <p>اطلب من النموذج أن يفكر خطوة بخطوة. هذه التقنية تحسن دقة الاستنتاج المنطقي والرياضي بنسبة كبيرة.</p>
-          
+          <p>اطلب من النموذج أن يفكر خطوة بخطوة لتحسين الدقة المنطقية.</p>
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          
           <h2 id="heading-3">3. Few-Shot Prompting: علّم بالمثال</h2>
-          <p>النماذج تتعلم بشكل أفضل من الأمثلة. أعطِ 2-3 أمثلة على المدخلات والمخرجات المتوقعة لضمان اتساق النتائج.</p>
-          
+          <p>أعطِ 2-3 أمثلة على المدخلات والمخرجات المتوقعة لضمان الاتساق.</p>
           <h2 id="heading-4">4. تعيين الأدوار والشخصيات</h2>
-          <p>عندما تحدد دوراً دقيقاً للنموذج، فإنك تغير مصدر المعرفة الذي يستند إليه للحصول على إجابات متخصصة.</p>
-          
+          <p>حدد دوراً دقيقاً للنموذج لتغيير مصدر المعرفة الذي يعتمد عليه.</p>
           <h2 id="heading-5">5. التحكم في المخرجات والقيود</h2>
-          <p>حدد الطول، النبرة، التنسيق، والقيود السلبية بدقة لضمان الحصول على النتيجة المطلوبة تماماً.</p>
+          <p>حدد الطول، النبرة، والتنسيق بدقة للحصول على النتيجة المطلوبة.</p>
         </div>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-9" />
         <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+          <a href="/ad-revenue-site/category/ai" class="back-btn" style="margin-right:10px;">📂 المزيد</a>
         </div>
       </article>
     </main>
@@ -76,7 +68,7 @@ const categorySlug = "ai";
   .article-badge { display: inline-block; margin-bottom: 1rem; }
   .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
+  .article-content h2 { color: #3730a3; margin-top: 2.5rem; margin-bottom: 0.8rem; font-size: 1.4rem; border-right: 4px solid #3730a3; padding-right: 0.8rem; }
   .intro { background: #e0e7ff; padding: 1.2rem; border-right: 4px solid #3730a3; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
