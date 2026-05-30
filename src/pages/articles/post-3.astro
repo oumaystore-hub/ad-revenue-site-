@@ -3,18 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import AuthorBio from '../../components/AuthorBio.astro';
 
 const headings = [
   { slug: 'heading-1', text: '1. ضغط الصور بدون فقدان الجودة', depth: 2 },
-  { slug: 'heading-2', text: '2. تمكين التخزين المؤقت (Caching)', depth: 2 },
+  { slug: 'heading-2', text: '2. تمكين التخزين المؤقت', depth: 2 },
   { slug: 'heading-3', text: '3. تقليل حجم JavaScript وCSS', depth: 2 },
   { slug: 'heading-4', text: '4. استخدام CDN', depth: 2 },
   { slug: 'heading-5', text: '5. اختيار استضافة سريعة', depth: 2 }
 ];
 
 const pageTitle = "تحسين سرعة موقعك: دليل شامل لـ Core Web Vitals";
-const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة لتحسين تجربة المستخدم وSEO.";
+const description = "تعلم كيف تجعل موقعك أسرع بـ 3x. تحسينات عملية في الصور، الكود، والاستضافة.";
 const publishDate = "2026-05-25";
 const articleImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80";
 const category = "أداء وتقنية";
@@ -32,35 +31,26 @@ const categorySlug = "performance";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-        
         <div class="article-content">
-          <p class="intro">سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. في هذا الدليل، نكشف لك الأسرار العملية لجعل موقعك يطير بسرعة.</p>
-          
+          <p class="intro">سرعة الموقع ليست مجرد رفاهية، بل عامل ترتيب حاسم في جوجل. إليك الأسرار العملية.</p>
           <h2 id="heading-1">1. ضغط الصور بدون فقدان الجودة</h2>
-          <p>استخدم صيغ WebP أو AVIF. تقلل الحجم بنسبة 70-80% دون تأثير ملحوظ على الجودة. أدوات مجانية مثل TinyPNG أو Squoosh كفيلة بالمهمة.</p>
-          
+          <p>استخدم صيغ WebP أو AVIF. تقلل الحجم بنسبة 70-80% دون تأثير ملحوظ.</p>
           <h2 id="heading-2">2. تمكين التخزين المؤقت (Caching)</h2>
-          <p>الـ Caching يخزن نسخة من موقعك في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x. فعّله عبر استضافتك أو إضافات مثل WP Rocket.</p>
-          
+          <p>الـ Caching يخزن نسخة في متصفح الزائر، مما يجعل الزيارات التالية أسرع بـ 10x.</p>
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
-          
           <h2 id="heading-3">3. تقليل حجم JavaScript وCSS</h2>
-          <p>احذف الكود غير المستخدم، ادمج الملفات، واستخدم Minification. هذا يقلل وقت التحميل الأولي بشكل كبير ويحسن نقاط PageSpeed.</p>
-          
+          <p>احذف الكود غير المستخدم واستخدم Minification لتقليل وقت التحميل الأولي.</p>
           <h2 id="heading-4">4. استخدام CDN (شبكة توصيل المحتوى)</h2>
-          <p>شبكات CDN توزع محتواك على سيرفرات حول العالم. إذا كان زائرك في مصر والسيرفر في أمريكا، الـ CDN سيجلب له البيانات من أقرب نقطة.</p>
-          
+          <p>شبكات CDN توزع محتواك على سيرفرات حول العالم لضمان سرعة الوصول لأي زائر.</p>
           <h2 id="heading-5">5. اختيار استضافة سريعة</h2>
-          <p>الاستضافة الرخيصة قد تكلفك زوارك! استثمر في استضافة تستخدم أقراص SSD/NVMe، وتدعم بروتوكول HTTP/2 أو HTTP/3.</p>
+          <p>استثمر في استضافة تستخدم أقراص NVMe وتدعم بروتوكول HTTP/3 لأفضل أداء.</p>
         </div>
-
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-3" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         <div class="article-footer-actions">
-          <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+          <a href="/ad-revenue-site/articles" class="back-btn">️ العودة للمقالات</a>
+          <a href="/ad-revenue-site/category/performance" class="back-btn" style="margin-right:10px;">📂 المزيد</a>
         </div>
       </article>
     </main>
@@ -76,7 +66,7 @@ const categorySlug = "performance";
   .article-badge { display: inline-block; margin-bottom: 1rem; }
   .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #92400e; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #92400e; padding-right: 0.8rem; }
+  .article-content h2 { color: #92400e; margin-top: 2.5rem; margin-bottom: 0.8rem; font-size: 1.4rem; border-right: 4px solid #92400e; padding-right: 0.8rem; }
   .intro { background: #fffbeb; padding: 1.2rem; border-right: 4px solid #92400e; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
