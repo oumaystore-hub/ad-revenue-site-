@@ -3,9 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import AuthorBio from '../../components/AuthorBio.astro';
 
-// ✅ تعريف العناوين (يجب أن يطابق الـ id في المحتوى)
 const headings = [
   { slug: 'heading-1', text: '1. الذكاء الاصطناعي التوليدي', depth: 2 },
   { slug: 'heading-2', text: '2. التجارة الإلكترونية الذكية', depth: 2 },
@@ -39,28 +37,29 @@ const categorySlug = "tech";
           <p class="intro">يشهد عالم التكنولوجيا تطورًا متسارعًا لم نشهد مثله من قبل. ومع دخول سنة 2026، لم تعد التقنية رفاهية، بل أصبحت العمود الفقري للأعمال والتعليم.</p>
           
           <h2 id="heading-1">1. الذكاء الاصطناعي التوليدي (Generative AI)</h2>
-          <p>لم يعد مقتصرًا على الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد، التصميم، وتحليل البيانات الضخمة. شركات مثل OpenAI و Anthropic تتنافس لإطلاق نماذج أكثر قوة وذكاءً.</p>
+          <p>لم يعد مقتصرًا على الأبحاث الأكاديمية. اليوم، تُستخدم نماذج الذكاء الاصطناعي في كتابة الأكواد، التصميم، وتحليل البيانات الضخمة.</p>
           
           <h2 id="heading-2">2. التجارة الإلكترونية الذكية</h2>
-          <p>المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة. الذكاء الاصطناعي أصبح يتنبأ بما يريد العميل شراءه قبل أن يعرف هو نفسه!</p>
+          <p>المتاجر التقليدية تتحول إلى منصات ذكية تستخدم خوارزميات التعلم الآلي لتحليل سلوك الزائر واقتراح المنتجات بدقة.</p>
           
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           
           <h2 id="heading-3">3. الأمن السيبراني كضرورة</h2>
-          <p>مع تزايد الهجمات الإلكترونية، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد. الحماية لم تعد خيارًا، بل ضرورة وجودية في العصر الرقمي.</p>
+          <p>مع تزايد الهجمات الإلكترونية، أصبح تأمين البنية الرقمية أولوية قصوى للشركات والأفراد.</p>
           
           <h2 id="heading-4">4. الحوسبة السحابية الهجينة</h2>
-          <p>النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة، مما يضمن استمرارية العمل وتقليل التكاليف. الشركات الكبرى تتبنى هذا النموذج بشكل متزايد.</p>
+          <p>النموذج الهجين يجمع بين الأمان المحلي ومرونة السحابة العامة، مما يضمن استمرارية العمل وتقليل التكاليف.</p>
           
           <h2 id="heading-5">5. الأجهزة القابلة للطي</h2>
-          <p>أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين والمبرمجين. الهواتف والأجهزة اللوحية القابلة للطي تغير مفهومنا عن الأجهزة المحمولة.</p>
+          <p>أصبحت واقعًا ملموسًا، مما يفتح آفاقًا جديدة للمصممين والمبرمجين.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         
-        <!-- ✅ المكونات المضافة -->
+        <!-- ✅ مشاركة المقال -->
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-1" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
+        
+        <!-- ✅ المقالات ذات الصلة -->
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         
         <div class="article-footer-actions">
@@ -70,21 +69,21 @@ const categorySlug = "tech";
       </article>
     </main>
     
-    <!-- ✅ جدول المحتويات العائم -->
+    <!-- ✅ جدول المحتويات -->
     <aside class="article-sidebar"><TableOfContents headings={headings} /></aside>
     
   </div>
 </BaseLayout>
 
 <style>
-  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.5; /* ✅ interligne أصغر */ }
+  .article-container { max-width: 100%; margin: 0; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); line-height: 1.5; }
   .article-hero-image { margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 400px; }
   .article-hero-image img { width: 100%; height: 100%; object-fit: cover; }
   .article-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
   .article-badge { display: inline-block; margin-bottom: 1rem; }
-  .article-header h1 { font-size: 2rem; /* ✅ حجم العنوان أصغر */ color: #1e293b; margin-bottom: 1rem; }
+  .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #3b82f6; margin-top: 2.5rem; margin-bottom: 0.8rem; font-size: 1.4rem; /* ✅ حجم العناوين الفرعية أصغر */ border-right: 4px solid #3b82f6; padding-right: 0.8rem; }
+  .article-content h2 { color: #3b82f6; margin-top: 2.5rem; margin-bottom: 0.8rem; font-size: 1.4rem; border-right: 4px solid #3b82f6; padding-right: 0.8rem; }
   .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #3b82f6; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
