@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import AuthorBio from '../../components/AuthorBio.astro';
 
 const headings = [
   { slug: 'heading-1', text: '1. فهم النموذج الجديد', depth: 2 },
@@ -13,7 +12,7 @@ const headings = [
   { slug: 'heading-5', text: '5. تنويع مصادر الدخل', depth: 2 }
 ];
 
-const pageTitle = "دليل شامل للربح من التسويق بالعمولة في 2026";
+const pageTitle = "دليل شامل للربح من التسويق بالعمولة في 2026: من الصفر إلى الاحتراف";
 const description = "تعلم كيف تبني دخلًا شهريًا مستدامًا من التسويق بالعمولة.";
 const publishDate = "2026-05-30";
 const articleImage = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80";
@@ -32,23 +31,30 @@ const categorySlug = "money";
           <div class="article-meta"><span>📅 {publishDate}</span></div>
         </header>
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+        
         <div class="article-content">
-          <p class="intro">التسويق بالعمولة لم يعد مجرد وضع روابط عشوائية. في 2026، أصبح علمًا قائمًا بذاته.</p>
+          <p class="intro">التسويق بالعمولة لم يعد مجرد وضع روابط عشوائية. في 2026، أصبح علمًا قائمًا بذاته يجمع بين تحليل البيانات وبناء الثقة.</p>
+          
           <h2 id="heading-1">1. فهم النموذج الجديد للتسويق بالعمولة</h2>
-          <p>في الماضي، كان النجاح يعتمد على كمية الزيارات. اليوم، الجودة هي المعيار.</p>
+          <p>في الماضي، كان النجاح يعتمد على كمية الزيارات. اليوم، الجودة هي المعيار. المنصات الكبرى تفضل المسوقين الذين يقدمون قيمة حقيقية.</p>
+          
           <h2 id="heading-2">2. اختيار المجال (Niche) المربح والمستدام</h2>
-          <p>الخطأ الأكبر هو اختيار مجال عام جداً. تخصص أكثر في مجالات فرعية ذات طلب عالي.</p>
+          <p>الخطأ الأكبر هو اختيار مجال عام جداً. تخصص أكثر في مجالات فرعية ذات طلب عالي ومنافسة أقل.</p>
+          
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
+          
           <h2 id="heading-3">3. بناء استراتيجية المحتوى التي تبيع</h2>
-          <p>ركز على مقالات المقارنة، الدروس التعليمية، وقوائم الأفضل.</p>
+          <p>ركز على أنواع المحتوى التي تحقق تحويلات مثل مقالات المقارنة، الدروس التعليمية، وقوائم الأفضل.</p>
+          
           <h2 id="heading-4">4. تحسين معدل التحويل (CRO)</h2>
-          <p>ضع الروابط في أماكن استراتيجية، واستخدم أزرار CTA واضحة.</p>
+          <p>ضع الروابط في أماكن استراتيجية، استخدم أزرار CTA واضحة، وأضف شهادات وتجارب شخصية.</p>
+          
           <h2 id="heading-5">5. تنويع مصادر الدخل والحماية من المخاطر</h2>
-          <p>لا تعتمد على برنامج واحد. ابنِ قائمة بريدية خاصة بك.</p>
+          <p>لا تعتمد على برنامج واحد. انضم إلى عدة برامج وابنِ قائمة بريدية خاصة بك.</p>
         </div>
+
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-8" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
