@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import AuthorBio from '../../components/AuthorBio.astro';
 
 const headings = [
   { slug: 'heading-1', text: '1. التهديدات الجديدة', depth: 2 },
@@ -14,7 +13,7 @@ const headings = [
 ];
 
 const pageTitle = "الأمن السيبراني الشخصي في 2026: حماية نفسك من تهديدات الذكاء الاصطناعي";
-const description = "الهجمات أصبحت أذكى وأسرع. تعلم كيف تحمي بياناتك، حساباتك، وهويتك الرقمية باستخدام أدوات واستراتيجيات حديثة.";
+const description = "تعلم كيف تحمي بياناتك وحساباتك من هجمات التصيد الذكي واستنساخ الهوية.";
 const publishDate = "2026-06-01";
 const articleImage = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80";
 const category = "تقنية";
@@ -40,7 +39,7 @@ const categorySlug = "tech";
           <p>التصيد الذكي، استنساخ الصوت والفيديو، وهجمات كلمات المرور الذكية أصبحت تهديدات يومية تتطلب وعياً تقنياً عالياً.</p>
           
           <h2 id="heading-2">2. خط الدفاع الأول: المصادقة متعددة العوامل (MFA)</h2>
-          <p>فعّل MFA على كل حساباتك. تجنب SMS واستخدم تطبيقات المصادقة أو مفاتيح الأمان الفيزيائية لحماية قصوى.</p>
+          <p>فعّل MFA على كل حساباتك. تجنب SMS واستخدم تطبيقات المصادقة أو مفاتيح الأمان الفيزيائية.</p>
           
           <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
           
@@ -51,16 +50,15 @@ const categorySlug = "tech";
           <p>راجع إعدادات الخصوصية، احذف الحسابات القديمة، واستخدم بريداً بديلاً للتسجيل في المواقع غير المهمة.</p>
           
           <h2 id="heading-5">5. النسخ الاحتياطي: خط الدفاع الأخير</h2>
-          <p>اتبع قاعدة 3-2-1 للنسخ الاحتياطي. النسخ الذي لا يمكنك استعادته لا قيمة له في وقت الأزمات.</p>
+          <p>اتبع قاعدة 3-2-1 للنسخ الاحتياطي. النسخ الذي لا يمكنك استعادته لا قيمة له.</p>
         </div>
 
         <div class="ad-slot"><p style="color:#999; text-align:center; padding:10px; background:#f9f9f9; border:1px dashed #ccc;">مساحة إعلانية</p></div>
         <SocialShare title={pageTitle} url="https://oumaystore-hub.github.io/ad-revenue-site/articles/post-10" />
-        <AuthorBio author={{ name: "TH Tech Team", role: "فريق TH Tech", bio: "فريق من الخبراء المتخصصين في التكنولوجيا، الذكاء الاصطناعي، والربح الرقمي.", avatar: "https://ui-avatars.com/api/?name=TH+Tech&background=3b82f6&color=fff&size=128", social: { twitter: "https://twitter.com/thtech", instagram: "https://instagram.com/thtech", email: "contact@thtech.com" } }} />
         <RelatedArticles currentSlug={categorySlug} currentCategory={category} />
         <div class="article-footer-actions">
           <a href="/ad-revenue-site/articles" class="back-btn">↩️ العودة للمقالات</a>
-          <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد من قسم {category}</a>
+          <a href="/ad-revenue-site/category/tech" class="back-btn" style="margin-right:10px;">📂 المزيد</a>
         </div>
       </article>
     </main>
@@ -76,7 +74,7 @@ const categorySlug = "tech";
   .article-badge { display: inline-block; margin-bottom: 1rem; }
   .article-header h1 { font-size: 2rem; color: #1e293b; margin-bottom: 1rem; }
   .article-meta { color: #64748b; font-size: 0.85rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .article-content h2 { color: #1e40af; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.4rem; border-right: 4px solid #1e40af; padding-right: 0.8rem; }
+  .article-content h2 { color: #1e40af; margin-top: 2.5rem; margin-bottom: 0.8rem; font-size: 1.4rem; border-right: 4px solid #1e40af; padding-right: 0.8rem; }
   .intro { background: #eff6ff; padding: 1.2rem; border-right: 4px solid #1e40af; border-radius: 6px; margin-bottom: 2.5rem; font-size: 1.1rem; color: #475569; }
   .ad-slot { margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center; }
   .article-footer-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center; }
