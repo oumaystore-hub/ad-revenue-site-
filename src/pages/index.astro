@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// جلب آخر 3 مقالات
 const modules = import.meta.glob('./articles/post-*.astro', { eager: true });
 const allPosts = Object.values(modules).map((module: any) => ({
   url: module.url || '',
@@ -16,158 +15,110 @@ const recentArticles = allPosts
     return numB - numA;
   })
   .slice(0, 3);
-
-const features = [
-  { icon: '🎯', title: 'محتوى عملي', desc: 'دروس تطبيقية تركز على النتائج الحقيقية' },
-  { icon: '⚡', title: 'معلومات محدثة', desc: 'متابعة يومية لأحدث التقنيات والاتجاهات' },
-  { icon: '💡', title: 'خبرات متخصصة', desc: 'فريق متخصص في الذكاء الاصطناعي والربح الرقمي' },
-  { icon: '🚀', title: 'نمو مستمر', desc: 'مسارك التطويري من الصفر إلى الاحتراف' }
-];
-
-const stats = [
-  { num: '10+', label: 'مقال تقني' },
-  { num: '4', label: 'أقسام متخصصة' },
-  { num: '24/7', label: 'متاح للجميع' },
-  { num: '100%', label: 'محتوى مجاني' }
-];
 ---
 
-<BaseLayout title="TH Tech - بوابتك التقنية" description="اكتشف أحدث التقنيات، الذكاء الاصطناعي، واستراتيجيات الربح الرقمي">
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
   
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="grid-bg"></div>
     <div class="container">
-      <div class="hero-content animate-fade-up">
-        <span class="tech-badge">🚀 TH TECH PLATFORM</span>
-        <h1 class="hero-title">بوابتك إلى عالم<br><span class="gradient-text">التقنية والابتكار</span></h1>
-        <p class="hero-desc">محتوى تقني عربي متخصص في الذكاء الاصطناعي، الربح الرقمي، وتطوير الويب. نُبسط التعقيد لنمنحك الأدوات الحقيقية للنجاح.</p>
-        <div class="hero-actions">
-          <a href="/ad-revenue-site/articles" class="btn btn-primary">استكشف المقالات ←</a>
-          <a href="#about" class="btn btn-ghost">اعرف المزيد</a>
-        </div>
+      <div class="hero-content">
+        <h1 class="hero-title">بوابتك إلى عالم<br><span>التقنية والابتكار</span></h1>
+        <p class="hero-subtitle">محتوى تقني متخصص في الذكاء الاصطناعي، الربح الرقمي، وتطوير المواقع</p>
+        <a href="/ad-revenue-site/articles" class="btn-primary">استكشف المقالات</a>
       </div>
-    </div>  </section>
+    </div>
+  </section>
 
-  <!-- Stats Section -->
-  <section class="stats-section">
+  <!-- Stats -->
+  <section class="stats">
     <div class="container">
       <div class="stats-grid">
-        {stats.map(s => (
-          <div class="stat-card animate-fade-up">
-            <div class="stat-num">{s.num}</div>
-            <div class="stat-label">{s.label}</div>
-          </div>
-        ))}
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">مقال تقني</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">أقسام متخصصة</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">متاح للجميع</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>          <div class="stat-label">محتوى مجاني</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about-section">
+  <!-- About -->
+  <section id="about" class="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-text animate-fade-up">
-          <h2 class="section-title">🎯 من نحن؟</h2>
-          <p class="body-text">
-            <strong>TH Tech</strong> منصة تقنية عربية تركز على تبسيط المفاهيم المعقدة وتحويلها إلى خطوات عملية. نؤمن بأن التقنية يجب أن تكون في متناول الجميع، لذا نقدم محتوى مدقق، حديث، وقابل للتطبيق فوراً.
+        <div class="about-content">
+          <h2 class="section-title">من نحن؟</h2>
+          <p class="text">
+            <strong>TH Tech</strong> بوابتك الشاملة لعالم التكنولوجيا. نقدم محتوى عربي عالي الجودة في الذكاء الاصطناعي، الربح الرقمي، وتطوير المواقع.
           </p>
-          
-          <div class="features-list">
-            {features.map(f => (
-              <div class="feature-row">
-                <span class="feature-icon">{f.icon}</span>
-                <div>
-                  <h4 class="feature-title">{f.title}</h4>
-                  <p class="feature-desc">{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p class="text">
+            هدفنا تمكينك من مواكبة العصر الرقمي من خلال مقالات عملية وشروحات مفصلة.
+          </p>
         </div>
-
-        <div class="about-visual animate-fade-up">
-          <div class="glass-card">
-            <div class="code-lines">
-              <span class="line"></span>
-              <span class="line short"></span>
-              <span class="line medium"></span>
-              <span class="line"></span>
-            </div>
-            <div class="tech-badge-float">TH TECH // 2026</div>
-          </div>
-        </div>      </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Tech" />
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Articles Section -->
+  <!-- Articles -->
   {recentArticles.length > 0 && (
-    <section class="articles-section">
+    <section class="articles">
       <div class="container">
-        <div class="section-header animate-fade-up">
-          <h2 class="section-title">📝 أحدث المقالات</h2>
-          <a href="/ad-revenue-site/articles" class="link-arrow">عرض الكل →</a>
-        </div>
-        
+        <h2 class="section-title">أحدث المقالات</h2>
         <div class="articles-grid">
           {recentArticles.map(post => {
             const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
             return (
-              <article class="article-card animate-fade-up">
+              <article class="article-card">
                 <a href={post.url}>
-                  <div class="card-image">
+                  <div class="card-img">
                     <img src={articleImage} alt={pageTitle} loading="lazy" />
-                    <span class="card-tag">{category}</span>
+                    <span class="tag">{category}</span>
                   </div>
-                  <div class="card-body">
-                    <h3 class="card-title">{pageTitle}</h3>
-                    <p class="card-desc">{description}</p>
-                    <div class="card-meta">
-                      <time>{publishDate}</time>
-                      <span class="read-time">5 دقائق قراءة</span>
-                    </div>
+                  <div class="card-content">
+                    <h3>{pageTitle}</h3>
+                    <p>{description}</p>
+                    <time>{publishDate}</time>
                   </div>
                 </a>
               </article>
             );
-          })}
-        </div>
-        
-        <div class="text-center animate-fade-up">
-          <a href="/ad-revenue-site/articles" class="btn btn-primary btn-wide">تصفح الأرشيف الكامل 📖</a>
+          })}        </div>
+        <div class="text-center">
+          <a href="/ad-revenue-site/articles" class="btn-secondary">عرض جميع المقالات</a>
         </div>
       </div>
     </section>
   )}
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container animate-fade-up">
-      <div class="cta-box">
-        <h2 class="cta-title">🚀 ابدأ رحلتك التقنية الآن</h2>
-        <p class="cta-desc">انضم إلى مجتمع TH Tech واحصل على أحدث الأدوات، الشروحات، والاستراتيجيات المجانية.</p>        <a href="/ad-revenue-site/articles" class="btn btn-white">تصفح المقالات مجاناً</a>
-      </div>
-    </div>
-  </section>
-
 </BaseLayout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 
   :root {
-    --bg: #0b1120;
-    --surface: #151e32;
-    --primary: #3b82f6;
-    --accent: #8b5cf6;
-    --text: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: rgba(255, 255, 255, 0.08);
-    --glass: rgba(21, 30, 50, 0.6);
-    --radius: 16px;
-    --font: 'Cairo', sans-serif;
-    --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-    --glow: 0 0 25px rgba(59, 130, 246, 0.15);
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --primary: #0f172a;
+    --accent: #3b82f6;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 12px;
+    --font: 'IBM Plex Sans Arabic', sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -176,204 +127,192 @@ const stats = [
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    overflow-x: hidden;
   }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-  
-  /* Typography Scale */
-  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
-  .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.02em; }
-  .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1.5rem; }
-  .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .body-text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-  .link-arrow { color: var(--primary); text-decoration: none; font-weight: 600; transition: 0.3s; }
-  .link-arrow:hover { color: var(--accent); transform: translateX(-5px); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-  .gradient-text {
-    background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  /* Typography */
+  h1, h2, h3 { font-weight: 600; line-height: 1.3; color: var(--primary); }
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
-    border-radius: 12px;
+  .hero-title span { color: var(--accent); }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.8; }
+  /* Buttons - واحد فقط لكل نوع */
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    cursor: pointer;
+    transition: all 0.3s;
   }
-  .btn-primary { background: var(--primary); color: white; box-shadow: var(--glow); }
-  .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
-  .btn-ghost { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--border); }
-  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
-  .btn-white { background: white; color: var(--bg); }
-  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-  .btn-wide { width: 100%; max-width: 320px; }
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+  }
 
   /* Hero */
   .hero {
-    position: relative;
-    padding: 8rem 0 6rem;
-    text-align: center;
-    overflow: hidden;
+    padding: 6rem 0 4rem;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
   }
-  .grid-bg {
-    position: absolute; inset: 0;
-    background-image: radial-gradient(var(--border) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.4;
-    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  .hero-content { max-width: 700px; margin: 0 auto; text-align: center; }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
   }
-  .tech-badge {
-    display: inline-block;
-    padding: 0.5rem 1.2rem;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-  .hero-desc { max-width: 650px; margin: 1.5rem auto 2.5rem; font-size: 1.15rem; color: var(--text-muted); }
-  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
   /* Stats */
-  .stats-section { margin-top: -3rem; position: relative; z-index: 10; }
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-  .stat-card {
-    background: var(--surface);
+  .stats {
+    padding: 3rem 0;
+    margin-top: -2rem;    position: relative;
+    z-index: 10;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .stat {
+    background: white;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 2rem 1.5rem;
+    padding: 2rem;
     text-align: center;
-    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
-  .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--glow); }
-  .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--primary); margin-bottom: 0.3rem; }
-  .stat-label { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
 
   /* About */
-  .about-section { padding: 6rem 0; }
-  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
-  .features-list { margin-top: 2rem; display: grid; gap: 1.5rem; }
-  .feature-row { display: flex; gap: 1rem; align-items: flex-start; }
-  .feature-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
-  .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
-  .feature-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-
-  .about-visual { position: relative; height: 350px; display: flex; align-items: center; justify-content: center; }
-  .glass-card {
-    width: 100%; height: 100%;
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+  .about { padding: 5rem 0; background: var(--surface); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
   }
-  .code-lines { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 3rem; }
-  .line { height: 12px; background: rgba(255,255,255,0.08); border-radius: 6px; width: 100%; }
-  .line.short { width: 60%; }
-  .line.medium { width: 80%; }
-  .tech-badge-float {
-    position: absolute; bottom: 2rem; right: 2rem;
-    background: var(--primary); color: white;
-    padding: 0.6rem 1.2rem; border-radius: 8px;
-    font-size: 0.9rem; font-weight: 700;
-    box-shadow: var(--glow);
+  .about-image img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
   /* Articles */
-  .articles-section { padding: 4rem 0 6rem; }  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
-  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-  .article-card {
-    background: var(--surface);
+  .articles { padding: 5rem 0; }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }  .article-card {
+    background: white;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: 0.4s;
+    transition: all 0.3s;
   }
-  .article-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: var(--glow); }
-  .article-card a { text-decoration: none; color: inherit; display: block; height: 100%; }
-  .card-image { height: 200px; overflow: hidden; position: relative; }
-  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-  .article-card:hover .card-image img { transform: scale(1.05); }
-  .card-tag {
-    position: absolute; top: 1rem; right: 1rem;
-    background: rgba(59, 130, 246, 0.9); color: white;
-    padding: 0.3rem 0.8rem; border-radius: 6px;
-    font-size: 0.8rem; font-weight: 600;
+  .article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
   }
-  .card-body { padding: 1.5rem; }
-  .card-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .card-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 1rem; }
-  .text-center { text-align: center; margin-top: 2rem; }
-
-  /* CTA */
-  .cta-section { padding: 6rem 0; }
-  .cta-box {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    border-radius: 24px;
-    padding: 4rem 2rem;
-    text-align: center;
-    position: relative;
+  .article-card a { text-decoration: none; color: inherit; display: block; }
+  .card-img {
+    height: 200px;
     overflow: hidden;
+    position: relative;
   }
-  .cta-box::before {
-    content: ''; position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
   }
-  .cta-title { font-size: 2.2rem; margin-bottom: 1rem; position: relative; z-index: 1; }
-  .cta-desc { font-size: 1.1rem; opacity: 0.95; margin-bottom: 2rem; position: relative; z-index: 1; }
-  .cta-box .btn { position: relative; z-index: 1; }
+  .article-card:hover .card-img img { transform: scale(1.05); }
+  .tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .card-content { padding: 1.5rem; }
+  .card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--primary);
+  }
+  .card-content p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .card-content time {
+    font-size: 0.85rem;
+    color: var(--text-muted);    display: block;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  .text-center { text-align: center; }
 
-  /* Animations */
-  .animate-fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .animate-fade-up.visible {    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .about-visual { order: -1; height: 250px; }
-    .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-  }
-  @media (max-width: 600px) {
-    .hero { padding: 5rem 0 4rem; }
-    .hero-title { font-size: 2.2rem; }
-    .hero-desc { font-size: 1rem; }
-    .hero-actions { flex-direction: column; }
-    .btn { width: 100%; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .articles-grid { grid-template-columns: 1fr; }
-    .cta-box { padding: 3rem 1.5rem; }
-    .cta-title { font-size: 1.6rem; }
+  /* Mobile */
+  @media (max-width: 768px) {
+    .container { padding: 0 1.2rem; }
+    .hero { padding: 4rem 0 3rem; }
+    .hero-title { font-size: 1.8rem; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .stats { margin-top: -1.5rem; padding: 2rem 0; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat { padding: 1.5rem 1rem; }
+    .stat-num { font-size: 2rem; }
+    .about { padding: 3rem 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-image { order: -1; }
+    .section-title { font-size: 1.6rem; }
+    .articles { padding: 3rem 0; }
+    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 </style>
-
-<script>
-  // Scroll Reveal Animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll('.animate-fade-up').forEach(el => observer.observe(el));
-</script>
