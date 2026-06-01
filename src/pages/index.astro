@@ -1,268 +1,417 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// جلب آخر 3 مقالات
+const modules = import.meta.glob('./articles/post-*.astro', { eager: true });
+const allPosts = Object.values(modules).map((module: any) => ({
+  url: module.url || '',
+  frontmatter: module.frontmatter || {}
+}));
+
+const recentArticles = allPosts
+  .filter(post => post.frontmatter && post.frontmatter.pageTitle)
+  .sort((a: any, b: any) => {
+    const numA = parseInt(a.url.match(/post-(\d+)/)?.[1] || '0');
+    const numB = parseInt(b.url.match(/post-(\d+)/)?.[1] || '0');
+    return numB - numA;
+  })
+  .slice(0, 3);
+
+const features = [
+  {
+    icon: '🎯',
+    title: 'محتوى عملي',
+    description: 'مقالات ودروس تطبيقية تركز على النتائج العملية'
+  },
+  {
+    icon: '⚡',
+    title: 'معلومات محدثة',
+    description: 'نتابع أحدث التقنيات والاتجاهات'
+  },
+  {
+    icon: '💡',
+    title: 'خبرات متخصصة',
+    description: 'فريق من الخبراء المتخصصين'
+  },
+  {
+    icon: '🚀',
+    title: 'نمو مستمر',
+    description: 'نساعدك على تطوير مهاراتك'
+  }
+];
+
+const stats = [
+  { number: '10+', label: 'مقال تقني' },
+  { number: '4', label: 'أقسام متخصصة' },
+  { number: '24/7', label: 'متاح للجميع' },
+  { number: '100%', label: 'محتوى مجاني' }
+];
+---
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          مرحباً بك في TH Tech
+        </div>
+        <h1 class="hero-title">
+          بوابتك إلى عالم
+          <span class="gradient-text">التقنية والابتكار</span>
+        </h1>
+        <p class="hero-subtitle">
+          نقدم لك محتوى تقني متخصص في الذكاء الاصطناعي، الربح الرقمي، وتطوير المواقع
+        </p>
+        <div class="hero-cta">
+          <a href="/ad-revenue-site/articles" class="btn btn-primary btn-lg">📚 استكشف المقالات</a>
+          <a href="#about" class="btn btn-outline btn-lg">ℹ️ اعرف المزيد</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-card">
+            <div class="stat-number">{stat.number}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2 class="section-title">🎯 من نحن؟</h2>
+          <p class="about-text">
+            <strong>TH Tech</strong> هي بوابتك الشاملة لعالم التكنولوجيا والابتكار. نؤمن بأن المعرفة هي القوة، لذا نعمل على تقديم محتوى عربي عالي الجودة.
+          </p>
+          
+          <div class="about-features">            {features.map((feature) => (
+              <div class="feature-item">
+                <span class="feature-icon">{feature.icon}</span>
+                <div class="feature-text">
+                  <h4>{feature.title}</h4>
+                  <p>{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div class="about-image">
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Technology" />
+          </div>
+          <div class="experience-badge">
+            <span class="exp-number">2026</span>
+            <span class="exp-text">مستقبل التقنية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  {recentArticles.length > 0 && (
+    <section class="articles-section">
+      <div class="container">
+        <h2 class="section-title center">📝 أحدث المقالات</h2>
+        
+        <div class="articles-grid">
+          {recentArticles.map((post: any) => {
+            const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
+            return (
+              <article class="article-card">
+                <a href={post.url}>
+                  <div class="article-image">
+                    <img src={articleImage} alt={pageTitle} loading="lazy" />
+                    <span class="article-category">{category}</span>
+                  </div>
+                  <div class="article-content">
+                    <h3>{pageTitle}</h3>
+                    <p>{description}</p>
+                    <div class="article-meta">
+                      <time>📅 {publishDate}</time>
+                    </div>
+                  </div>
+                </a>
+              </article>            );
+          })}
+        </div>
+        
+        <div class="text-center">
+          <a href="/ad-revenue-site/articles" class="btn btn-primary">عرض جميع المقالات 📖</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>🚀 ابدأ رحلتك التقنية الآن</h2>
+        <p>انضم إلى مجتمع TH Tech واكتشف عالماً من المعرفة</p>
+        <a href="/ad-revenue-site/articles" class="btn btn-white btn-lg">تصفح المقالات مجاناً</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
 <style>
-  /* ✅ Mobile Optimizations - أضف هذا في نهاية الـ style */
+  :root {
+    --primary: #667eea;
+    --primary-dark: #764ba2;
+    --success: #10b981;
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --text-light: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Tajawal', sans-serif; line-height: 1.6; color: var(--text); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
   
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 5rem 0 4rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.2);    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .pulse {
+    width: 8px; height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+  .btn-lg { padding: 1.2rem 2.5rem; font-size: 1.1rem; }  .btn-primary {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .btn-primary:hover { transform: translateY(-3px); }
+  .btn-outline {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-color: rgba(255,255,255,0.5);
+  }
+  .btn-outline:hover { transform: translateY(-3px); }
+  .btn-white {
+    background: white;
+    color: var(--primary);
+  }
+  .btn-white:hover { transform: translateY(-3px); }
+
+  /* Stats */
+  .stats-section {
+    background: white;
+    padding: 3rem 0;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  }
+  .stat-number { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .stat-label { font-size: 1rem; opacity: 0.9; }
+
+  /* About */
+  .about-section { padding: 6rem 0; background: var(--bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+  }
+  .section-title.center { text-align: center; justify-content: center; }
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .about-text strong { color: var(--text); }
+  .about-features { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
+  .feature-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .feature-icon { font-size: 2rem; flex-shrink: 0; }
+  .feature-text h4 { font-size: 1.1rem; margin-bottom: 0.3rem; font-weight: 700; }
+  .feature-text p { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
+  
+  .about-image { position: relative; }
+  .image-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  }
+  .image-wrapper img { width: 100%; height: auto; display: block; }
+  .experience-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .exp-number { display: block; font-size: 2rem; font-weight: 800; color: var(--primary); }
+  .exp-text { font-size: 0.9rem; color: var(--text-light); }
+
+  /* Articles */
+  .articles-section { padding: 6rem 0; background: white; }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .article-card {
+    background: white;
+    border-radius: 20px;    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+  }
+  .article-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  }
+  .article-card a { text-decoration: none; color: inherit; display: block; }
+  .article-image { height: 220px; overflow: hidden; position: relative; background: #f1f5f9; }
+  .article-image img { width: 100%; height: 100%; object-fit: cover; }
+  .article-category {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--success);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .article-content { padding: 1.8rem; }
+  .article-content h3 { font-size: 1.3rem; margin-bottom: 0.8rem; font-weight: 700; }
+  .article-content p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem; }
+  .article-meta { padding-top: 1rem; border-top: 1px solid #e2e8f0; color: var(--text-light); font-size: 0.9rem; }
+  .text-center { text-align: center; margin-top: 2rem; }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    text-align: center;
+  }
+  .cta-content h2 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 800; }
+  .cta-content p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.95; }
+
+  /* Mobile */
   @media (max-width: 768px) {
-    /* General */
     .container { padding: 0 1rem; }
+    .hero { padding: 3rem 0 2.5rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .btn-lg { padding: 1rem 1.5rem; font-size: 1rem; justify-content: center; }
     
-    /* Hero Section */
-    .hero {
-      padding: 3rem 0 2.5rem;
-      min-height: auto;
-    }
-    .hero .container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    .hero-content {
-      text-align: center;
-      padding: 0 0.5rem;
-    }
-    .hero-badge {
-      justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      padding: 0.4rem 1rem;
-    }
-    .hero-title {
-      font-size: 1.8rem;
-      line-height: 1.3;
-      margin-bottom: 1rem;
-    }
-    .hero-subtitle {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      padding: 0 0.5rem;
-    }
-    .hero-cta {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.8rem;
-    }
-    .btn-lg {
-      padding: 1rem 1.5rem;
-      font-size: 1rem;
-      text-align: center;
-      justify-content: center;
-    }
-    .hero-image {
-      display: none; /* إخفاء البطاقات العائمة على الموبايل */    }
+    .stats-section { margin-top: -2rem; padding: 2rem 0; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-card { padding: 1.5rem 1rem; }
+    .stat-number { font-size: 2rem; }    
+    .about-section { padding: 3rem 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-image { order: -1; }
+    .section-title { font-size: 2rem; text-align: center; justify-content: center; }
+    .about-text { font-size: 1rem; line-height: 1.8; }
+    .about-features { margin-top: 2rem; }
+    .feature-item { gap: 0.8rem; }
+    .feature-icon { font-size: 1.6rem; }
+    .feature-text h4 { font-size: 1rem; }
+    .feature-text p { font-size: 0.9rem; }
+    .experience-badge { position: relative; bottom: auto; left: auto; margin-top: 1rem; }
     
-    /* Stats Section */
-    .stats-section {
-      margin-top: -2rem;
-      padding: 2rem 0;
-    }
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 1rem;
-    }
-    .stat-card {
-      padding: 1.5rem 1rem;
-    }
-    .stat-number {
-      font-size: 2rem;
-    }
-    .stat-label {
-      font-size: 0.9rem;
-    }
+    .articles-section { padding: 3rem 0; }
+    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .article-image { height: 180px; }
+    .article-content { padding: 1.2rem; }
+    .article-content h3 { font-size: 1.15rem; }
+    .article-content p { font-size: 0.9rem; }
     
-    /* About Section */
-    .about-section {
-      padding: 3rem 0;
-    }
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-    .section-title {
-      font-size: 1.8rem;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .title-icon {
-      font-size: 2.2rem;
-    }
-    .about-content {
-      padding: 0 0.5rem;
-    }
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-      text-align: justify;
-    }
-    .about-features {
-      margin-top: 2rem;      gap: 1.2rem;
-    }
-    .feature-item {
-      gap: 0.8rem;
-      padding: 0.5rem;
-    }
-    .feature-icon {
-      font-size: 1.6rem;
-      flex-shrink: 0;
-    }
-    .feature-text h4 {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    .feature-text p {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    
-    /* About Image */
-    .about-image {
-      order: -1;
-      padding: 0 1rem;
-    }
-    .image-wrapper {
-      border-radius: 16px;
-    }
-    .main-img {
-      border-radius: 16px;
-    }
-    .experience-badge {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      margin-top: 1rem;
-      padding: 1rem 1.5rem;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .exp-number {
-      font-size: 1.6rem;
-    }
-    .exp-text {
-      font-size: 0.85rem;
-    }
-    
-    /* Articles Section */
-    .articles-section {      padding: 3rem 0;
-    }
-    .section-header {
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
-    }
-    .section-title {
-      margin-bottom: 0;
-    }
-    .view-all-link {
-      font-size: 1rem;
-    }
-    .articles-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 0 1rem;
-    }
-    .article-card {
-      border-radius: 16px;
-    }
-    .article-image {
-      height: 180px;
-    }
-    .article-content {
-      padding: 1.2rem;
-    }
-    .article-content h3 {
-      font-size: 1.15rem;
-      line-height: 1.4;
-    }
-    .article-content p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .article-category {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.8rem;
-    }
-    .article-meta {
-      font-size: 0.85rem;
-    }
-    
-    /* CTA Section */
-    .cta-section {
-      padding: 3rem 0;
-    }
-    .cta-content h2 {
-      font-size: 1.8rem;      line-height: 1.3;
-      margin-bottom: 0.8rem;
-      padding: 0 1rem;
-    }
-    .cta-content p {
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
-    }
-    .cta-section .btn-lg {
-      max-width: 90%;
-      margin: 0 auto;
-    }
-  }
-  
-  /* ✅ Small Mobile (أقل من 480px) */
-  @media (max-width: 480px) {
-    .hero-title {
-      font-size: 1.6rem;
-    }
-    .hero-subtitle {
-      font-size: 0.95rem;
-    }
-    .stat-number {
-      font-size: 1.7rem;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-    }
-    .section-title {
-      font-size: 1.6rem;
-    }
-    .about-text {
-      font-size: 0.95rem;
-    }
-    .feature-text h4 {
-      font-size: 0.95rem;
-    }
-    .feature-text p {
-      font-size: 0.85rem;
-    }
-    .article-content h3 {
-      font-size: 1.1rem;
-    }
-  }
-  
-  /* ✅ تحسينات إضافية للتناسق */
-  @media (max-width: 768px) {
-    /* توحيد المسافات العمودية */
-    section {      margin-bottom: 0;
-    }
-    
-    /* تحسين ظهور البطاقات */
-    .stat-card,
-    .article-card,
-    .feature-item {
-      will-change: transform;
-      backface-visibility: hidden;
-    }
-    
-    /* منع التكبير غير المرغوب فيه */
-    .btn:active {
-      transform: scale(0.98);
-    }
-    
-    /* تحسين النصوص الطويلة */
-    p {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .cta-section { padding: 3rem 0; }
+    .cta-content h2 { font-size: 2rem; }
+    .cta-content p { font-size: 1.05rem; }
   }
 </style>
