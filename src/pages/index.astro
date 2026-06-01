@@ -1,16 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// ✅ استخدام import.meta.glob بدلاً من Astro.glob
+// جلب المقالات
 const modules = import.meta.glob('./articles/post-*.astro', { eager: true });
-
-// تحويل البيانات إلى مصفوفة
 const allPosts = Object.values(modules).map((module: any) => ({
   url: module.url || '',
   frontmatter: module.frontmatter || {}
 }));
 
-// تصفية وترتيب المقالات
 const articles = allPosts
   .filter(post => post.frontmatter && post.frontmatter.pageTitle)
   .sort((a: any, b: any) => {
@@ -18,44 +15,49 @@ const articles = allPosts
     const numB = parseInt(b.url.match(/post-(\d+)/)?.[1] || '0');
     return numB - numA;
   })
-  .slice(0, 6);
+  .slice(0, 3); // عرض 3 مقالات فقط في الصفحة الرئيسية
 ---
 
 <BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية للذكاء الاصطناعي والربح الرقمي">
-  <!-- قسم الترحيب -->
+  
+  <!-- ✅ القسم الرئيسي - Hero -->
   <section class="hero">
     <div class="container">
-      <h1>مرحباً بك في TH Tech 🚀</h1>
-      <p>اكتشف أحدث التقنيات واستراتيجيات الربح الرقمي</p>
-      <a href="/ad-revenue-site/articles" class="cta-button">تصفح جميع المقالات</a>
+      <div class="hero-content">
+        <h1 class="hero-title">مرحباً بك في TH Tech 🚀</h1>
+        <p class="hero-subtitle">اكتشف أحدث التقنيات واستراتيجيات الربح الرقمي</p>
+        <div class="hero-buttons">
+          <a href="/ad-revenue-site/articles" class="btn btn-primary">📚 تصفح المقالات</a>
+          <a href="/ad-revenue-site/category/ai" class="btn btn-secondary">🤖 الذكاء الاصطناعي</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- قسم آخر المقالات -->
-  <section class="latest-posts">
-    <div class="container">
-      <h2 class="section-title">📚 آخر المقالات</h2>
-      
-      {articles.length === 0 ? (
-        <div class="no-posts">
-          <p>⚠️ لم يتم العثور على مقالات</p>
-          <p>تأكد من وجود ملفات post-01.astro إلى post-10.astro في مجلد articles/</p>
-        </div>
-      ) : (
+  <!-- ✅ قسم المقالات المميزة -->
+  {articles.length > 0 && (
+    <section class="featured-posts">
+      <div class="container">
+        <h2 class="section-title">
+          <span>📝</span>
+          <span>آخر المقالات</span>
+        </h2>
+        
         <div class="posts-grid">
           {articles.map((post: any) => {
             const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
             return (
-              <article class="post-card">
-                <a href={post.url}>                  <div class="post-image">
+              <article class="post-card">                <a href={post.url}>
+                  <div class="post-image">
                     <img src={articleImage} alt={pageTitle} loading="lazy" />
+                    <span class="post-badge">{category}</span>
                   </div>
                   <div class="post-content">
-                    <span class="post-category">{category}</span>
                     <h3>{pageTitle}</h3>
                     <p>{description}</p>
-                    <div class="post-meta">
-                      <time>{publishDate}</time>
+                    <div class="post-footer">
+                      <time class="post-date">📅 {publishDate}</time>
+                      <span class="read-more">اقرأ المزيد ←</span>
                     </div>
                   </div>
                 </a>
@@ -63,170 +65,306 @@ const articles = allPosts
             );
           })}
         </div>
-      )}
 
-      <div class="view-all">
-        <a href="/ad-revenue-site/articles" class="view-all-btn">عرض جميع المقالات 📖</a>
+        <div class="text-center">
+          <a href="/ad-revenue-site/articles" class="btn btn-outline">عرض جميع المقالات 📖</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ✅ قسم الأقسام -->
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>📂</span>
+        <span>الأقسام</span>
+      </h2>
+      
+      <div class="categories-grid">
+        <a href="/ad-revenue-site/category/ai" class="category-card">
+          <span class="category-icon">🤖</span>
+          <h3>الذكاء الاصطناعي</h3>
+          <p>أحدث تقنيات الذكاء الاصطناعي والتعلم الآلي</p>
+        </a>
+        
+        <a href="/ad-revenue-site/category/money" class="category-card">
+          <span class="category-icon">💰</span>
+          <h3>الربح الرقمي</h3>
+          <p>استراتيجيات الربح من الإنترنت والتسويق</p>
+        </a>
+        
+        <a href="/ad-revenue-site/category/tech" class="category-card">
+          <span class="category-icon">💻</span>
+          <h3>التقنية</h3>          <p>أخبار ومراجعات الأجهزة والبرمجيات</p>
+        </a>
+        
+        <a href="/ad-revenue-site/category/performance" class="category-card">
+          <span class="category-icon">⚡</span>
+          <h3>الأداء والتحسين</h3>
+          <p>تحسين سرعة المواقع ومحركات البحث</p>
+        </a>
       </div>
     </div>
   </section>
+
 </BaseLayout>
 
 <style>
+  :root {
+    --primary: #3b82f6;
+    --primary-dark: #1e40af;
+    --secondary: #64748b;
+    --success: #10b981;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
   
+  /* ✅ Hero Section */
   .hero {
-    text-align: center;
-    padding: 5rem 1rem;
-    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
-    margin-bottom: 4rem;
+    padding: 6rem 0 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .hero h1 {
-    font-size: 2.5rem;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-title {
+    font-size: 3rem;    font-weight: 800;
     margin-bottom: 1rem;
     font-family: 'Tajawal', sans-serif;
+    line-height: 1.2;
   }
-  .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+  .hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
     opacity: 0.95;
     font-family: 'Tajawal', sans-serif;
   }
-  .cta-button {
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ✅ Buttons */
+  .btn {
     display: inline-block;
-    padding: 1rem 2.5rem;
-    background: white;    color: #3b82f6;
+    padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  }
-  .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  }
-
-  .latest-posts { padding: 3rem 0; }
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 2.5rem;
-    text-align: center;
-    color: #1e293b;
     font-family: 'Tajawal', sans-serif;
+    border: 2px solid transparent;
   }
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    margin: 0.8rem auto 0;
-    border-radius: 2px;
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+    box-shadow: var(--shadow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-3px);
+  }
+  .btn-outline {    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+  .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
   }
 
-  .no-posts {
-    text-align: center;
-    padding: 3rem;
-    background: #f8fafc;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    color: #64748b;
+  /* ✅ Featured Posts */
+  .featured-posts {
+    padding: 5rem 0;
+    background: var(--bg);
   }
-  .no-posts p { margin: 0.5rem 0; }
+  .section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  .section-title span:first-child { font-size: 2.5rem; }
 
   .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
   }
 
   .post-card {
-    background: white;    border-radius: 16px;
+    background: var(--card);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow);
     transition: all 0.3s;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
   }
   .post-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
   }
   .post-card a { text-decoration: none; color: inherit; display: block; }
-
   .post-image {
-    height: 200px;
+    height: 220px;
     overflow: hidden;
+    position: relative;
     background: #f1f5f9;
   }
   .post-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s;
+    transition: transform 0.5s;
   }
-  .post-card:hover .post-image img { transform: scale(1.08); }
-
-  .post-content { padding: 1.5rem; }
-  .post-category {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background: #dbeafe;
-    color: #1e40af;
+  .post-card:hover .post-image img { transform: scale(1.1); }
+  
+  .post-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--success);
+    color: white;
+    padding: 0.4rem 1rem;
     border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
     font-family: 'Tajawal', sans-serif;
+    box-shadow: var(--shadow);
   }
+
+  .post-content { padding: 1.8rem; }
   .post-content h3 {
-    font-size: 1.2rem;
-    color: #1e293b;
+    font-size: 1.3rem;
+    color: var(--text);
     margin-bottom: 0.8rem;
     line-height: 1.4;
     font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
   }
   .post-content p {
-    color: #64748b;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    font-family: 'Tajawal', sans-serif;    display: -webkit-box;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-family: 'Tajawal', sans-serif;
+    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .post-meta time {
-    color: #94a3b8;
-    font-size: 0.85rem;
+  .post-footer {
+    display: flex;    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .post-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
     font-family: 'Tajawal', sans-serif;
   }
-
-  .view-all { text-align: center; margin-top: 2rem; }
-  .view-all-btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-    color: white;
-    border-radius: 50px;
-    text-decoration: none;
+  .read-more {
+    color: var(--primary);
     font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    font-size: 0.9rem;
+    font-family: 'Tajawal', sans-serif;
+    transition: transform 0.3s;
   }
-  .view-all-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  .post-card:hover .read-more { transform: translateX(-5px); }
+
+  .text-center { text-align: center; margin-top: 2rem; }
+
+  /* ✅ Categories */
+  .categories-section {
+    padding: 5rem 0;
+    background: white;
+  }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .category-card {
+    background: var(--bg);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    border: 2px solid var(--border);
+  }
+  .category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+  }
+  .category-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;  }
+  .category-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+  }
+  .category-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-family: 'Tajawal', sans-serif;
+    line-height: 1.6;
   }
 
+  /* ✅ Responsive */
   @media (max-width: 768px) {
-    .hero h1 { font-size: 1.8rem; }
-    .hero p { font-size: 1rem; }
+    .hero { padding: 4rem 0 3rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 280px; text-align: center; }
     .posts-grid { grid-template-columns: 1fr; }
-    .section-title { font-size: 1.6rem; }
+    .section-title { font-size: 1.8rem; }
+    .categories-grid { grid-template-columns: 1fr; }
   }
 </style>
