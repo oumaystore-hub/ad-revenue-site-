@@ -18,68 +18,45 @@ const recentArticles = allPosts
   .slice(0, 3);
 
 const features = [
-  {
-    icon: '🎯',
-    title: 'محتوى عملي',
-    description: 'مقالات ودروس تطبيقية تركز على النتائج العملية'
-  },
-  {
-    icon: '⚡',
-    title: 'معلومات محدثة',
-    description: 'نتابع أحدث التقنيات والاتجاهات'
-  },
-  {
-    icon: '💡',
-    title: 'خبرات متخصصة',
-    description: 'فريق من الخبراء المتخصصين'
-  },
-  {
-    icon: '🚀',
-    title: 'نمو مستمر',
-    description: 'نساعدك على تطوير مهاراتك'
-  }
+  { icon: '🎯', title: 'محتوى عملي', desc: 'دروس تطبيقية تركز على النتائج الحقيقية' },
+  { icon: '⚡', title: 'معلومات محدثة', desc: 'متابعة يومية لأحدث التقنيات والاتجاهات' },
+  { icon: '💡', title: 'خبرات متخصصة', desc: 'فريق متخصص في الذكاء الاصطناعي والربح الرقمي' },
+  { icon: '🚀', title: 'نمو مستمر', desc: 'مسارك التطويري من الصفر إلى الاحتراف' }
 ];
 
 const stats = [
-  { number: '10+', label: 'مقال تقني' },
-  { number: '4', label: 'أقسام متخصصة' },
-  { number: '24/7', label: 'متاح للجميع' },
-  { number: '100%', label: 'محتوى مجاني' }
+  { num: '10+', label: 'مقال تقني' },
+  { num: '4', label: 'أقسام متخصصة' },
+  { num: '24/7', label: 'متاح للجميع' },
+  { num: '100%', label: 'محتوى مجاني' }
 ];
 ---
-<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
+
+<BaseLayout title="TH Tech - بوابتك التقنية" description="اكتشف أحدث التقنيات، الذكاء الاصطناعي، واستراتيجيات الربح الرقمي">
   
   <!-- Hero Section -->
   <section class="hero">
+    <div class="grid-bg"></div>
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="pulse"></span>
-          مرحباً بك في TH Tech
-        </div>
-        <h1 class="hero-title">
-          بوابتك إلى عالم
-          <span class="gradient-text">التقنية والابتكار</span>
-        </h1>
-        <p class="hero-subtitle">
-          نقدم لك محتوى تقني متخصص في الذكاء الاصطناعي، الربح الرقمي، وتطوير المواقع
-        </p>
-        <div class="hero-cta">
-          <a href="/ad-revenue-site/articles" class="btn btn-primary btn-lg">📚 استكشف المقالات</a>
-          <a href="#about" class="btn btn-outline btn-lg">ℹ️ اعرف المزيد</a>
+      <div class="hero-content animate-fade-up">
+        <span class="tech-badge">🚀 TH TECH PLATFORM</span>
+        <h1 class="hero-title">بوابتك إلى عالم<br><span class="gradient-text">التقنية والابتكار</span></h1>
+        <p class="hero-desc">محتوى تقني عربي متخصص في الذكاء الاصطناعي، الربح الرقمي، وتطوير الويب. نُبسط التعقيد لنمنحك الأدوات الحقيقية للنجاح.</p>
+        <div class="hero-actions">
+          <a href="/ad-revenue-site/articles" class="btn btn-primary">استكشف المقالات ←</a>
+          <a href="#about" class="btn btn-ghost">اعرف المزيد</a>
         </div>
       </div>
-    </div>
-  </section>
+    </div>  </section>
 
   <!-- Stats Section -->
   <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
-        {stats.map((stat) => (
-          <div class="stat-card">
-            <div class="stat-number">{stat.number}</div>
-            <div class="stat-label">{stat.label}</div>
+        {stats.map(s => (
+          <div class="stat-card animate-fade-up">
+            <div class="stat-num">{s.num}</div>
+            <div class="stat-label">{s.label}</div>
           </div>
         ))}
       </div>
@@ -90,34 +67,36 @@ const stats = [
   <section id="about" class="about-section">
     <div class="container">
       <div class="about-grid">
-        <div class="about-content">
+        <div class="about-text animate-fade-up">
           <h2 class="section-title">🎯 من نحن؟</h2>
-          <p class="about-text">
-            <strong>TH Tech</strong> هي بوابتك الشاملة لعالم التكنولوجيا والابتكار. نؤمن بأن المعرفة هي القوة، لذا نعمل على تقديم محتوى عربي عالي الجودة.
+          <p class="body-text">
+            <strong>TH Tech</strong> منصة تقنية عربية تركز على تبسيط المفاهيم المعقدة وتحويلها إلى خطوات عملية. نؤمن بأن التقنية يجب أن تكون في متناول الجميع، لذا نقدم محتوى مدقق، حديث، وقابل للتطبيق فوراً.
           </p>
           
-          <div class="about-features">            {features.map((feature) => (
-              <div class="feature-item">
-                <span class="feature-icon">{feature.icon}</span>
-                <div class="feature-text">
-                  <h4>{feature.title}</h4>
-                  <p>{feature.description}</p>
+          <div class="features-list">
+            {features.map(f => (
+              <div class="feature-row">
+                <span class="feature-icon">{f.icon}</span>
+                <div>
+                  <h4 class="feature-title">{f.title}</h4>
+                  <p class="feature-desc">{f.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        
-        <div class="about-image">
-          <div class="image-wrapper">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Technology" />
+
+        <div class="about-visual animate-fade-up">
+          <div class="glass-card">
+            <div class="code-lines">
+              <span class="line"></span>
+              <span class="line short"></span>
+              <span class="line medium"></span>
+              <span class="line"></span>
+            </div>
+            <div class="tech-badge-float">TH TECH // 2026</div>
           </div>
-          <div class="experience-badge">
-            <span class="exp-number">2026</span>
-            <span class="exp-text">مستقبل التقنية</span>
-          </div>
-        </div>
-      </div>
+        </div>      </div>
     </div>
   </section>
 
@@ -125,32 +104,37 @@ const stats = [
   {recentArticles.length > 0 && (
     <section class="articles-section">
       <div class="container">
-        <h2 class="section-title center">📝 أحدث المقالات</h2>
+        <div class="section-header animate-fade-up">
+          <h2 class="section-title">📝 أحدث المقالات</h2>
+          <a href="/ad-revenue-site/articles" class="link-arrow">عرض الكل →</a>
+        </div>
         
         <div class="articles-grid">
-          {recentArticles.map((post: any) => {
+          {recentArticles.map(post => {
             const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
             return (
-              <article class="article-card">
+              <article class="article-card animate-fade-up">
                 <a href={post.url}>
-                  <div class="article-image">
+                  <div class="card-image">
                     <img src={articleImage} alt={pageTitle} loading="lazy" />
-                    <span class="article-category">{category}</span>
+                    <span class="card-tag">{category}</span>
                   </div>
-                  <div class="article-content">
-                    <h3>{pageTitle}</h3>
-                    <p>{description}</p>
-                    <div class="article-meta">
-                      <time>📅 {publishDate}</time>
+                  <div class="card-body">
+                    <h3 class="card-title">{pageTitle}</h3>
+                    <p class="card-desc">{description}</p>
+                    <div class="card-meta">
+                      <time>{publishDate}</time>
+                      <span class="read-time">5 دقائق قراءة</span>
                     </div>
                   </div>
                 </a>
-              </article>            );
+              </article>
+            );
           })}
         </div>
         
-        <div class="text-center">
-          <a href="/ad-revenue-site/articles" class="btn btn-primary">عرض جميع المقالات 📖</a>
+        <div class="text-center animate-fade-up">
+          <a href="/ad-revenue-site/articles" class="btn btn-primary btn-wide">تصفح الأرشيف الكامل 📖</a>
         </div>
       </div>
     </section>
@@ -158,11 +142,10 @@ const stats = [
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2>🚀 ابدأ رحلتك التقنية الآن</h2>
-        <p>انضم إلى مجتمع TH Tech واكتشف عالماً من المعرفة</p>
-        <a href="/ad-revenue-site/articles" class="btn btn-white btn-lg">تصفح المقالات مجاناً</a>
+    <div class="container animate-fade-up">
+      <div class="cta-box">
+        <h2 class="cta-title">🚀 ابدأ رحلتك التقنية الآن</h2>
+        <p class="cta-desc">انضم إلى مجتمع TH Tech واحصل على أحدث الأدوات، الشروحات، والاستراتيجيات المجانية.</p>        <a href="/ad-revenue-site/articles" class="btn btn-white">تصفح المقالات مجاناً</a>
       </div>
     </div>
   </section>
@@ -170,248 +153,227 @@ const stats = [
 </BaseLayout>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+
   :root {
-    --primary: #667eea;
-    --primary-dark: #764ba2;
-    --success: #10b981;
-    --bg: #f8fafc;
-    --text: #1e293b;
-    --text-light: #64748b;
+    --bg: #0b1120;
+    --surface: #151e32;
+    --primary: #3b82f6;
+    --accent: #8b5cf6;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    --glass: rgba(21, 30, 50, 0.6);
+    --radius: 16px;
+    --font: 'Cairo', sans-serif;
+    --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    --glow: 0 0 25px rgba(59, 130, 246, 0.15);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Tajawal', sans-serif; line-height: 1.6; color: var(--text); }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
   
-  /* Hero */
-  .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 5rem 0 4rem;
-    text-align: center;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.2);    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
-  .pulse {
-    width: 8px; height: 8px;
-    background: var(--success);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
-  .hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
+  /* Typography Scale */
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+  .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.02em; }
+  .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1.5rem; }
+  .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .body-text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .link-arrow { color: var(--primary); text-decoration: none; font-weight: 600; transition: 0.3s; }
+  .link-arrow:hover { color: var(--accent); transform: translateX(-5px); }
+
   .gradient-text {
-    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.95;
-  }
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
+  /* Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: center;
     padding: 1rem 2rem;
-    border-radius: 50px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
     text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s;
-    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
   }
-  .btn-lg { padding: 1.2rem 2.5rem; font-size: 1.1rem; }  .btn-primary {
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  }
-  .btn-primary:hover { transform: translateY(-3px); }
-  .btn-outline {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border-color: rgba(255,255,255,0.5);
-  }
-  .btn-outline:hover { transform: translateY(-3px); }
-  .btn-white {
-    background: white;
-    color: var(--primary);
-  }
-  .btn-white:hover { transform: translateY(-3px); }
+  .btn-primary { background: var(--primary); color: white; box-shadow: var(--glow); }
+  .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+  .btn-ghost { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+  .btn-white { background: white; color: var(--bg); }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+  .btn-wide { width: 100%; max-width: 320px; }
 
-  /* Stats */
-  .stats-section {
-    background: white;
-    padding: 3rem 0;
-    margin-top: -3rem;
+  /* Hero */
+  .hero {
     position: relative;
-    z-index: 10;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-  }
-  .stat-card {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 8rem 0 6rem;
     text-align: center;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-  }
-  .stat-number { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .stat-label { font-size: 1rem; opacity: 0.9; }
-
-  /* About */
-  .about-section { padding: 6rem 0; background: var(--bg); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }  .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
-  }
-  .section-title.center { text-align: center; justify-content: center; }
-  .about-text {
-    font-size: 1.1rem;
-    line-height: 2;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-  }
-  .about-text strong { color: var(--text); }
-  .about-features { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
-  .feature-item { display: flex; gap: 1rem; align-items: flex-start; }
-  .feature-icon { font-size: 2rem; flex-shrink: 0; }
-  .feature-text h4 { font-size: 1.1rem; margin-bottom: 0.3rem; font-weight: 700; }
-  .feature-text p { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
-  
-  .about-image { position: relative; }
-  .image-wrapper {
-    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
   }
-  .image-wrapper img { width: 100%; height: auto; display: block; }
-  .experience-badge {
-    position: absolute;
-    bottom: -20px;
-    left: -20px;
-    background: white;
-    padding: 1.5rem 2rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-    text-align: center;
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.4;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
   }
-  .exp-number { display: block; font-size: 2rem; font-weight: 800; color: var(--primary); }
-  .exp-text { font-size: 0.9rem; color: var(--text-light); }
-
-  /* Articles */
-  .articles-section { padding: 6rem 0; background: white; }
-  .articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  .article-card {
-    background: white;
-    border-radius: 20px;    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    transition: all 0.3s;
-  }
-  .article-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-  }
-  .article-card a { text-decoration: none; color: inherit; display: block; }
-  .article-image { height: 220px; overflow: hidden; position: relative; background: #f1f5f9; }
-  .article-image img { width: 100%; height: 100%; object-fit: cover; }
-  .article-category {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: var(--success);
-    color: white;
-    padding: 0.4rem 1rem;
+  .tech-badge {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 50px;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
   }
-  .article-content { padding: 1.8rem; }
-  .article-content h3 { font-size: 1.3rem; margin-bottom: 0.8rem; font-weight: 700; }
-  .article-content p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem; }
-  .article-meta { padding-top: 1rem; border-top: 1px solid #e2e8f0; color: var(--text-light); font-size: 0.9rem; }
+  .hero-desc { max-width: 650px; margin: 1.5rem auto 2.5rem; font-size: 1.15rem; color: var(--text-muted); }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  /* Stats */
+  .stats-section { margin-top: -3rem; position: relative; z-index: 10; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--glow); }
+  .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--primary); margin-bottom: 0.3rem; }
+  .stat-label { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+
+  /* About */
+  .about-section { padding: 6rem 0; }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+  .features-list { margin-top: 2rem; display: grid; gap: 1.5rem; }
+  .feature-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .feature-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+  .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .feature-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+  .about-visual { position: relative; height: 350px; display: flex; align-items: center; justify-content: center; }
+  .glass-card {
+    width: 100%; height: 100%;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .code-lines { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 3rem; }
+  .line { height: 12px; background: rgba(255,255,255,0.08); border-radius: 6px; width: 100%; }
+  .line.short { width: 60%; }
+  .line.medium { width: 80%; }
+  .tech-badge-float {
+    position: absolute; bottom: 2rem; right: 2rem;
+    background: var(--primary); color: white;
+    padding: 0.6rem 1.2rem; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 700;
+    box-shadow: var(--glow);
+  }
+
+  /* Articles */
+  .articles-section { padding: 4rem 0 6rem; }  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .article-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: 0.4s;
+  }
+  .article-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: var(--glow); }
+  .article-card a { text-decoration: none; color: inherit; display: block; height: 100%; }
+  .card-image { height: 200px; overflow: hidden; position: relative; }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+  .article-card:hover .card-image img { transform: scale(1.05); }
+  .card-tag {
+    position: absolute; top: 1rem; right: 1rem;
+    background: rgba(59, 130, 246, 0.9); color: white;
+    padding: 0.3rem 0.8rem; border-radius: 6px;
+    font-size: 0.8rem; font-weight: 600;
+  }
+  .card-body { padding: 1.5rem; }
+  .card-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 1rem; }
   .text-center { text-align: center; margin-top: 2rem; }
 
   /* CTA */
-  .cta-section {
-    padding: 6rem 0;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
+  .cta-section { padding: 6rem 0; }
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 24px;
+    padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .cta-content h2 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 800; }
-  .cta-content p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.95; }
+  .cta-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .cta-title { font-size: 2.2rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+  .cta-desc { font-size: 1.1rem; opacity: 0.95; margin-bottom: 2rem; position: relative; z-index: 1; }
+  .cta-box .btn { position: relative; z-index: 1; }
 
-  /* Mobile */
-  @media (max-width: 768px) {
-    .container { padding: 0 1rem; }
-    .hero { padding: 3rem 0 2.5rem; }
-    .hero-title { font-size: 2rem; }
-    .hero-subtitle { font-size: 1.05rem; }
-    .hero-cta { flex-direction: column; align-items: stretch; }
-    .btn-lg { padding: 1rem 1.5rem; font-size: 1rem; justify-content: center; }
-    
-    .stats-section { margin-top: -2rem; padding: 2rem 0; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .stat-card { padding: 1.5rem 1rem; }
-    .stat-number { font-size: 2rem; }    
-    .about-section { padding: 3rem 0; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-image { order: -1; }
-    .section-title { font-size: 2rem; text-align: center; justify-content: center; }
-    .about-text { font-size: 1rem; line-height: 1.8; }
-    .about-features { margin-top: 2rem; }
-    .feature-item { gap: 0.8rem; }
-    .feature-icon { font-size: 1.6rem; }
-    .feature-text h4 { font-size: 1rem; }
-    .feature-text p { font-size: 0.9rem; }
-    .experience-badge { position: relative; bottom: auto; left: auto; margin-top: 1rem; }
-    
-    .articles-section { padding: 3rem 0; }
-    .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .article-image { height: 180px; }
-    .article-content { padding: 1.2rem; }
-    .article-content h3 { font-size: 1.15rem; }
-    .article-content p { font-size: 0.9rem; }
-    
-    .cta-section { padding: 3rem 0; }
-    .cta-content h2 { font-size: 2rem; }
-    .cta-content p { font-size: 1.05rem; }
+  /* Animations */
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .animate-fade-up.visible {    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { order: -1; height: 250px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 5rem 0 4rem; }
+    .hero-title { font-size: 2.2rem; }
+    .hero-desc { font-size: 1rem; }
+    .hero-actions { flex-direction: column; }
+    .btn { width: 100%; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 3rem 1.5rem; }
+    .cta-title { font-size: 1.6rem; }
   }
 </style>
+
+<script>
+  // Scroll Reveal Animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.animate-fade-up').forEach(el => observer.observe(el));
+</script>
