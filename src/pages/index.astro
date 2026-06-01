@@ -4,28 +4,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // جلب المقالات
 const allPosts = await Astro.glob('./articles/post-*.astro');
 
-// ترتيبها (سيكون أبجدياً: 1, 10, 2, 3...)
-const sortedPosts = allPosts.sort((a, b) => {
-  const urlA = a.url;
-  const urlB = b.url;
-  return urlB.localeCompare(urlA);
-});
+const articles = allPosts
+  .filter(post => post.frontmatter && post.frontmatter.pageTitle)
+  .sort((a, b) => {
+    const numA = parseInt(a.url.match(/post-(\d+)/)?.[1] || '0');
+    const numB = parseInt(b.url.match(/post-(\d+)/)?.[1] || '0');
+    return numB - numA;
+  })
+  .slice(0, 6); // عرض أول 6 مقالات فقط في الصفحة الرئيسية
 ---
 
-<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية">
-  <div class="home-container">
-    <header class="hero">
+<BaseLayout title="TH Tech - الرئيسية" description="بوابتك التقنية للذكاء الاصطناعي والربح الرقمي">
+  <!-- ✅ قسم الترحيب -->
+  <section class="hero">
+    <div class="container">
       <h1>مرحباً بك في TH Tech 🚀</h1>
       <p>اكتشف أحدث التقنيات واستراتيجيات الربح الرقمي</p>
-    </header>
+      <a href="/ad-revenue-site/articles" class="cta-button">تصفح جميع المقالات</a>
+    </div>
+  </section>
 
-    <section class="posts-section">
-      <h2>📚 المقالات</h2>
+  <!-- ✅ قسم آخر المقالات -->
+  <section class="latest-posts">
+    <div class="container">
+      <h2 class="section-title">📚 آخر المقالات</h2>
+      
       <div class="posts-grid">
-        {sortedPosts.map((post) => {
-          const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter || {};
-          if (!pageTitle) return null; // تخطي أي مقال بدون عنوان
-          
+        {articles.map((post) => {
+          const { pageTitle, description, publishDate, articleImage, category } = post.frontmatter;
           return (
             <article class="post-card">
               <a href={post.url}>
@@ -36,33 +42,166 @@ const sortedPosts = allPosts.sort((a, b) => {
                   <span class="post-category">{category}</span>
                   <h3>{pageTitle}</h3>
                   <p>{description}</p>
-                  <time>{publishDate}</time>
+                  <div class="post-meta">
+                    <time>{publishDate}</time>
+                  </div>
                 </div>
               </a>
-            </article>
-          );
+            </article>          );
         })}
       </div>
-    </section>
-  </div>
+
+      <div class="view-all">
+        <a href="/ad-revenue-site/articles" class="view-all-btn">عرض جميع المقالات 📖</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .home-container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .hero { text-align: center; padding: 4rem 1rem; margin-bottom: 3rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 16px; }
-  .hero h1 { font-size: 2.5rem; color: #1e293b; margin-bottom: 1rem; font-family: 'Tajawal', sans-serif; }
-  .hero p { font-size: 1.2rem; color: #64748b; font-family: 'Tajawal', sans-serif; }
-  .posts-section h2 { font-size: 2rem; margin-bottom: 2rem; color: #1e293b; font-family: 'Tajawal', sans-serif; border-right: 4px solid #3b82f6; padding-right: 1rem; }
-  .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-  .post-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; border: 1px solid #e2e8f0; }
-  .post-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  
+  /* ✅ قسم الترحيب */
+  .hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    color: white;
+    margin-bottom: 4rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #3b82f6;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+  /* ✅ قسم المقالات */
+  .latest-posts { padding: 3rem 0; }
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #1e293b;
+    font-family: 'Tajawal', sans-serif;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .post-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    border: 1px solid #e2e8f0;
+  }
+  .post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
   .post-card a { text-decoration: none; color: inherit; display: block; }
-  .post-image { height: 200px; overflow: hidden; }
-  .post-image img { width: 100%; height: 100%; object-fit: cover; }
-  .post-content { padding: 1.5rem; }
-  .post-category { display: inline-block; padding: 0.3rem 0.8rem; background: #dbeafe; color: #1e40af; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.8rem; font-family: 'Tajawal', sans-serif; }
-  .post-content h3 { font-size: 1.3rem; color: #1e293b; margin-bottom: 0.8rem; line-height: 1.4; font-family: 'Tajawal', sans-serif; }
-  .post-content p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; font-family: 'Tajawal', sans-serif; }
-  .post-content time { color: #94a3b8; font-size: 0.85rem; font-family: 'Tajawal', sans-serif; }
-  @media (max-width: 768px) { .posts-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
+
+  .post-image {
+    height: 220px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    transition: transform 0.4s;
+  }
+  .post-card:hover .post-image img { transform: scale(1.08); }
+
+  .post-content { padding: 1.8rem; }
+  .post-category {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .post-content h3 {
+    font-size: 1.35rem;
+    color: #1e293b;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .post-content p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .post-meta time {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  .view-all { text-align: center; margin-top: 2rem; }
+  .view-all-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  .view-all-btn:hover {    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1.1rem; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.8rem; }
+  }
 </style>
